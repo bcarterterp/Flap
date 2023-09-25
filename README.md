@@ -16,10 +16,17 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Architecture
 
-
+Our architecture stems from [Flutter - Clean Architecture](https://github.com/guilherme-v/flutter-clean-architecture-example). We found this architecture to allow for ease of use and flexibility. You should be in good hands with it's documentation. Any changes we make that diverge from the proposed architecture should be noted here.
 
 ## Libraries and Frameworks Used
 
+- State Management: [Flutter Riverpod](https://riverpod.dev/)
+- Fonts: [Google Fonts](https://pub.dev/packages/google_fonts)
+
 ## Style Guide
 
+Lint has been set to the default for flutter. Feel free to make your own changes
+
 ## How and What Do We Test?
+
+
