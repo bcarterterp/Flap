@@ -1,4 +1,4 @@
-import 'package:equifax_app/presentation/screens/login/view/login_screen.dart';
+import 'package:equifax_app/presentation/screens/home/view/home_screen.dart';
 import 'package:equifax_app/presentation/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Boilerplate',
         theme: theme.toThemeData(),
         darkTheme: theme.toThemeDataDark(),
-        home: const LoginScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
