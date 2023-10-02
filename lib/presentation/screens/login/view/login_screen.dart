@@ -1,6 +1,7 @@
 import 'package:equifax_app/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 /// Generic log in screen with email and password fields.
 class LoginScreen extends ConsumerWidget {
@@ -52,6 +53,11 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  // if (ref.watch(loginPageStateProvider)) {
+  //     print("success");
+  //     context.go('/home');
+  //   }
+
   @override
   void dispose() {
     super.dispose();
@@ -63,11 +69,29 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
     final email = emailController.text;
     final password = passwordController.text;
     ref.read(loginPageStateProvider.notifier).login(email, password);
+    navigate();
+  }
+
+  void navigate() {
+    final loginState = ref.watch(loginPageStateProvider);
+    if (loginState.loginEvent.isSuccess) {
+      print('test');
+    }
+    // if (loginState == LoginPageState.success()) {
+    //   context.go('/home');
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
     final loginState = ref.watch(loginPageStateProvider);
+
+    if (loginState.loginEvent.isSuccess) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.go('/home');
+      });
+      print('successful');
+    }
 
     ElevatedButton button = ElevatedButton(
       onPressed: login,
