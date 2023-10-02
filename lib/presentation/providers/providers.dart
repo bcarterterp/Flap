@@ -14,7 +14,7 @@ final authRepositoryProvider = Provider<AuthRepositoy>(
 );
 
 final recipeRepositoryProvider = Provider<RecipeRepository>(
-  (ref) => RecipeRepositoryImpl(api: ref.read(apiProvider),
+  (ref) => RecipeRepositoryImpl(api: ref.read(apiProvider)),
 );
 
 final loginPageStateProvider =
