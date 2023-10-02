@@ -16,7 +16,7 @@ class SpoonacularApiImpl implements SpoonacularApi {
       response = await _dio.get(
           "https://api.spoonacular.com/recipes/random?apiKey=bcaa49c492c948dc99175ac11e8dcb66&number=20");
 
-      return (response.data["items"] as List)
+      return (response.data["recipes"] as List)
           .map((e) => RecipeDto.fromJson(e))
           .toList();
     } on DioException catch (e) {

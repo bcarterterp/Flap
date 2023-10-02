@@ -7,7 +7,7 @@ part of 'recipe_dto.dart';
 // **************************************************************************
 
 RecipeDto _$RecipeDtoFromJson(Map<String, dynamic> json) => RecipeDto(
-      json['id'] as String,
+      json['id'] as int,
       json['title'] as String?,
       json['image'] as String?,
     );

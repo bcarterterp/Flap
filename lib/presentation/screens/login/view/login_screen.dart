@@ -53,11 +53,6 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // if (ref.watch(loginPageStateProvider)) {
-  //     print("success");
-  //     context.go('/home');
-  //   }
-
   @override
   void dispose() {
     super.dispose();
@@ -69,28 +64,19 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
     final email = emailController.text;
     final password = passwordController.text;
     ref.read(loginPageStateProvider.notifier).login(email, password);
-    navigate();
-  }
-
-  void navigate() {
-    final loginState = ref.watch(loginPageStateProvider);
-    if (loginState.loginEvent.isSuccess) {
-      print('test');
-    }
-    // if (loginState == LoginPageState.success()) {
-    //   context.go('/home');
-    // }
   }
 
   @override
   Widget build(BuildContext context) {
     final loginState = ref.watch(loginPageStateProvider);
 
+    // When state changes and the login event is successful, navigation code will execute below
+    // WidgetsBinding.instance.addPostFrameCallback executes when widgets are finished rendering
+    // Without the addPostFrameCallback, there will be an error that says you can't update state when widgets are being built
     if (loginState.loginEvent.isSuccess) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.go('/home');
       });
-      print('successful');
     }
 
     ElevatedButton button = ElevatedButton(

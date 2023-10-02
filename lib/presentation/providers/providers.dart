@@ -3,6 +3,8 @@ import 'package:equifax_app/data/repository/recipe/recipe_repository_impl.dart';
 import 'package:equifax_app/data/source/network/spoonacular_api.dart';
 import 'package:equifax_app/domain/repository/auth/auth_repository.dart';
 import 'package:equifax_app/domain/repository/recipe/recipe_repository.dart';
+import 'package:equifax_app/presentation/screens/home/notifier/home_page_state.dart';
+import 'package:equifax_app/presentation/screens/home/notifier/home_page_state_notifier.dart';
 import 'package:equifax_app/presentation/screens/login/notifier/login_page_state.dart';
 import 'package:equifax_app/presentation/screens/login/notifier/login_page_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,5 +23,12 @@ final loginPageStateProvider =
     StateNotifierProvider<LoginPageStateNotifier, LoginPageState>(
   (ref) => LoginPageStateNotifier(
     authRepository: ref.watch(authRepositoryProvider),
+  ),
+);
+
+final homePageStateProvider =
+    StateNotifierProvider<HomePageStateNotifier, HomePageState>(
+  (ref) => HomePageStateNotifier(
+    recipeRepository: ref.watch(recipeRepositoryProvider),
   ),
 );
