@@ -70,6 +70,7 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
   Widget build(BuildContext context) {
     final loginState = ref.watch(loginPageStateProvider);
 
+    //The WidgetsBinding.instance.addPostFrameCallback executes navigation code only after widgets are rendered
     if (loginState.loginEvent.isSuccess) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.go('/home');
