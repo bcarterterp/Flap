@@ -53,11 +53,6 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // if (ref.watch(loginPageStateProvider)) {
-  //     print("success");
-  //     context.go('/home');
-  //   }
-
   @override
   void dispose() {
     super.dispose();
@@ -69,17 +64,6 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
     final email = emailController.text;
     final password = passwordController.text;
     ref.read(loginPageStateProvider.notifier).login(email, password);
-    navigate();
-  }
-
-  void navigate() {
-    final loginState = ref.watch(loginPageStateProvider);
-    if (loginState.loginEvent.isSuccess) {
-      print('test');
-    }
-    // if (loginState == LoginPageState.success()) {
-    //   context.go('/home');
-    // }
   }
 
   @override
@@ -90,7 +74,6 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.go('/home');
       });
-      print('successful');
     }
 
     ElevatedButton button = ElevatedButton(
