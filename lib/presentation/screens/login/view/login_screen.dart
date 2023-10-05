@@ -1,4 +1,4 @@
-import 'package:equifax_app/presentation/providers/providers.dart';
+import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -73,7 +73,7 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
       onPressed: login,
       child: const Text('Login'),
     );
-    if (loginState.loginEvent.isLoading) {
+    if (loginState.isLoading()) {
       button = const ElevatedButton(
         onPressed: null,
         child: SizedBox(
