@@ -3,7 +3,7 @@
 // App listens to incoming connections from the driver process
 import 'package:flutter_driver/driver_extension.dart';
 
-import 'package:equifax_app/main.dart' as app;
+import 'package:flap_app/main.dart' as app;
 
 void main() {
   // This line enables the extension.
