@@ -34,7 +34,7 @@ class LoginPageStateNotifier extends StateNotifier<LoginScreenState> {
       case Success<UserInfo, LoginError>():
         state = LoginScreenState.success(response.data);
       case Error<UserInfo, LoginError>():
-        state = LoginScreenState.error(response.error!);
+        state = LoginScreenState.error(response.error);
     }
   }
 }

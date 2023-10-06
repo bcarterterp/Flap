@@ -27,7 +27,7 @@ class LoginScreen extends ConsumerWidget {
               const SizedBox(
                 height: 16,
               ),
-              const LoginInformationWiget(),
+              const LoginInformationWidget(),
             ],
           ),
         ),
@@ -39,16 +39,16 @@ class LoginScreen extends ConsumerWidget {
 /// Widget that contains the email and password fields, and the submit button.
 /// Broken out to reduce the amount of widgets that will be refreshed when there
 /// is a state change.
-class LoginInformationWiget extends ConsumerStatefulWidget {
-  const LoginInformationWiget({Key? key}) : super(key: key);
+class LoginInformationWidget extends ConsumerStatefulWidget {
+  const LoginInformationWidget({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<LoginInformationWiget> createState() {
+  ConsumerState<LoginInformationWidget> createState() {
     return _LoginInformationWigetState();
   }
 }
 
-class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
+class _LoginInformationWigetState extends ConsumerState<LoginInformationWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
