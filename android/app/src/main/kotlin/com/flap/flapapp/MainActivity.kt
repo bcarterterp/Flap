@@ -1,4 +1,4 @@
-package com.example.equifax_app
+package com.flap.flapapp
 
 import io.flutter.embedding.android.FlutterActivity
 
