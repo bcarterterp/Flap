@@ -21,6 +21,9 @@ class HomeScreen extends BaseScreen {
   SerializableFinder loginButton = find.text("Login");
 
   // Error texts
-  SerializableFinder emailError = find.text('Email is empty');
-  SerializableFinder passwordError = find.text('Password is empty');
+  SerializableFinder emailEmptyError = find.text('Email is empty');
+  SerializableFinder passwordEmptyError = find.text('Password is empty');
+
+  SerializableFinder emailCheckError = find.text('Check your email');
+  SerializableFinder passwordCheckError = find.text('Check your password');
 }

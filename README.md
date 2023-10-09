@@ -45,11 +45,9 @@ The flutter extension should allow you to run tests via the play button on the l
 To run a test, launch the app first via the launch configuration titled:
 - Integration Tests: Launch App
 
-Then, navigate to your test file and run each test via the play button aforementioned. All tests in a tet file can be run by clicking the play button at the start of a group.
+Then, navigate to your test file and run each test via the play button. All tests in a test file can be run by clicking the play button at the start of a group.
 
-Flutter test files do not restart app state between each test. Meaning, a new test file needs to be created for each unrelated scenario.
+Flutter test files do not restart the app state between each test. Meaning, a new test file needs to be created for each unrelated scenario.
 For this reason, organisation of tests should include folders for each screen, with all test files contained therein.
 
-This project follows the Page Object Model structure, with each screen having a 
-
-
+This project follows the Page Object Model structure, with each screen having a screen file which should define all screen elements for reuse in all test files, as well as screen-specific test files.

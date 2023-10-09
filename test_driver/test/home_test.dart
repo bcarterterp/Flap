@@ -21,57 +21,57 @@ void main() {
     }
   });
   group('Home Tests', () {
-    final homeScreen = HomeScreen(driver);
-    print(homeScreen.title);
-    print("output");
-    // Basic app health check
-    test("check health", () async {
-      // Based on given example in documentation
-      Health health = await driver.checkHealth();
-      print(health.status);
-    });
-
     test('test page elements', () async {
+      // Define screen for more readable code
+      final homeScreen = HomeScreen(driver);
+
       // Define any elements needed to perform assertions at the top
       final emailExists =
           homeScreen.verifyExists(homeScreen.emailField, driver, 500);
-      print(homeScreen.title);
-      //final passwordExists = HomeScreen(driver)
-      //    .verifyExists(HomeScreen(driver).passwordField, driver, 500);
+      final passwordExists =
+          homeScreen.verifyExists(homeScreen.passwordField, driver, 500);
 
       // Assertions below
-      //expect(await driver.getText(HomeScreen(driver).title),
-      //    "Please Enter Credentials");
-      // expect(await driver.getText(HomeScreen(driver).loginButton), "Login");
+      expect(
+          await driver.getText(homeScreen.title), "Please Enter Credentials");
+      expect(await driver.getText(homeScreen.loginButton), "Login");
       expect(await emailExists, isTrue);
-      //expect(await passwordExists, isTrue);
+      expect(await passwordExists, isTrue);
     });
-/*
-    test('test login functionality', () async {
+
+    test('test login error display', () async {
+      // Define screen for more readable code
+      final homeScreen = HomeScreen(driver);
+
       // Elements
-      final emailErrorExists = HomeScreen(driver)
-          .verifyExists(HomeScreen(driver).emailError, driver, 500);
-      final passwordErrorExists = HomeScreen(driver)
-          .verifyExists(HomeScreen(driver).passwordError, driver, 500);
+      final emailEmptyErrorExists = driver.getText(homeScreen.emailEmptyError);
+      final passwordEmptyErrorExists =
+          driver.getText(homeScreen.passwordEmptyError);
+      final emailCheckErrorExists = driver.getText(homeScreen.emailCheckError);
+      final passwordCheckErrorExists =
+          driver.getText(homeScreen.passwordCheckError);
+
       // First trigger error state by clicking login
-      driver.tap(HomeScreen(driver).loginButton);
-      // Test and make sure error state is present on email field
-      expect(emailErrorExists, isTrue);
-      // Enter text into email field
-      await driver.tap(HomeScreen(driver).emailField);
+      await driver.tap(homeScreen.loginButton);
+      // Test and make sure error states are loaded
+      expect(await emailEmptyErrorExists, "Email is empty");
+      // Enter text into email field then trigger password error
+      await driver.tap(homeScreen.emailField);
       await driver.enterText("test@test.com");
-      // Test and make sure error state is present on password field, and
-      // email error is now gone
-      driver.tap(HomeScreen(driver).loginButton);
-      expect(passwordErrorExists, isTrue);
-      expect(emailErrorExists, isFalse);
-      // Enter text in password field and assert that both error texts
-      // are gone
-      await driver.tap(HomeScreen(driver).passwordField);
+      await driver.tap(homeScreen.loginButton);
+      expect(await passwordEmptyErrorExists, "Password is empty");
+      // Enter text into password field then hit login
+      await driver.tap(homeScreen.passwordField);
       await driver.enterText("testPassword!");
-      expect(passwordErrorExists, isFalse);
-      expect(emailErrorExists, isFalse);
+      driver.tap(homeScreen.loginButton);
+      // Assert new error message is present
+      expect(await emailCheckErrorExists, "Check your email");
+      expect(await passwordCheckErrorExists, "Check your password");
+      // Note: driver doesn't support understanding of if elements
+      // are still "visible". For things like determining if an element
+      // is still present, its better to use integration or widget tests
+      // to ensure error scenarios are triggering when expected
+      // Please see home_widget_test.dart
     });
-    */
   });
 }
