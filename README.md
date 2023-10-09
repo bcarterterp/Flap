@@ -35,14 +35,17 @@ Our architecture stems from [Flutter - Clean Architecture](https://github.com/gu
 
 
 ## How and What Do We Test?
-UI Testing:
-Requires the app to be running with flutter-driver in the background. Testing is being run using VSCode. Extensions that help make testing possible include:
+Testing is being run primarily using VSCode. Extensions that help make testing possible include:
 - Dart language extension
 - Flutter support extension
 
-The flutter extension should allow you to run tests via the play button on the left in the lie number column.
+The flutter extension should allow you to run tests via the play button on the left in the line number column.
 
-To run a test, launch the app first via the launch configuration titled:
+### Driver/UI Testing:
+These tests are designed to be lightweight and mainly focused on testing the initial visual elements of the screen. This will exclude changes to visual elements that occur as part of a user journey. As long as the expected elements are found in the hierarchy, the tests will pass.
+Driver tests require the app to be running with flutter-driver in the background. 
+
+To run a driver test, launch the app first via the launch configuration titled:
 - Integration Tests: Launch App
 
 Then, navigate to your test file and run each test via the play button. All tests in a test file can be run by clicking the play button at the start of a group.
@@ -51,3 +54,6 @@ Flutter test files do not restart the app state between each test. Meaning, a ne
 For this reason, organisation of tests should include folders for each screen, with all test files contained therein.
 
 This project follows the Page Object Model structure, with each screen having a screen file which should define all screen elements for reuse in all test files, as well as screen-specific test files.
+
+### Integration / Widget Tests:
+The structure of the widget or integration tests follows the same folder structure as the ui tests. These tests are designed to be more exhaustive and robust, testing the logic of the widgets and ensuring the correct scenarios are occuring as expected. These tests assert on user journeys laid out in the Acceptance Criteria, rather than any visual elements. An exception to this rule is in the case of asserting on an elements visibility. If an element only appears after a condition is met, that will be asserted on in a widget test due that elements involvement in a user journey scenario.
