@@ -21,12 +21,15 @@ Our architecture stems from [Flutter - Clean Architecture](https://github.com/gu
 ## Libraries and Frameworks Used
 
 - State Management: [Flutter Riverpod](https://riverpod.dev/)
+- Navigation: [go_router] (https://pub.dev/packages/go_router)
 - Fonts: [Google Fonts](https://pub.dev/packages/google_fonts)
 
 ## Style Guide
 
 Lint has been set to the default for flutter. Feel free to make your own changes
 
+## Navigation
+
+go_router is a declarative routing package helpful for advanced navigation requirements (such as a web app that uses direct links to each screen or an app with multiple "navigation graphs" or navigation widgets). This package was mentioned here in the flutter docs: https://docs.flutter.dev/ui/navigation
+
 ## How and What Do We Test?
-
-
