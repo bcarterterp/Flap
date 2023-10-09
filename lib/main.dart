@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 import 'package:equifax_app/presentation/screens/home/view/home_screen.dart';
 import 'package:equifax_app/presentation/screens/login/view/login_screen.dart';
 import 'package:equifax_app/presentation/theme/app_theme.dart';
+||||||| e5fc1ed
+import 'package:equifax_app/presentation/screens/login/view/login_screen.dart';
+import 'package:equifax_app/presentation/theme/app_theme.dart';
+=======
+import 'package:flap_app/presentation/screens/login/view/login_screen.dart';
+import 'package:flap_app/presentation/theme/app_theme.dart';
+>>>>>>> main
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

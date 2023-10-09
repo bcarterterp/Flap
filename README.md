@@ -10,8 +10,7 @@ If this is your first flutter project, don't worry, we will help you through it!
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
+For help getting started with Flutter development, view the[online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
 ## Architecture
@@ -23,10 +22,18 @@ Our architecture stems from [Flutter - Clean Architecture](https://github.com/gu
 - State Management: [Flutter Riverpod](https://riverpod.dev/)
 - Navigation: [go_router] (https://pub.dev/packages/go_router)
 - Fonts: [Google Fonts](https://pub.dev/packages/google_fonts)
+- Change App Package Name: [Name Change](https://pub.dev/packages/change_app_package_name) Allows you to change the project name through terminal instead of doing it manually. Feel free to remove it after forking!
 
 ## Style Guide
 
-Lint has been set to the default for flutter. Feel free to make your own changes
+- Lint has been set to the [default](https://dart.dev/effective-dart/style) for Flutter/Dart. Feel free to make your own changes
+- Naming Conventions:
+  - Screens are the widgets you will display to the user and navigate to and from.
+  - ScreenStates are the data that backs the Screens 
+  - Notifiers are the glue connecting state change and the UseCases
+  - UseCases contain the core business logic and coordinate the flow of data between the notifier and repositories
+  - Repositories are in charge of doing some sort of specialty work (Network, Cache, Etc)
+
 
 ## Navigation
 
