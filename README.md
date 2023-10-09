@@ -55,5 +55,7 @@ For this reason, organisation of tests should include folders for each screen, w
 
 This project follows the Page Object Model structure, with each screen having a screen file which should define all screen elements for reuse in all test files, as well as screen-specific test files.
 
+NOTE: SetUpAll does not occur before the "group" is run. SetUpAll runs before each respective test.
+
 ### Integration / Widget Tests:
 The structure of the widget or integration tests follows the same folder structure as the ui tests. These tests are designed to be more exhaustive and robust, testing the logic of the widgets and ensuring the correct scenarios are occuring as expected. These tests assert on user journeys laid out in the Acceptance Criteria, rather than any visual elements. An exception to this rule is in the case of asserting on an elements visibility. If an element only appears after a condition is met, that will be asserted on in a widget test due that elements involvement in a user journey scenario.
