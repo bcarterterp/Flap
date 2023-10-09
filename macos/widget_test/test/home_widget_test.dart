@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../screens/home_screen.dart';
-
 import 'package:flap_app/main.dart';
 
 void main() {
