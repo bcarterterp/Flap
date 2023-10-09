@@ -5,8 +5,8 @@ import 'package:flap_app/presentation/screens/login/notifier/login_page_state.da
 import 'package:flap_app/presentation/screens/login/notifier/login_page_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final authRepositoryProvider = Provider<AuthRepositoy>(
-  (ref) => AuthRepositoyImpl(),
+final authRepositoryProvider = Provider<AuthRepository>(
+  (ref) => AuthRepositoryImpl(),
 );
 
 final logInUseCaseProvider = Provider<LogInUseCase>(
