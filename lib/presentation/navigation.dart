@@ -1,9 +1,9 @@
-// Configure GoRouter for navigation
-
 import 'package:flap_app/presentation/screens/home/view/home_screen.dart';
 import 'package:flap_app/presentation/screens/login/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+//Navigation routes are defined in the below GoRouter configuration
 
 final GoRouter navigationRouter = GoRouter(
   initialLocation: '/',
