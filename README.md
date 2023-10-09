@@ -35,5 +35,21 @@ Our architecture stems from [Flutter - Clean Architecture](https://github.com/gu
 
 
 ## How and What Do We Test?
+UI Testing:
+Requires the app to be running with flutter-driver in the background. Testing is being run using VSCode. Extensions that help make testing possible include:
+- Dart language extension
+- Flutter support extension
+
+The flutter extension should allow you to run tests via the play button on the left in the lie number column.
+
+To run a test, launch the app first via the launch configuration titled:
+- Integration Tests: Launch App
+
+Then, navigate to your test file and run each test via the play button aforementioned. All tests in a tet file can be run by clicking the play button at the start of a group.
+
+Flutter test files do not restart app state between each test. Meaning, a new test file needs to be created for each unrelated scenario.
+For this reason, organisation of tests should include folders for each screen, with all test files contained therein.
+
+This project follows the Page Object Model structure, with each screen having a 
 
 

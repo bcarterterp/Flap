@@ -26,12 +26,6 @@
             "request": "launch",
             "type": "dart",
             "program": "test_driver/app.dart",
-        },
-        {
-            "name": "Integration Tests: Launch Driver",
-            "request": "launch",
-            "type": "dart",
-            "program": "test_driver/app_test.dart",
         }
     ]
 }

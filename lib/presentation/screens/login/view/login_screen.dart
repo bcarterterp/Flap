@@ -48,7 +48,8 @@ class LoginInformationWidget extends ConsumerStatefulWidget {
   }
 }
 
-class _LoginInformationWigetState extends ConsumerState<LoginInformationWidget> {
+class _LoginInformationWigetState
+    extends ConsumerState<LoginInformationWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -89,6 +90,7 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWidget> 
     return Column(
       children: [
         TextField(
+          key: const ValueKey('emailTextField'),
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             labelText: 'Email',
@@ -101,6 +103,7 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWidget> 
           height: 4,
         ),
         TextField(
+          key: const ValueKey('passwordTextField'),
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             labelText: 'Password',
