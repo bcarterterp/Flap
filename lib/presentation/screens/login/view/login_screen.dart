@@ -1,4 +1,4 @@
-import 'package:equifax_app/presentation/providers/providers.dart';
+import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -28,7 +28,7 @@ class LoginScreen extends ConsumerWidget {
               const SizedBox(
                 height: 16,
               ),
-              const LoginInformationWiget(),
+              const LoginInformationWidget(),
             ],
           ),
         ),
@@ -40,16 +40,17 @@ class LoginScreen extends ConsumerWidget {
 /// Widget that contains the email and password fields, and the submit button.
 /// Broken out to reduce the amount of widgets that will be refreshed when there
 /// is a state change.
-class LoginInformationWiget extends ConsumerStatefulWidget {
-  const LoginInformationWiget({Key? key}) : super(key: key);
+class LoginInformationWidget extends ConsumerStatefulWidget {
+  const LoginInformationWidget({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<LoginInformationWiget> createState() {
+  ConsumerState<LoginInformationWidget> createState() {
     return _LoginInformationWigetState();
   }
 }
 
-class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
+class _LoginInformationWigetState
+    extends ConsumerState<LoginInformationWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -71,7 +72,7 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
     final loginState = ref.watch(loginPageStateProvider);
 
     //The WidgetsBinding.instance.addPostFrameCallback executes navigation code only after widgets are rendered
-    if (loginState.loginEvent.isSuccess) {
+    if (loginState.isSuccess()) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.go('/home');
       });
@@ -81,7 +82,7 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWiget> {
       onPressed: login,
       child: const Text('Login'),
     );
-    if (loginState.loginEvent.isLoading) {
+    if (loginState.isLoading()) {
       button = const ElevatedButton(
         onPressed: null,
         child: SizedBox(
