@@ -1,5 +1,5 @@
-import 'package:equifax_app/domain/repository/recipe/recipe_repository.dart';
-import 'package:equifax_app/presentation/screens/home/notifier/home_page_state.dart';
+import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
+import 'package:flap_app/presentation/screens/home/notifier/home_page_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePageStateNotifier extends StateNotifier<HomePageState> {

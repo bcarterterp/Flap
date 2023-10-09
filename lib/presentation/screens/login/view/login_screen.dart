@@ -49,7 +49,8 @@ class LoginInformationWidget extends ConsumerStatefulWidget {
   }
 }
 
-class _LoginInformationWigetState extends ConsumerState<LoginInformationWidget> {
+class _LoginInformationWigetState
+    extends ConsumerState<LoginInformationWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -73,7 +74,7 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWidget> 
     // When state changes and the login event is successful, navigation code will execute below
     // WidgetsBinding.instance.addPostFrameCallback executes when widgets are finished rendering
     // Without the addPostFrameCallback, there will be an error that says you can't update state when widgets are being built
-    if (loginState.loginEvent.isSuccess) {
+    if (loginState.isSuccess()) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.go('/home');
       });

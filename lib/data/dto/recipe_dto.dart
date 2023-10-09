@@ -1,4 +1,4 @@
-import 'package:equifax_app/domain/entity/recipe.dart';
+import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'recipe_dto.g.dart';

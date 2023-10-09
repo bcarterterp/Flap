@@ -1,4 +1,4 @@
-import 'package:equifax_app/domain/entity/recipe.dart';
+import 'package:flap_app/domain/entity/recipe.dart';
 
 abstract class RecipeRepository {
   Future<List<Recipe>> getRandomRecipes();

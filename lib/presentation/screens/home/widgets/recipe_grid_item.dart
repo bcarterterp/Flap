@@ -1,4 +1,4 @@
-import 'package:equifax_app/domain/entity/recipe.dart';
+import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 

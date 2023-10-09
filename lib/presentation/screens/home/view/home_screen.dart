@@ -1,5 +1,5 @@
-import 'package:equifax_app/presentation/providers/providers.dart';
-import 'package:equifax_app/presentation/screens/home/widgets/recipe_grid_item.dart';
+import 'package:flap_app/presentation/providers/providers.dart';
+import 'package:flap_app/presentation/screens/home/widgets/recipe_grid_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

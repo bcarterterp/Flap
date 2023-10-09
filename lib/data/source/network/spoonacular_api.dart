@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:equifax_app/data/dto/recipe_dto.dart';
-import 'package:equifax_app/domain/entity/recipe.dart';
+import 'package:flap_app/data/dto/recipe_dto.dart';
+import 'package:flap_app/domain/entity/recipe.dart';
 
 abstract class SpoonacularApi {
   Future<List<Recipe>> getRandomRecipes();
