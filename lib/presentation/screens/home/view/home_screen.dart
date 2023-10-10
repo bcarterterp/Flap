@@ -25,8 +25,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(homePageStateProvider);
-
-    final randomRecipes = state.randomRecipes;
+    final recipeList = state.recipeList;
 
     return Scaffold(
       appBar: AppBar(
@@ -41,11 +40,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           mainAxisSpacing: 20,
         ),
         children: [
-          if (state.randomRecipes != null)
-            for (final recipe in randomRecipes!)
-              RecipeGridItem(
-                recipe: recipe,
-              )
+          if (state.isSuccess() && recipeList != null)
+            for (final recipe in recipeList) RecipeGridItem(recipe: recipe)
         ],
       ),
     );
