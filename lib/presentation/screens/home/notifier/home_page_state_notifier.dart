@@ -13,12 +13,12 @@ class HomePageStateNotifier extends StateNotifier<HomePageState> {
   final RecipeRepository _recipeRepository;
 
   Future<void> getRandomRecipes() async {
-    final _response = await _recipeRepository.getRandomRecipes();
-    switch (_response) {
+    final response = await _recipeRepository.getRandomRecipes();
+    switch (response) {
       case Success<List<Recipe>, DioException>():
-        state = HomePageState.success(_response.data);
+        state = HomePageState.success(response.data);
       case Error<List<Recipe>, DioException>():
-        state = HomePageState.error(_response.error);
+        state = HomePageState.error(response.error);
     }
   }
 }
