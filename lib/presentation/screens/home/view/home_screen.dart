@@ -42,6 +42,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         children: [
           if (state.isSuccess() && recipeList != null)
             for (final recipe in recipeList) RecipeGridItem(recipe: recipe)
+          //TODO: Need to add UI states for when state is loading, connection error, empty recipe result
         ],
       ),
     );

@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
+import 'package:flap_app/domain/entity/request_response.dart';
 
 abstract class RecipeRepository {
-  Future<List<Recipe>> getRandomRecipes();
+  Future<RequestResponse<List<Recipe>, DioException>> getRandomRecipes();
 }
