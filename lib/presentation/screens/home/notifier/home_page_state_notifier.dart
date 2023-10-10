@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class HomePageStateNotifier extends StateNotifier<HomePageState> {
   HomePageStateNotifier({required RecipeRepository recipeRepository})
       : _recipeRepository = recipeRepository,
-        super(const HomePageState());
+        super(HomePageState.initial());
 
   final RecipeRepository _recipeRepository;
 
