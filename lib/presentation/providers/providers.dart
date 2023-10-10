@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final apiProvider = Provider<SpoonacularApi>((ref) => SpoonacularApiImpl());
 
 final authRepositoryProvider = Provider<AuthRepository>(
-  (ref) => AuthRepositoyImpl(),
+  (ref) => AuthRepositoryImpl(),
 );
 
 final logInUseCaseProvider = Provider<LogInUseCase>(

@@ -1,5 +1,4 @@
 import 'package:flap_app/presentation/navigation.dart';
-import 'package:flap_app/presentation/screens/login/view/login_screen.dart';
 import 'package:flap_app/presentation/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -3,7 +3,8 @@ import 'package:flap_app/presentation/screens/login/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-// Configuration for GoRouter, a library used for advance navigation
+//Navigation routes are defined in the below GoRouter configuration
+
 final GoRouter navigationRouter = GoRouter(
   initialLocation: '/',
   routes: [
