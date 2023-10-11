@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flap_app/data/repository/auth/auth_repository_impl.dart';
 import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
@@ -10,7 +11,11 @@ import 'package:flap_app/presentation/screens/login/notifier/login_page_state.da
 import 'package:flap_app/presentation/screens/login/notifier/login_page_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final apiProvider = Provider<SpoonacularApi>((ref) => SpoonacularApiImpl());
+//TODO: Investigate dependency injection solutions for passing in Dio to api class
+Dio dio = Dio();
+
+final apiProvider =
+    Provider<SpoonacularApi>((ref) => SpoonacularApiImpl(dio: dio));
 
 final authRepositoryProvider = Provider<AuthRepository>(
   (ref) => AuthRepositoryImpl(),

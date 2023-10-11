@@ -4,18 +4,22 @@ import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
 
 abstract class SpoonacularApi {
+  final Dio dio;
+  SpoonacularApi({required this.dio});
+
   Future<RequestResponse<List<Recipe>, DioException>> getRandomRecipes();
 }
 
 class SpoonacularApiImpl implements SpoonacularApi {
-  final _dio = Dio();
+  final Dio dio;
+
+  SpoonacularApiImpl({required this.dio});
 
   @override
   Future<RequestResponse<List<Recipe>, DioException>> getRandomRecipes() async {
     try {
       Response response;
-      response = await _dio.get(
-          "");
+      response = await dio.get("");
 
       final recipeListResponse = (response.data["recipes"] as List)
           .map((e) => RecipeDto.fromJson(e))

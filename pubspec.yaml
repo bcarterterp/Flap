@@ -46,6 +46,7 @@ dependencies:
   json_annotation: ^4.8.1
   # Transparent image is for when images are being loaded over a network
   transparent_image: ^2.0.1
+  # required package for the http mock adapter which is used to unit test dio
   http: ^1.1.0
 
 dev_dependencies:
@@ -65,7 +66,9 @@ dev_dependencies:
   # this package enables auto-generated json mappers as seen in the dto.g.dart classes
   json_serializable: ^6.7.1
   test: ^1.24.3
+  # used to create mocks for unit testing
   mockito: ^5.4.2
+  # used to create mocks of Dio for unit testing
   http_mock_adapter: ^0.6.0
 
 # For information on the generic Dart part of this file, see the

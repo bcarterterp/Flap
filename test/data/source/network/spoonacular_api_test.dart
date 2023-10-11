@@ -1,55 +1,68 @@
+import 'package:dio/dio.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
+import 'package:flap_app/domain/entity/request_response.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-
+import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 void main() {
-  late SpoonacularApiImpl spoonacularApiImpl;
-
-  setUp(() {
-    spoonacularApiImpl = SpoonacularApiImpl();
-  });
+  late Dio dio;
+  late DioAdapter dioAdapter;
+  late SpoonacularApiImpl spoonacularApi;
 
   group('getRandomRecipes', () {
-    test('returns recipe list when http status is 200', () async {
-      const recipes = [Recipe(id: 1), Recipe(id: 2)];
-      final successResponse = Success<List<Recipe>, DioException>(recipes);
-      //Without the below provideDummy, an error will be thrown because the generated mock class requires a dummy value(line 45 in the mocks.dart equivalent of this class)
-      provideDummy<RequestResponse<List<Recipe>, DioException>>(
-          successResponse);
-
-      //Below is stubbed behavior for the getRandomRecipes call to return a successResponse
-      when(mockRecipeRepository.getRandomRecipes())
-          .thenAnswer((_) async => Future.value(successResponse));
-
-      // Call the getRandomRecipes method
-      await notifier.getRandomRecipes();
-
-      // Verify that HomePageState is updated with a recipe list
-      expect(
-          notifier.state.recipeList, HomePageState.success(recipes).recipeList);
+    setUp(() {
+      dio = Dio(BaseOptions());
+      dioAdapter = DioAdapter(dio: dio);
+      dio.httpClientAdapter = dioAdapter;
+      spoonacularApi = SpoonacularApiImpl(dio: dio);
     });
 
     test(
-        'returns error and updates HomePageState with error state and error message',
+        'returns recipe list and a success request response object upon 200 code',
         () async {
-      final errorType = DioException.connectionError(
-          requestOptions: RequestOptions(), reason: "Mock Error");
-      final errorResponse = Error<List<Recipe>, DioException>(errorType);
-      //Without the below provideDummy, an error will be thrown because the generated mock class requires a dummy value(line 45)
-      provideDummy<RequestResponse<List<Recipe>, DioException>>(errorResponse);
+      dioAdapter.onGet(
+        "",
+        (server) => server.reply(
+          200,
+          {
+            'recipes': [
+              {'id': 1}
+            ]
+          },
+          delay: const Duration(seconds: 1),
+        ),
+      );
+      final response = await spoonacularApi.getRandomRecipes();
+      final Success<List<Recipe>, DioException> expected =
+          Success([const Recipe(id: 1)]);
 
-      //Below is stubbed behavior for the getRandomRecipes call to return an errorResponse
-      when(mockRecipeRepository.getRandomRecipes())
-          .thenAnswer((_) async => Future.value(errorResponse));
+      const data = [Recipe(id: 1)];
+      expect(response, isA<Success<List<Recipe>, DioException>>());
+    });
 
-      // Call the getRandomRecipes method
-      await notifier.getRandomRecipes();
-
-      // Verify that HomePageState has a loadRecipesEvent that is an ErrorEvent
-      expect(notifier.state.isError(), true);
+    test('returns error request response object upon server error code 500',
+        () async {
+      dioAdapter.onGet(
+        "",
+        (server) => server.reply(
+          500,
+          {
+            'recipes': [
+              {'id': 1}
+            ]
+          },
+          delay: const Duration(seconds: 1),
+        ),
+      );
+      final response = await spoonacularApi.getRandomRecipes();
+      final Error<List<Recipe>, DioException> expected = Error(
+        DioException.badResponse(
+            statusCode: 500,
+            requestOptions: RequestOptions(),
+            response: Response(requestOptions: RequestOptions())),
+      );
+      expect(response, isA<Error<List<Recipe>, DioException>>());
     });
   });
 }
