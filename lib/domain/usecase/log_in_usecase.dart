@@ -8,10 +8,10 @@ import 'package:flap_app/domain/repository/auth/auth_repository.dart';
 /// For this example the business logic is checking for local errors before requesting login, which is an empty email or an empty password.
 class LogInUseCase {
   LogInUseCase({
-    required AuthRepositoy authRepository,
+    required AuthRepository authRepository,
   }) : _authRepository = authRepository;
 
-  final AuthRepositoy _authRepository;
+  final AuthRepository _authRepository;
 
   Future<RequestResponse<UserInfo, LoginError>> logIn(
       LoginInformation loginInformation) {

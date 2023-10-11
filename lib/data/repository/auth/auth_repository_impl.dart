@@ -6,7 +6,7 @@ import 'package:flap_app/domain/repository/auth/auth_repository.dart';
 
 /// Fake implementation of Authenticaion and is used only as an example. This is where you would sub for
 /// your own network implementation.
-class AuthRepositoyImpl extends AuthRepositoy {
+class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<RequestResponse<UserInfo, LoginError>> logIn(
     LoginInformation loginInformation,

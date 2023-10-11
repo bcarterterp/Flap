@@ -64,4 +64,8 @@ class LoginScreenState {
   bool isLoading() {
     return loginEvent is LoadingEvent;
   }
+
+  bool isSuccess() {
+    return loginEvent is EventSuccess;
+  }
 }
