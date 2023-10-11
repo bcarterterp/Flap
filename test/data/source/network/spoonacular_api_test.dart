@@ -1,18 +1,19 @@
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
+import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 
 void main() {
   late SpoonacularApiImpl spoonacularApiImpl;
 
   setUp(() {
-    mockRecipeRepository = MockRecipeRepository();
-    notifier = HomePageStateNotifier(recipeRepository: mockRecipeRepository);
+    spoonacularApiImpl = SpoonacularApiImpl();
   });
 
   group('getRandomRecipes', () {
-    test('returns success and updates HomePageState with recipeList', () async {
+    test('returns recipe list when http status is 200', () async {
       const recipes = [Recipe(id: 1), Recipe(id: 2)];
       final successResponse = Success<List<Recipe>, DioException>(recipes);
       //Without the below provideDummy, an error will be thrown because the generated mock class requires a dummy value(line 45 in the mocks.dart equivalent of this class)
