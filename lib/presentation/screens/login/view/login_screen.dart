@@ -1,6 +1,7 @@
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 /// Generic log in screen with email and password fields.
 class LoginScreen extends ConsumerWidget {
@@ -48,7 +49,8 @@ class LoginInformationWidget extends ConsumerStatefulWidget {
   }
 }
 
-class _LoginInformationWigetState extends ConsumerState<LoginInformationWidget> {
+class _LoginInformationWigetState
+    extends ConsumerState<LoginInformationWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -68,6 +70,13 @@ class _LoginInformationWigetState extends ConsumerState<LoginInformationWidget> 
   @override
   Widget build(BuildContext context) {
     final loginState = ref.watch(loginPageStateProvider);
+
+    //The WidgetsBinding.instance.addPostFrameCallback executes navigation code only after widgets are rendered
+    if (loginState.isSuccess()) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.go('/home');
+      });
+    }
 
     ElevatedButton button = ElevatedButton(
       onPressed: login,
