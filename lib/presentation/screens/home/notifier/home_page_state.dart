@@ -32,4 +32,8 @@ class HomePageState {
   bool isSuccess() {
     return loadRecipesEvent is EventSuccess;
   }
+
+  bool isError() {
+    return loadRecipesEvent is EventError;
+  }
 }
