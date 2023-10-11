@@ -24,7 +24,7 @@ void main() {
     test('returns success and updates HomePageState with recipeList', () async {
       const recipes = [Recipe(id: 1), Recipe(id: 2)];
       final successResponse = Success<List<Recipe>, DioException>(recipes);
-      //Without the below provideDummy, an error will be thrown because the generated mock class requires a dummy value(line 45)
+      //Without the below provideDummy, an error will be thrown because the generated mock class requires a dummy value(line 45 in the mocks.dart equivalent of this class)
       provideDummy<RequestResponse<List<Recipe>, DioException>>(
           successResponse);
 
