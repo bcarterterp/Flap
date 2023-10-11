@@ -36,26 +36,41 @@ Our architecture stems from [Flutter - Clean Architecture](https://github.com/gu
 
 ## How and What Do We Test?
 Testing is being run primarily using VSCode. Extensions that help make testing possible include:
-- Dart language extension
-- Flutter support extension
+- [Dart language extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
+- [Flutter support extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter)
 
-The flutter extension should allow you to run tests via the play button on the left in the line number column.
+The flutter support extension should allow you to run tests in VSCode.
+![Run example image](runexample.png)
 
-### Driver/UI Testing:
-These tests are designed to be lightweight and mainly focused on testing the initial visual elements of the screen. This will exclude changes to visual elements that occur as part of a user journey. As long as the expected elements are found in the hierarchy, the tests will pass.
-Driver tests require the app to be running with flutter-driver in the background. 
+To run a test using VSCode, navigate to your test file in the explorer tab and open it. You can run each test via the play button found in the line number column, or by clicking run above a test. All tests in this repo are part of a "group", so to run all tests in a test file, you can click the play button at the start of a group. (Please see screenshot above)
 
-To run a driver test, launch the app first via the launch configuration titled:
-- Integration Tests: Launch App
+This project follows the Page Object Model structure, with each screen having a separate file that defines all screen elements for reuse in all test files. For example, in the test/screens directory, we have a file titled "home_screen.dart" that should contain all variable declarations or possible reusable functions related to just the homescreen. The hope is that by organizing the project this way, we can avoid repeated code, increase readbility, and make our test code easier to maintain if an element ever changes. To build on the previous example, you can see that both the homescreen integration tests, and homescreen widget tests import and use the homescreen.dart file. 
+For more information on the Page Object Model, please visit this [helpful page](https://www.geeksforgeeks.org/page-object-model-pom/).
 
-Then, navigate to your test file and run each test via the play button. All tests in a test file can be run by clicking the play button at the start of a group.
+### Integration Testing:
+These tests are designed to be more exhaustive and robust, testing the logic of the application and ensuring the correct scenarios are occuring as expected. These tests are meant to assert on end2end user journeys laid out in Acceptance Criteria. Meaning, these tests will complete a certain scenario in the app from start to finish. 
+For example, with a login screen, an integration test might involve inputting valid credentials into the email and password fields, hitting the login button, and asserting that login was successful. Or, it may involve entering invalid credentials, and asserting the users login attempt was unsuccessful. 
+Flutter Integration tests build the full application on an emulated device or browser. Because of this increased overhead, these tests are suggested to be run less often than widget and unit tests, especially on a CI/CD pipeline where proper infrastructure for supporting this can be costly. 
+For more information, please see the official flutter docs related to [Integration Testing](https://docs.flutter.dev/testing/integration-tests).
 
-Flutter test files do not restart the app state between each test. Meaning, a new test file needs to be created for each unrelated scenario.
-For this reason, organisation of tests should include folders for each screen, with all test files contained therein.
+### Widget Tests:
+These tests are designed to be lightweight and focus on asserting on the hierarchy of the application, and the widgets contained within it. The core difference between widget tests and integration tests, is that these tests are run without the need to build and emulate your application. This can save valuable time on a CI/CD pipeline. Due to their lightweight and quick-to-run nature, these are the ui related tests that are best suited to run as part of the PR verification process.
+For more information, please see the official flutter docs related to [Widget Testing](https://docs.flutter.dev/cookbook/testing/widget/introduction).
 
-This project follows the Page Object Model structure, with each screen having a screen file which should define all screen elements for reuse in all test files, as well as screen-specific test files.
+### Unit Tests:
+These tests are described by the flutter documentation as verifying "the behavior of a method or class". These tests are the most lightweight of the three, and don't verify any visual elements. Instead, these tests are meant to assert on the logic of a single method or overall class, and ensure it returns the value we expect. These tests are also meant to be run as part of PR verification, as they help make sure that the app is still functioning as expected after changing a functionality.
+For more information, please see  the official flutter docs related to [Unit Testing](https://docs.flutter.dev/cookbook/testing/unit/introduction)
 
-NOTE: SetUpAll does not occur before the "group" is run. SetUpAll runs before each respective test.
+### Folder Structure
+The one downside to flutter testing, is that it is folder structure dependant. Meaning, you cannot renname or move the integration_test folder, test folder, or test_driver folder. Perhaps there is a way to change where flutter looks for its tests, but a method for doing so is not currently known at this time.
+The test folder structure suggested by the flutter documentation is as follows (and can be found [here](https://docs.flutter.dev/testing/integration-tests)):
 
-### Integration / Widget Tests:
-The structure of the widget or integration tests follows the same folder structure as the ui tests. These tests are designed to be more exhaustive and robust, testing the logic of the widgets and ensuring the correct scenarios are occuring as expected. These tests assert on user journeys laid out in the Acceptance Criteria, rather than any visual elements. An exception to this rule is in the case of asserting on an elements visibility. If an element only appears after a condition is met, that will be asserted on in a widget test due that elements involvement in a user journey scenario.
+```
+lib/
+  ...
+integration_test/
+  foo_test.dart
+  bar_test.dart
+test/
+  # Other unit/widget tests go here.
+```

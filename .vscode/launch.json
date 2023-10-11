@@ -22,10 +22,10 @@
             "flutterMode": "release"
         },
         {
-            "name": "Integration Tests: Launch App",
+            "name": "flap (integration test)",
             "request": "launch",
             "type": "dart",
-            "program": "test_driver/app.dart",
+            "flutterMode": "debug"
         }
     ]
 }

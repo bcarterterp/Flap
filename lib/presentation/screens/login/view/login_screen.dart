@@ -71,6 +71,7 @@ class _LoginInformationWigetState
     final loginState = ref.watch(loginPageStateProvider);
 
     ElevatedButton button = ElevatedButton(
+      key: const ValueKey('loginButton'),
       onPressed: login,
       child: const Text('Login'),
     );

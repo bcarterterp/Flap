@@ -1,5 +1,6 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
 // Each screen should have it's own screen file where screen
 // Elements are defined. This increases readability of test files.
 // This should also house any screen specific functions.
@@ -12,13 +13,14 @@ class HomeScreen {
   // it is defined
 
   // Elements
-  Finder loginButton = find.text("Login");
+  Finder title = find.text("Please Enter Credentials");
+  Finder loginButton = find.byKey(const Key('loginButton'));
   Finder emailField = find.byKey(const Key('emailTextField'));
   Finder passwordField = find.byKey(const Key('passwordTextField'));
-  // Error texts
-  Finder emailEmptyError = find.textContaining('Email is empty');
-  Finder passwordEmptyError = find.text('Password is empty');
 
+  // Error texts
+  Finder emailEmptyError = find.text('Email is empty');
+  Finder passwordEmptyError = find.text('Password is empty');
   Finder emailCheckError = find.text('Check your email');
   Finder passwordCheckError = find.text('Check your password');
 }
