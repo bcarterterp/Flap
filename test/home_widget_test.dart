@@ -11,12 +11,12 @@ import 'package:flap_app/main.dart';
 
 void main() {
   final homeScreen = HomeScreen();
+  // Note: This group performs the same validation as the integration
+  // test example, difference being that these tests do not require
+  // launching the app on an emulator for validation
   group('Home Widget Tests', () {
-    testWidgets('Form error validation', (WidgetTester tester) async {
-      // Note: performs the same validation as the integration
-      // test example, difference being that these tests do not require
-      // launching the app on an emulator for validation
-
+    testWidgets('Initial screen has no error validation',
+        (WidgetTester tester) async {
       // Causes test to wait for app to finish launch before testing
       await tester.pumpWidget(const MyApp());
 
@@ -25,6 +25,10 @@ void main() {
       expect(homeScreen.emailCheckError, findsNothing);
       expect(homeScreen.passwordEmptyError, findsNothing);
       expect(homeScreen.passwordCheckError, findsNothing);
+    });
+    testWidgets('Email Empty error validation', (WidgetTester tester) async {
+      // Causes test to wait for app to finish launch before testing
+      await tester.pumpWidget(const MyApp());
 
       // Trigger empty error state for email
       await tester.tap(homeScreen.loginButton);
@@ -35,6 +39,10 @@ void main() {
       expect(homeScreen.emailCheckError, findsNothing);
       expect(homeScreen.passwordEmptyError, findsNothing);
       expect(homeScreen.passwordCheckError, findsNothing);
+    });
+    testWidgets('Password empty error validation', (WidgetTester tester) async {
+      // Causes test to wait for app to finish launch before testing
+      await tester.pumpWidget(const MyApp());
 
       // Enter email text
       await tester.enterText(homeScreen.emailField, "test@test.com");
@@ -45,7 +53,13 @@ void main() {
       expect(homeScreen.emailCheckError, findsNothing);
       expect(homeScreen.passwordEmptyError, findsOneWidget);
       expect(homeScreen.passwordCheckError, findsNothing);
-
+    });
+    testWidgets('Check email/password error validation',
+        (WidgetTester tester) async {
+      // Causes test to wait for app to finish launch before testing
+      await tester.pumpWidget(const MyApp());
+      // Enter email text
+      await tester.enterText(homeScreen.emailField, "test@test.com");
       // Enter text in password field
       await tester.enterText(homeScreen.passwordField, "testPass!");
       // Trigger check error states
