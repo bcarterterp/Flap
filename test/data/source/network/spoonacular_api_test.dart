@@ -34,10 +34,6 @@ void main() {
         ),
       );
       final response = await spoonacularApi.getRandomRecipes();
-      final Success<List<Recipe>, DioException> expected =
-          Success([const Recipe(id: 1)]);
-
-      const data = [Recipe(id: 1)];
       expect(response, isA<Success<List<Recipe>, DioException>>());
     });
 
@@ -56,12 +52,6 @@ void main() {
         ),
       );
       final response = await spoonacularApi.getRandomRecipes();
-      final Error<List<Recipe>, DioException> expected = Error(
-        DioException.badResponse(
-            statusCode: 500,
-            requestOptions: RequestOptions(),
-            response: Response(requestOptions: RequestOptions())),
-      );
       expect(response, isA<Error<List<Recipe>, DioException>>());
     });
   });
