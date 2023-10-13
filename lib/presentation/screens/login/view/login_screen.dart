@@ -79,6 +79,7 @@ class _LoginInformationWigetState
     }
 
     ElevatedButton button = ElevatedButton(
+      key: const ValueKey('loginButton'),
       onPressed: login,
       child: const Text('Login'),
     );
@@ -98,6 +99,7 @@ class _LoginInformationWigetState
     return Column(
       children: [
         TextField(
+          key: const ValueKey('emailTextField'),
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             labelText: 'Email',
@@ -110,6 +112,7 @@ class _LoginInformationWigetState
           height: 4,
         ),
         TextField(
+          key: const ValueKey('passwordTextField'),
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             labelText: 'Password',
