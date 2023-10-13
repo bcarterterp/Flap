@@ -6,11 +6,11 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'screens/home_screen.dart';
+import 'login_screen.dart';
 import 'package:flap_app/main.dart';
 
 void main() {
-  final homeScreen = HomeScreen();
+  final loginScreen = Logincreen();
   // Note: This group performs the same validation as the integration
   // test example, difference being that these tests do not require
   // launching the app on an emulator for validation
@@ -21,54 +21,54 @@ void main() {
       await tester.pumpWidget(const MyApp());
 
       // Verify no errors present at first
-      expect(homeScreen.emailEmptyError, findsNothing);
-      expect(homeScreen.emailCheckError, findsNothing);
-      expect(homeScreen.passwordEmptyError, findsNothing);
-      expect(homeScreen.passwordCheckError, findsNothing);
+      expect(loginScreen.emailEmptyError, findsNothing);
+      expect(loginScreen.emailCheckError, findsNothing);
+      expect(loginScreen.passwordEmptyError, findsNothing);
+      expect(loginScreen.passwordCheckError, findsNothing);
     });
     testWidgets('Email Empty error validation', (WidgetTester tester) async {
       // Causes test to wait for app to finish launch before testing
       await tester.pumpWidget(const MyApp());
 
       // Trigger empty error state for email
-      await tester.tap(homeScreen.loginButton);
+      await tester.tap(loginScreen.loginButton);
       // pumpAndSettle is used in this case to wait for loading
       // animation to be complete in between login button taps
       await tester.pumpAndSettle();
-      expect(homeScreen.emailEmptyError, findsOneWidget);
-      expect(homeScreen.emailCheckError, findsNothing);
-      expect(homeScreen.passwordEmptyError, findsNothing);
-      expect(homeScreen.passwordCheckError, findsNothing);
+      expect(loginScreen.emailEmptyError, findsOneWidget);
+      expect(loginScreen.emailCheckError, findsNothing);
+      expect(loginScreen.passwordEmptyError, findsNothing);
+      expect(loginScreen.passwordCheckError, findsNothing);
     });
     testWidgets('Password empty error validation', (WidgetTester tester) async {
       // Causes test to wait for app to finish launch before testing
       await tester.pumpWidget(const MyApp());
 
       // Enter email text
-      await tester.enterText(homeScreen.emailField, "test@test.com");
+      await tester.enterText(loginScreen.emailField, "test@test.com");
       // Trigger empty error state for password
-      await tester.tap(homeScreen.loginButton);
+      await tester.tap(loginScreen.loginButton);
       await tester.pumpAndSettle();
-      expect(homeScreen.emailEmptyError, findsNothing);
-      expect(homeScreen.emailCheckError, findsNothing);
-      expect(homeScreen.passwordEmptyError, findsOneWidget);
-      expect(homeScreen.passwordCheckError, findsNothing);
+      expect(loginScreen.emailEmptyError, findsNothing);
+      expect(loginScreen.emailCheckError, findsNothing);
+      expect(loginScreen.passwordEmptyError, findsOneWidget);
+      expect(loginScreen.passwordCheckError, findsNothing);
     });
     testWidgets('Check email/password error validation',
         (WidgetTester tester) async {
       // Causes test to wait for app to finish launch before testing
       await tester.pumpWidget(const MyApp());
       // Enter email text
-      await tester.enterText(homeScreen.emailField, "test@test.com");
+      await tester.enterText(loginScreen.emailField, "test@test.com");
       // Enter text in password field
-      await tester.enterText(homeScreen.passwordField, "testPass!");
+      await tester.enterText(loginScreen.passwordField, "testPass!");
       // Trigger check error states
-      await tester.tap(homeScreen.loginButton);
+      await tester.tap(loginScreen.loginButton);
       await tester.pumpAndSettle();
-      expect(homeScreen.emailEmptyError, findsNothing);
-      expect(homeScreen.emailCheckError, findsOneWidget);
-      expect(homeScreen.passwordEmptyError, findsNothing);
-      expect(homeScreen.passwordCheckError, findsOneWidget);
+      expect(loginScreen.emailEmptyError, findsNothing);
+      expect(loginScreen.emailCheckError, findsOneWidget);
+      expect(loginScreen.passwordEmptyError, findsNothing);
+      expect(loginScreen.passwordCheckError, findsOneWidget);
     });
   });
 }

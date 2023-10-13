@@ -72,7 +72,7 @@ The test folder structure suggested by the flutter documentation is as follows (
 ```
 lib/
   ...
-integration_test/
+integration_test/ <--- Uses Actual Device
   foo_test.dart
   bar_test.dart
 test/
