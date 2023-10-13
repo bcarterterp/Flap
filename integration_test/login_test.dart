@@ -25,6 +25,10 @@ void main() {
       // Note: performs the same validation as the widget test
       // example difference being that these tests involve
       // launching the app on an emulator for validation
+      // Note: In general, it is better to use lightweight, focused widget tests
+      // to ensure error scenarios are triggering when expected, rather than
+      // a full scale end2end integration test, which will presumably
+      // navigate through multiple screens to test an entire flow.
 
       // Causes test to wait for app to finish launch before testing
       await tester.pumpWidget(const MyApp());
@@ -62,10 +66,6 @@ void main() {
       // Assert new error message is present
       expect(loginScreen.emailCheckError, findsOneWidget);
       expect(loginScreen.passwordCheckError, findsOneWidget);
-      // Note: In general, it is better to use lightweight, focused widget tests
-      // to ensure error scenarios are triggering when expected, rather than
-      // a full scale end2end integration test, which will presumably
-      // navigate through multiple screens to test an entire flow.
     });
   });
 }

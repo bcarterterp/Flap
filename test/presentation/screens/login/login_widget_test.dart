@@ -26,7 +26,7 @@ void main() {
       expect(loginScreen.passwordEmptyError, findsNothing);
       expect(loginScreen.passwordCheckError, findsNothing);
     });
-    testWidgets('Email Empty error validation', (WidgetTester tester) async {
+    testWidgets('Email empty error validation', (WidgetTester tester) async {
       // Causes test to wait for app to finish launch before testing
       await tester.pumpWidget(const MyApp());
 
