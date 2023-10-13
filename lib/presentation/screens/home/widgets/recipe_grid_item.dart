@@ -40,7 +40,6 @@ class RecipeGridItem extends StatelessWidget {
                       maxLines: 2,
                       textAlign: TextAlign.center,
                       softWrap: true,
-                      //overflow: TextOverflow.ellipsis, // Very long text ...
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,

@@ -19,10 +19,12 @@ class SpoonacularApiImpl implements SpoonacularApi {
   Future<RequestResponse<List<Recipe>, DioException>> getRandomRecipes() async {
     try {
       Response response;
-      response = await dio.get("");
+      //TODO: When Envied is implemented to hide api key, a solution for building the full URL will be implemented
+      response = await dio
+          .get("https://api.spoonacular.com/recipes/random?&number=20");
 
       final recipeListResponse = (response.data["recipes"] as List)
-          .map((e) => RecipeDto.fromJson(e))
+          .map((response) => RecipeDto.fromJson(response))
           .toList();
       return Future.value(Success(recipeListResponse));
     } on DioException catch (error) {
