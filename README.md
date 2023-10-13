@@ -66,15 +66,6 @@ These tests are described by the flutter documentation as verifying "the behavio
 For more information, please see  the official flutter docs related to [Unit Testing](https://docs.flutter.dev/cookbook/testing/unit/introduction)
 
 ### Folder Structure
-The one downside to flutter testing, is that it is folder structure dependant. Meaning, you cannot renname or move the integration_test folder, test folder, or test_driver folder. Perhaps there is a way to change where flutter looks for its tests, but a method for doing so is not currently known at this time.
-The test folder structure suggested by the flutter documentation is as follows (and can be found [here](https://docs.flutter.dev/testing/integration-tests)):
+This project uses a silightly different folder structure for tests than the official flutter docs. We have opted to mirror the folder structure of the greater application, to make it easier for both developers and test engineers to contribute, and find what they are looking for.
 
-```
-lib/
-  ...
-integration_test/ <--- Uses Actual Device
-  foo_test.dart
-  bar_test.dart
-test/
-  # Other unit/widget tests go here.
-```
+The test folder structure suggested by the flutter documentation can be found [here](https://docs.flutter.dev/testing/integration-tests)):
