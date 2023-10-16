@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flap_app/data/dto/recipe_dto.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
+import 'package:flap_app/env/env.dart';
 
 abstract class SpoonacularApi {
   final Dio dio;
@@ -12,6 +13,17 @@ abstract class SpoonacularApi {
 
 class SpoonacularApiImpl implements SpoonacularApi {
   final Dio dio;
+  
+  final Uri spoonacularUri = Uri(
+    scheme: "https",
+    host: "api.spoonacular.com",
+    path: "recipes/random",
+    queryParameters: {
+      "number": "20",
+      "apiKey": Env.spoonacularApiKey,
+    },
+  );
+
 
   SpoonacularApiImpl({required this.dio});
 
@@ -19,9 +31,7 @@ class SpoonacularApiImpl implements SpoonacularApi {
   Future<RequestResponse<List<Recipe>, DioException>> getRandomRecipes() async {
     try {
       Response response;
-      //TODO: When Envied is implemented to hide api key, a solution for building the full URL will be implemented
-      response = await dio
-          .get("https://api.spoonacular.com/recipes/random?&number=20");
+      response = await dio.get(spoonacularUri.toString());
 
       final recipeListResponse = (response.data["recipes"] as List)
           .map((response) => RecipeDto.fromJson(response))

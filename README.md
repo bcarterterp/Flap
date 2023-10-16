@@ -23,6 +23,7 @@ Our architecture stems from [Flutter - Clean Architecture](https://github.com/gu
 - Navigation: [go_router] (https://pub.dev/packages/go_router)
 - Fonts: [Google Fonts](https://pub.dev/packages/google_fonts)
 - Change App Package Name: [Name Change](https://pub.dev/packages/change_app_package_name) Allows you to change the project name through terminal instead of doing it manually. Feel free to remove it after forking!
+- Secret Management: [Envied](https://pub.dev/packages/envied)
 
 ## Style Guide
 
@@ -37,5 +38,14 @@ Our architecture stems from [Flutter - Clean Architecture](https://github.com/gu
 ## Navigation
 
 go_router is a declarative routing package helpful for advanced navigation requirements (such as a web app that uses direct links to each screen or an app with multiple "navigation graphs" or navigation widgets). This package was mentioned here in the flutter docs: https://docs.flutter.dev/ui/navigation
+
+
+## Secrets
+
+Secrets are managed using the [Envied](https://pub.dev/packages/envied) dart package. Developers are expected to provide a `.env` file at the root of the project to be used by Envied. Envied works by generating a class which can then be used to access the values of the keys within the env file. To generate or update the class, run the following commands:
+
+  `flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs`
+
+An example of how Envied is used can be found at `/lib/env/env.dart`
 
 ## How and What Do We Test?
