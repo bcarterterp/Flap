@@ -61,6 +61,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  # add additional test dependancies for use with ui and integration tests
+  integration_test:
+    sdk: flutter
   # build runner is used here for us to use the json_serializable package
   build_runner: ^2.4.6
   # this package enables auto-generated json mappers as seen in the dto.g.dart classes
