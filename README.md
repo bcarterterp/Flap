@@ -48,6 +48,11 @@ Secrets are managed using the [Envied](https://pub.dev/packages/envied) dart pac
 
 An example of how Envied is used can be found at `/lib/env/env.dart`
 
+**Note** 
+  1. The generated files for Envied do not get committed so that the secrets are not in source control
+  2. Any time you make a change you need to your env you need to rerun the build runner so its picked up ([this is an open issue](https://github.com/petercinibulk/envied/issues/6) right now for Envied)
+  3. The first time you run the build-runner with Envied you have to comment out the env.dart file, run the build runner, then uncomment the file and run again ([there is also an open issue](https://github.com/petercinibulk/envied/issues/59) on this )
+
 ## How and What Do We Test?
 Testing is being run primarily using VSCode. Extensions that help make testing possible include:
 - [Dart language extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
