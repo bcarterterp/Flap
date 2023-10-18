@@ -45,6 +45,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 }
 
+// ignore: must_be_immutable
 class RecipeGrid extends StatelessWidget {
   final HomePageState state;
   late List<Recipe> recipeList;
