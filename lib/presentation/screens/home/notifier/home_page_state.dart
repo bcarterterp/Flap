@@ -24,16 +24,4 @@ class HomePageState {
 
   factory HomePageState.error(DioException error) =>
       HomePageState(loadRecipesEvent: EventError(error));
-
-  bool isLoading() {
-    return loadRecipesEvent is LoadingEvent;
-  }
-
-  bool isSuccess() {
-    return loadRecipesEvent is EventSuccess;
-  }
-
-  bool isError() {
-    return loadRecipesEvent is EventError;
-  }
 }

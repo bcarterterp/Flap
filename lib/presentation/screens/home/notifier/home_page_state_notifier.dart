@@ -15,6 +15,8 @@ class HomePageStateNotifier extends StateNotifier<HomePageState> {
   Future<void> getRandomRecipes() async {
     final response = await _recipeRepository.getRandomRecipes();
     switch (response) {
+      case Loading<List<Recipe>, DioException>():
+        state = HomePageState.loading();
       case Success<List<Recipe>, DioException>():
         state = HomePageState.success(response.data);
       case Error<List<Recipe>, DioException>():

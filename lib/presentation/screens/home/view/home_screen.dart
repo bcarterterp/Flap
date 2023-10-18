@@ -1,5 +1,9 @@
+import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
+import 'package:flap_app/presentation/screens/home/notifier/home_page_state.dart';
 import 'package:flap_app/presentation/screens/home/widgets/recipe_grid_item.dart';
+import 'package:flap_app/presentation/screens/home/widgets/screen_states/error_screen.dart';
+import 'package:flap_app/presentation/screens/home/widgets/screen_states/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,26 +29,39 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(homePageStateProvider);
-    final recipeList = state.recipeList;
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page Screen'),
-      ),
-      body: GridView(
-        padding: const EdgeInsets.all(10),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 1,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
+        appBar: AppBar(
+          title: const Text('Home Page Screen'),
         ),
-        children: [
-          if (state.isSuccess() && recipeList != null)
-            for (final recipe in recipeList) RecipeGridItem(recipe: recipe)
-          //TODO: Need to add UI states for when state is loading, connection error, empty recipe result
-        ],
+        body: switch (state.loadRecipesEvent) {
+          InitialEvent() => const LoadingScreenWidget(),
+          LoadingEvent() => const LoadingScreenWidget(),
+          EventSuccess() => RecipeGrid(state: state),
+          EventError() => const ErrorScreenWidget(),
+          null => null,
+        });
+  }
+}
+
+class RecipeGrid extends StatelessWidget {
+  const RecipeGrid({super.key, required this.state});
+
+  final HomePageState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView(
+      padding: const EdgeInsets.all(10),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 1,
+        crossAxisSpacing: 20,
+        mainAxisSpacing: 20,
       ),
+      children: [
+        if (state.loadRecipesEvent is EventSuccess && state.recipeList != null)
+          for (final recipe in state.recipeList!) RecipeGridItem(recipe: recipe)
+      ],
     );
   }
 }

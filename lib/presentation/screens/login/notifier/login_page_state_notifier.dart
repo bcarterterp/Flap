@@ -31,6 +31,8 @@ class LoginPageStateNotifier extends StateNotifier<LoginScreenState> {
     );
 
     switch (response) {
+      case Loading<UserInfo, LoginError>():
+        state = LoginScreenState.loading();
       case Success<UserInfo, LoginError>():
         state = LoginScreenState.success(response.data);
       case Error<UserInfo, LoginError>():
