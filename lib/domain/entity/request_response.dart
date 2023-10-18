@@ -5,16 +5,17 @@
 /// be any type, and is not limited to a string.
 sealed class RequestResponse<Data, ErrorInfo> {}
 
-class Loading<Data, ErrorInfo> extends RequestResponse<Data, ErrorInfo> {
-  Loading();
-}
-
-class Success<Data, ErrorInfo> extends RequestResponse<Data, ErrorInfo> {
+class SuccessRequestResponse<Data, ErrorInfo>
+    extends RequestResponse<Data, ErrorInfo> {
   final Data data;
-  Success(this.data);
+  SuccessRequestResponse(this.data);
+
+  Data get() => data;
 }
 
-class Error<Data, ErrorInfo> extends RequestResponse<Data, ErrorInfo> {
+class ErrorRequestResponse<Data, ErrorInfo>
+    extends RequestResponse<Data, ErrorInfo> {
   final ErrorInfo error;
-  Error(this.error);
+  ErrorRequestResponse(this.error);
+  ErrorInfo get() => error;
 }

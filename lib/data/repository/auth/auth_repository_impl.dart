@@ -16,12 +16,12 @@ class AuthRepositoryImpl extends AuthRepository {
     final email = loginInformation.email;
     final password = loginInformation.password;
     if (email == 'admin@testing.com' && password == 'admin') {
-      return Future.value(Success(UserInfo(
+      return Future.value(SuccessRequestResponse(UserInfo(
         name: 'Admin',
         email: email,
       )));
     } else {
-      return Future.value(Error(LoginError.incorrectEmailOrPassword));
+      return Future.value(ErrorRequestResponse(LoginError.incorrectEmailOrPassword));
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flap_app/data/dto/recipe_dto.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
 import 'package:flap_app/env/env.dart';
@@ -35,17 +36,17 @@ class SpoonacularApiImpl implements SpoonacularApi {
       final recipeListResponse = (response.data["recipes"] as List)
           .map((response) => RecipeDto.fromJson(response))
           .toList();
-      return Future.value(Success(recipeListResponse));
+      return Future.value(SuccessRequestResponse(recipeListResponse));
     } on DioException catch (error) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx and is also not 304.
       if (error.response != null) {
         //Uses DioException types to print error message
         print(error);
-        return Future.value(Error(error));
+        return Future.value(ErrorRequestResponse(error));
       } else {
         // Something happened in setting up or sending the request that triggered an Error
-        return Future.value(Error(error));
+        return Future.value(ErrorRequestResponse(error));
       }
     }
   }

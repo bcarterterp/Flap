@@ -34,7 +34,7 @@ void main() {
         ),
       );
       final response = await spoonacularApi.getRandomRecipes();
-      expect(response, isA<Success<List<Recipe>, DioException>>());
+      expect(response, isA<SuccessRequestResponse<List<Recipe>, DioException>>());
     });
 
     test('returns error request response object upon server error code 500',
@@ -52,7 +52,7 @@ void main() {
         ),
       );
       final response = await spoonacularApi.getRandomRecipes();
-      expect(response, isA<Error<List<Recipe>, DioException>>());
+      expect(response, isA<ErrorRequestResponse<List<Recipe>, DioException>>());
     });
   });
 }

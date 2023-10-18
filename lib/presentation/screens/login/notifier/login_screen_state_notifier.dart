@@ -17,7 +17,7 @@ class LoginPageStateNotifier extends StateNotifier<LoginScreenState> {
 
   /// Login with the given [email] and [password].
   Future<void> login(String email, String password) async {
-    if (state is LoadingEvent) {
+    if (state.loginEvent is LoadingEvent) {
       return;
     }
 
@@ -31,11 +31,9 @@ class LoginPageStateNotifier extends StateNotifier<LoginScreenState> {
     );
 
     switch (response) {
-      case Loading<UserInfo, LoginError>():
-        state = LoginScreenState.loading();
-      case Success<UserInfo, LoginError>():
+      case SuccessRequestResponse<UserInfo, LoginError>():
         state = LoginScreenState.success(response.data);
-      case Error<UserInfo, LoginError>():
+      case ErrorRequestResponse<UserInfo, LoginError>():
         state = LoginScreenState.error(response.error);
     }
   }

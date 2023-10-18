@@ -19,7 +19,7 @@ class LoginScreenState {
       );
 
   factory LoginScreenState.success(UserInfo userInfo) => LoginScreenState(
-        loginEvent: EventSuccess(userInfo),
+        loginEvent: SuccessEvent(userInfo),
       );
 
   factory LoginScreenState.error(LoginError error) => _onError(error);
