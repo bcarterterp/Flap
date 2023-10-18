@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flap_app/data/source/network/spoonacular_api.dart';
+import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
 import 'package:flutter_test/flutter_test.dart';

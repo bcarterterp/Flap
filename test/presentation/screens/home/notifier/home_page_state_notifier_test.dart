@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
-import 'package:flap_app/presentation/screens/home/notifier/home_page_state.dart';
-import 'package:flap_app/presentation/screens/home/notifier/home_page_state_notifier.dart';
+import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
+import 'package:flap_app/presentation/screens/home/notifier/home_screen_state_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -58,7 +59,7 @@ void main() {
       await notifier.getRandomRecipes();
 
       // Verify that HomePageState has a loadRecipesEvent that is an ErrorEvent
-      expect(notifier.state.isError(), true);
+      expect(notifier.state is EventError, true);
     });
   });
 }

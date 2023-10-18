@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flap_app/data/dto/recipe_dto.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
 

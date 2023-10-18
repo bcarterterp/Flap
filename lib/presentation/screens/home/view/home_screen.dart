@@ -1,6 +1,6 @@
 import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
-import 'package:flap_app/presentation/screens/home/notifier/home_page_state.dart';
+import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
 import 'package:flap_app/presentation/screens/home/widgets/recipe_grid_item.dart';
 import 'package:flap_app/presentation/screens/home/widgets/screen_states/error_screen.dart';
 import 'package:flap_app/presentation/screens/home/widgets/screen_states/loading_screen.dart';
