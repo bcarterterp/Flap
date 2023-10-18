@@ -48,6 +48,7 @@ dependencies:
   transparent_image: ^2.0.1
   # required package for the http mock adapter which is used to unit test dio
   http: ^1.1.0
+  envied: ^0.3.0+3
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,7 @@ dev_dependencies:
   mockito: ^5.4.2
   # used to create mocks of Dio for unit testing
   http_mock_adapter: ^0.6.0
+  envied_generator: ^0.3.0+3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
