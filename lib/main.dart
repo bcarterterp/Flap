@@ -3,7 +3,7 @@ import 'package:flap_app/presentation/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void mainCommon() {
+void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
