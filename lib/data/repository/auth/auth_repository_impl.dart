@@ -21,7 +21,7 @@ class AuthRepositoryImpl extends AuthRepository {
         email: email,
       )));
     } else {
-      return Future.value(Error(LoginError.incorrectEmailOrPassword));
+      return Future.value(const Error(LoginError.incorrectEmailOrPassword));
     }
   }
 }

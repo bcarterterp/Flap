@@ -1,4 +1,4 @@
-import 'package:flap_app/presentation/providers/providers.dart';
+import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +11,8 @@ class LoginScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Center(
+        heightFactor: 1,
+        widthFactor: 1,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 24,
@@ -64,12 +66,12 @@ class _LoginInformationWigetState
   void login() {
     final email = emailController.text;
     final password = passwordController.text;
-    ref.read(loginPageStateProvider.notifier).login(email, password);
+    ref.read(loginScreenNotifierProvider.notifier).login(email, password);
   }
 
   @override
   Widget build(BuildContext context) {
-    final loginState = ref.watch(loginPageStateProvider);
+    final loginState = ref.watch(loginScreenNotifierProvider);
 
     //The WidgetsBinding.instance.addPostFrameCallback executes navigation code only after widgets are rendered
     if (loginState.isSuccess()) {

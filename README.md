@@ -17,9 +17,19 @@ samples, guidance on mobile development, and a full API reference.
 
 Our architecture stems from [Flutter - Clean Architecture](https://github.com/guilherme-v/flutter-clean-architecture-example). We found this architecture to allow for ease of use and flexibility. You should be in good hands with it's documentation. Any changes we make that diverge from the proposed architecture should be noted here.
 
+## Dependency Injection
+Dependency injection (DI) is a fundamental concept in software development that promotes loose coupling and enhances the maintainability, scalability, and testability of code. By allowing the injection of dependencies from external sources rather than hard-coding them within a class or module, DI facilitates modular and reusable code. This decoupling of components makes it easier to replace or upgrade individual modules without affecting the entire system, fostering a more flexible and agile development process. Moreover, DI simplifies unit testing, as dependencies can be easily substituted with mock objects or test doubles, enabling more robust and efficient testing of isolated components. Overall, dependency injection promotes the principles of separation of concerns and inversion of control, leading to cleaner, more modular, and maintainable code in software applications.
+
+### Notes
+- Since we are using Riverpod for our state management, we have decided to enable dependency injection through it. While most classes will use constructor injection as seeing in the [providers.dart] class, the Notifiers are different. Notifiers can grab any dependency throug their `ref` reference, which is kept and maintained by the `ProviderScope`.
+- Riverpod allows the ability to swap out dependencies for tests. This allows us the ability to use Fakes in our tests, and as close to implementation as we want. More on that in the Testing section.
+
+### Testing
+
+
 ## Libraries and Frameworks Used
 
-- State Management: [Flutter Riverpod](https://riverpod.dev/)
+- State Management & Dependency Injection: [Flutter Riverpod](https://riverpod.dev/)
 - Navigation: [go_router] (https://pub.dev/packages/go_router)
 - Fonts: [Google Fonts](https://pub.dev/packages/google_fonts)
 - Change App Package Name: [Name Change](https://pub.dev/packages/change_app_package_name) Allows you to change the project name through terminal instead of doing it manually. Feel free to remove it after forking!
@@ -64,6 +74,15 @@ For more information, please see the official flutter docs related to [Widget Te
 ### Unit Tests:
 These tests are described by the flutter documentation as verifying "the behavior of a method or class". These tests are the most lightweight of the three, and don't verify any visual elements. Instead, these tests are meant to assert on the logic of a single method or overall class, and ensure it returns the value we expect. These tests are also meant to be run as part of PR verification, as they help make sure that the app is still functioning as expected after changing a functionality.
 For more information, please see  the official flutter docs related to [Unit Testing](https://docs.flutter.dev/cookbook/testing/unit/introduction)
+
+### Fakes versus Mocks
+For this generic implementation of a Flutter App, we have shown both ways of substituing dependencies. We want to focus on how to implement either so you may make the best decision for your project. Our suggestion however is to favor Fakes instead of Mocks. Even though there will be more upfront code, you will be better equiped at using these substitutions in other test areas. For instance you can reuse the AuthRepositoryFake in the LoginWidget tests in order to remove the dependency of the network (if AuthRepositoryImple actually made a network call). 
+
+Please take a look at some of these resources for further reading:
+- [Test Doubles](https://martinfowler.com/bliki/TestDouble.html)
+- [Prefer Fakes Over Mocks](https://tyrrrz.me/blog/fakes-over-mocks)
+- [Interchangable Fakes and Mocks](https://medium.com/@june.pravin/mocking-is-not-practical-use-fakes-e30cc6eaaf4e)
+
 
 ### Folder Structure
 This project uses a silightly different folder structure for tests than the official flutter docs. We have opted to mirror the folder structure of the greater application, to make it easier for both developers and test engineers to contribute, and find what they are looking for.
