@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 void main() {
   FlavorConfig(name: "prod", location: BannerLocation.topEnd, variables: {
     "appTitle": "Boiler Plate - Prod Flavor",
-    "baseUrl": "htttps://www.example.com"
+    "baseUrl": "htttps://www.example.com" //replace this baseUrl with the baseUrl used for your production API
   });
   runApp(const ProviderScope(child: MyApp()));
 }
