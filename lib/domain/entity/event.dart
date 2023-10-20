@@ -6,7 +6,7 @@
 /// 3. EventSuccess - The event has successfully completed, with the data set.
 /// 4. EventError - The event has failed, with the error set. Note that the error can
 /// be any type, and is not limited to a string.
-/// 
+///
 /// Refer to [RequestResponse] for the domain layer equivilant.
 
 sealed class Event<Data, ErrorInfo> {}
@@ -15,9 +15,9 @@ class InitialEvent<Data, ErrorInfo> extends Event<Data, ErrorInfo> {}
 
 class LoadingEvent<Data, ErrorInfo> extends Event<Data, ErrorInfo> {}
 
-class EventSuccess<Data, ErrorInfo> extends Event<Data, ErrorInfo> {
+class SuccessEvent<Data, ErrorInfo> extends Event<Data, ErrorInfo> {
   final Data data;
-  EventSuccess(this.data);
+  SuccessEvent(this.data);
 }
 
 class EventError<Data, ErrorInfo> extends Event<Data, ErrorInfo> {

@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 void main() {
   FlavorConfig(name: "dev", location: BannerLocation.topEnd, variables: {
     "appTitle": "Boiler Plate - Dev Flavor",
-    "baseUrl": "https://www.dev.example.com" //replace this baseUrl with the baseUrl used for your staging API
+    "baseUrlHost": "api.spoonacular.com" //replace this baseUrl host used for your staging API
   });
   runApp(const ProviderScope(child: MyApp()));
 }
