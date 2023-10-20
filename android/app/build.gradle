@@ -64,12 +64,12 @@ android {
     productFlavors {
         dev {
             dimension "app"
-            resValue "string", "app_name", "Dev FlavorTest"
+            resValue "string", "app_name", "Dev Flavor"
             versionNameSuffix "-dev"
         }
         prod {
             dimension "app"
-            resValue "string", "app_name", "FlavorTest"
+            resValue "string", "app_name", "Prod Flavor"
             applicationId "com.flap.flapapp.prod"
         }
     }
