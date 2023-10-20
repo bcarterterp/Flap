@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'login_screen.dart';
-import 'package:flap_app/main.dart';
+import 'package:flap_app/main_dev.dart';
 
 void main() {
   final loginScreen = Logincreen();
