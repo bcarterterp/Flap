@@ -16,6 +16,9 @@ final class RunnerUITests: XCTestCase {
             try app.performAccessibilityAudit()
         } else {
             // Fallback on earlier versions
+            // This automated test is only possible on ios 17
+            // Regular regression testing on earlier versions will
+            // include regular accessibily testing
         }
     }
 }
