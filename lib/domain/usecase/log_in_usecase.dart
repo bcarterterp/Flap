@@ -18,9 +18,9 @@ class LogInUseCase {
     final email = loginInformation.email;
     final password = loginInformation.password;
     if (email.isEmpty) {
-      return Future.value(Error(LoginError.emptyEmail));
+      return Future.value(ErrorRequestResponse(LoginError.emptyEmail));
     } else if (password.isEmpty) {
-      return Future.value(Error(LoginError.emptyPassword));
+      return Future.value(ErrorRequestResponse(LoginError.emptyPassword));
     }
     return _authRepository.logIn(loginInformation);
   }

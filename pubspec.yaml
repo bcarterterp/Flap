@@ -36,12 +36,24 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
   material_color_utilities: ^0.5.0
+  # Riverpod is for our state management solution
   flutter_riverpod: ^2.4.0
+  # GoRouter is for navigation
   go_router: ^11.1.2
+  # Dio is for networking
+  dio: ^5.1.2
+  # Json annotations library is to help for deserializing
+  json_annotation: ^4.8.1
+  # Transparent image is for when images are being loaded over a network
+  transparent_image: ^2.0.1
+  # required package for the http mock adapter which is used to unit test dio
+  http: ^1.1.0
+  envied: ^0.3.0+3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # Change App Package helps efficiently change the package name
   change_app_package_name: ^1.1.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -53,6 +65,16 @@ dev_dependencies:
   # add additional test dependancies for use with ui and integration tests
   integration_test:
     sdk: flutter
+  # build runner is used here for us to use the json_serializable package
+  build_runner: ^2.4.6
+  # this package enables auto-generated json mappers as seen in the dto.g.dart classes
+  json_serializable: ^6.7.1
+  test: ^1.24.3
+  # used to create mocks for unit testing
+  mockito: ^5.4.2
+  # used to create mocks of Dio for unit testing
+  http_mock_adapter: ^0.6.0
+  envied_generator: ^0.3.0+3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
