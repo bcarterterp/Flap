@@ -4,7 +4,7 @@ import 'package:flap_app/domain/entity/request_response.dart';
 import 'package:flap_app/domain/entity/user_info.dart';
 import 'package:flap_app/domain/repository/auth/auth_repository.dart';
 
-/// Fake implementation of Authenticaion and is used only as an example. This is where you would sub for
+/// Fake implementation of Authentication and is used only as an example. This is where you would sub for
 /// your own network implementation.
 class AuthRepositoryImpl extends AuthRepository {
   @override
@@ -16,12 +16,12 @@ class AuthRepositoryImpl extends AuthRepository {
     final email = loginInformation.email;
     final password = loginInformation.password;
     if (email == 'admin@testing.com' && password == 'admin') {
-      return Future.value(Success(UserInfo(
+      return Future.value(SuccessRequestResponse(UserInfo(
         name: 'Admin',
         email: email,
       )));
     } else {
-      return Future.value(Error(LoginError.incorrectEmailOrPassword));
+      return Future.value(ErrorRequestResponse(LoginError.incorrectEmailOrPassword));
     }
   }
 }

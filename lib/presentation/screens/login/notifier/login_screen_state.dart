@@ -19,7 +19,7 @@ class LoginScreenState {
       );
 
   factory LoginScreenState.success(UserInfo userInfo) => LoginScreenState(
-        loginEvent: EventSuccess(userInfo),
+        loginEvent: SuccessEvent(userInfo),
       );
 
   factory LoginScreenState.error(LoginError error) => _onError(error);
@@ -59,13 +59,5 @@ class LoginScreenState {
           passwordError: 'Check your password',
         );
     }
-  }
-
-  bool isLoading() {
-    return loginEvent is LoadingEvent;
-  }
-
-  bool isSuccess() {
-    return loginEvent is EventSuccess;
   }
 }

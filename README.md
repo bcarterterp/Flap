@@ -23,6 +23,7 @@ Our architecture stems from [Flutter - Clean Architecture](https://github.com/gu
 - Navigation: [go_router] (https://pub.dev/packages/go_router)
 - Fonts: [Google Fonts](https://pub.dev/packages/google_fonts)
 - Change App Package Name: [Name Change](https://pub.dev/packages/change_app_package_name) Allows you to change the project name through terminal instead of doing it manually. Feel free to remove it after forking!
+- Secret Management: [Envied](https://pub.dev/packages/envied)
 
 ## Style Guide
 
@@ -37,6 +38,20 @@ Our architecture stems from [Flutter - Clean Architecture](https://github.com/gu
 ## Navigation
 
 go_router is a declarative routing package helpful for advanced navigation requirements (such as a web app that uses direct links to each screen or an app with multiple "navigation graphs" or navigation widgets). This package was mentioned here in the flutter docs: https://docs.flutter.dev/ui/navigation
+
+
+## Secrets
+
+Secrets are managed using the [Envied](https://pub.dev/packages/envied) dart package. Developers are expected to provide a `.env` file at the root of the project to be used by Envied. Envied works by generating a class which can then be used to access the values of the keys within the env file. To generate or update the class, run the following commands:
+
+  `flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs`
+
+An example of how Envied is used can be found at `/lib/env/env.dart`
+
+**Note** 
+  1. The generated files for Envied do not get committed so that the secrets are not in source control
+  2. Any time you make a change you need to your env you need to rerun the build runner so its picked up ([this is an open issue](https://github.com/petercinibulk/envied/issues/6) right now for Envied)
+  3. The first time you run the build-runner with Envied you have to comment out the env.dart file, run the build runner, then uncomment the file and run again ([there is also an open issue](https://github.com/petercinibulk/envied/issues/59) on this )
 
 ## How and What Do We Test?
 Testing is being run primarily using VSCode. Extensions that help make testing possible include:
@@ -70,6 +85,10 @@ Android has an app called [Android Accessibility Scanner](https://play.google.co
 ![Accessiblity Scanner](accessibilityscanner.png)
 
 iOS has access to a UI Test class called performAccessibilityAudit that can be performed with an emulator via XCTest. The console output will dispaly any issues found while the audit was performed. The Accessiblity Audit is based on [Apple's Accessiblity best practices](https://developer.apple.com/documentation/xctest/xcuiapplication/4191487-performaccessibilityaudit).
+
+### Mockito:
+The Mockito flutter package (https://pub.dev/packages/mockito) in combination with the build-runner will create generated files with mocked class code. For example, in the home_page_state_notifier_test the repository class is annotated above the test as a class that requires a mock. The behavior needs to be defined for the mocked method (ex. getRandomRecipes is defined with a .thenAnswer). A provideDummy is also required in cases where the return type is a generic and your test is expecting an explicit return type. The build runner will auto-generate the corresponding mock with a class that ends with "mocks.dart".
+
 
 ### Folder Structure
 This project uses a silightly different folder structure for tests than the official flutter docs. We have opted to mirror the folder structure of the greater application, to make it easier for both developers and test engineers to contribute, and find what they are looking for.
