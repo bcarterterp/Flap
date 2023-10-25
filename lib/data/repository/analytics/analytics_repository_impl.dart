@@ -6,20 +6,20 @@ class AnalyticsDummyPlatform implements AnalyticsRepository {
   Future<RequestResponse<void, void>> logEvent(
       String name, Map<String, dynamic> parameters) async {
     print('AnalyticsDummyPlatform: logEvent: $name, $parameters');
-    return Future.value(Success(null));
+    return Future.value(SuccessRequestResponse(null));
   }
 
   @override
   Future<RequestResponse<void, void>> setUserProperties(
       String userId, Map<String, dynamic> properties) {
     print('AnalyticsDummyPlatform: setUserProperties: $userId, $properties');
-    return Future.value(Success(null));
+    return Future.value(SuccessRequestResponse(null));
   }
 
   @override
   Future<RequestResponse<void, void>> screenView(String screenName) {
     print('AnalyticsDummyPlatform: screenView: $screenName');
-    return Future.value(Success(null));
+    return Future.value(SuccessRequestResponse(null));
   }
 }
 

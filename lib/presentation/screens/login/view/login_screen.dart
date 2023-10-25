@@ -72,19 +72,10 @@ class _LoginInformationWigetState
   Widget build(BuildContext context) {
     final loginState = ref.watch(loginPageStateProvider);
 
-<<<<<<< Updated upstream
     // When state changes and the login event is successful, navigation code will execute below
     // WidgetsBinding.instance.addPostFrameCallback executes when widgets are finished rendering
     // Without the addPostFrameCallback, there will be an error that says you can't update state when widgets are being built
     if (loginState.loginEvent is SuccessEvent) {
-=======
-    if(loginState.isInitial()){
-      ref.read(analyticsProvider).screenView('LoginScreen');
-    }
-
-    //The WidgetsBinding.instance.addPostFrameCallback executes navigation code only after widgets are rendered
-    if (loginState.isSuccess()) {
->>>>>>> Stashed changes
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.go('/home');
       });

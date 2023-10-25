@@ -60,19 +60,4 @@ class LoginScreenState {
         );
     }
   }
-<<<<<<< Updated upstream:lib/presentation/screens/login/notifier/login_screen_state.dart
-=======
-
-  bool isInitial() {
-    return loginEvent is InitialEvent;
-  }
-
-  bool isLoading() {
-    return loginEvent is LoadingEvent;
-  }
-
-  bool isSuccess() {
-    return loginEvent is EventSuccess;
-  }
->>>>>>> Stashed changes:lib/presentation/screens/login/notifier/login_page_state.dart
 }

@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
 import 'package:dio/dio.dart';
-=======
 import 'package:flap_app/data/repository/analytics/analytics_repository_impl.dart';
->>>>>>> Stashed changes
 import 'package:flap_app/data/repository/auth/auth_repository_impl.dart';
 import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
@@ -45,7 +42,6 @@ final loginPageStateProvider =
   ),
 );
 
-<<<<<<< Updated upstream
 final homePageStateProvider =
     StateNotifierProvider<HomePageStateNotifier, HomePageState>(
   (ref) => HomePageStateNotifier(
@@ -58,8 +54,7 @@ final recipeListProvider = Provider<List<Recipe>>((ref) {
   return (state.loadRecipesEvent as SuccessEvent<List<Recipe>, DioException>)
       .data; // Assuming the recipeList is stored in the data field of HomePageState class
 });
-=======
+
 final analyticsProvider = Provider<AnalyticsRepositoryImpl>(
   (ref) => AnalyticsRepositoryImpl(),
 );
->>>>>>> Stashed changes
