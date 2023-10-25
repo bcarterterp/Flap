@@ -75,6 +75,33 @@ dev_dependencies:
   # used to create mocks of Dio for unit testing
   http_mock_adapter: ^0.6.0
   envied_generator: ^0.3.0+3
+  #flavorizr
+  flutter_flavorizr: ^2.2.1
+
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+
+  flavors:
+    dev:
+      app:
+        name: "dev"
+
+      android:
+        applicationId: "com.flap.dev"
+
+      ios:
+        bundleId: "com.flap.dev"
+
+    prod:
+      app:
+        name: "prod"
+
+      android:
+        applicationId: "com.flap.prod"
+      ios:
+        bundleId: "com.flap.prod"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
