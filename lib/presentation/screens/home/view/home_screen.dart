@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
@@ -7,8 +6,6 @@ import 'package:flap_app/presentation/screens/home/widgets/screen_states/error_s
 import 'package:flap_app/presentation/screens/home/widgets/screen_states/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../../domain/entity/recipe.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -45,19 +42,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 }
 
-// ignore: must_be_immutable
-class RecipeGrid extends StatelessWidget {
+class RecipeGrid extends ConsumerWidget {
   final HomePageState state;
-  late List<Recipe> recipeList;
 
-  RecipeGrid({super.key, required this.state}) {
-    recipeList =
-        (state.loadRecipesEvent as SuccessEvent<List<Recipe>, DioException>)
-            .data;
-  }
+  const RecipeGrid({Key? key, required this.state}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final recipeList = ref.watch(recipeListProvider);
     return GridView(
       padding: const EdgeInsets.all(10),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

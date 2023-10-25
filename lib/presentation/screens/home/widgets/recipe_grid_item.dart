@@ -1,13 +1,14 @@
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class RecipeGridItem extends StatelessWidget {
+class RecipeGridItem extends ConsumerWidget {
   const RecipeGridItem({super.key, required this.recipe});
 
   final Recipe recipe;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       margin: const EdgeInsets.all(8),
       shape: RoundedRectangleBorder(
