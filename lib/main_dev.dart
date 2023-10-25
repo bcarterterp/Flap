@@ -1,4 +1,4 @@
-import 'flavors.dart';
+import 'domain/entity/flavors.dart';
 
 import 'main.dart' as runner;
 
