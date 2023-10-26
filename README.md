@@ -94,3 +94,6 @@ The Mockito flutter package (https://pub.dev/packages/mockito) in combination wi
 This project uses a silightly different folder structure for tests than the official flutter docs. We have opted to mirror the folder structure of the greater application, to make it easier for both developers and test engineers to contribute, and find what they are looking for.
 
 The test folder structure suggested by the flutter documentation can be found [here](https://docs.flutter.dev/testing/integration-tests)):
+
+### Analytics Platforms
+This project provides an abstract class to support multiple Analytics platforms, the class can be found at `lib/domain/repository/analytics_repository.dart`. Users are expected to provide implementations for `logEvent, setUserProperties, and screenView` and instantiate the class in `lib/data/repository/analytics/analytics_repository_impl.dart`. The presentation layer can access analytics via the `analyticsProvider` defined in the providers file. 
