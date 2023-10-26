@@ -9,7 +9,7 @@ import 'package:flap_app/domain/repository/auth/auth_repository.dart';
 /// fit your needs.
 class AuthRepositoryFake extends AuthRepository {
   Future<RequestResponse<UserInfo, LoginError>> response =
-      Future.value(const Success(UserInfo(name: "", email: "")));
+      Future.value(const SuccessRequestResponse(UserInfo(name: "", email: "")));
 
   void changeResponse(Future<RequestResponse<UserInfo, LoginError>> response) {
     this.response = response;

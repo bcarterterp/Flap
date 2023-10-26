@@ -1,3 +1,4 @@
+import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -73,8 +74,10 @@ class _LoginInformationWigetState
   Widget build(BuildContext context) {
     final loginState = ref.watch(loginScreenNotifierProvider);
 
-    //The WidgetsBinding.instance.addPostFrameCallback executes navigation code only after widgets are rendered
-    if (loginState.isSuccess()) {
+    // When state changes and the login event is successful, navigation code will execute below
+    // WidgetsBinding.instance.addPostFrameCallback executes when widgets are finished rendering
+    // Without the addPostFrameCallback, there will be an error that says you can't update state when widgets are being built
+    if (loginState.loginEvent is SuccessEvent) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.go('/home');
       });
@@ -85,7 +88,7 @@ class _LoginInformationWigetState
       onPressed: login,
       child: const Text('Login'),
     );
-    if (loginState.isLoading()) {
+    if (loginState.loginEvent is LoadingEvent) {
       button = const ElevatedButton(
         onPressed: null,
         child: SizedBox(

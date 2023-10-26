@@ -9,6 +9,7 @@ import 'package:equatable/equatable.dart';
 /// 4. EventError - The event has failed, with the error set. Note that the error can
 /// be any type, and is not limited to a string.
 ///
+///
 /// Refer to [RequestResponse] for the domain layer equivilant.
 
 sealed class Event<Data, ErrorInfo> {}
@@ -25,10 +26,10 @@ class LoadingEvent<Data, ErrorInfo> extends Equatable
   List<Object?> get props => [];
 }
 
-class EventSuccess<Data, ErrorInfo> extends Equatable
+class SuccessEvent<Data, ErrorInfo> extends Equatable
     implements Event<Data, ErrorInfo> {
   final Data data;
-  const EventSuccess(this.data);
+  const SuccessEvent(this.data);
 
   @override
   List<Object?> get props => [data];

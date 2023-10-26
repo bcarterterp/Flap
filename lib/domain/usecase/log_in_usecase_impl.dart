@@ -20,9 +20,9 @@ class LogInUseCaseImpl extends LogInUseCase {
     final email = loginInformation.email;
     final password = loginInformation.password;
     if (email.isEmpty) {
-      return Future.value(const Error(LoginError.emptyEmail));
+      return Future.value(const ErrorRequestResponse(LoginError.emptyEmail));
     } else if (password.isEmpty) {
-      return Future.value(const Error(LoginError.emptyPassword));
+      return Future.value(const ErrorRequestResponse(LoginError.emptyPassword));
     }
     return _authRepository.logIn(loginInformation);
   }

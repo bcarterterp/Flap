@@ -8,7 +8,7 @@ import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 /// having to use [LogInUseCaseImpl] as a dependency. Feel free to make any changes to fit your needs.
 class LoginUseCaseFake extends LogInUseCase {
   Future<RequestResponse<UserInfo, LoginError>> response =
-      Future.value(const Success(UserInfo(name: "", email: "")));
+      Future.value(const SuccessRequestResponse(UserInfo(name: "", email: "")));
 
   void changeResponse(Future<RequestResponse<UserInfo, LoginError>> response) {
     this.response = response;

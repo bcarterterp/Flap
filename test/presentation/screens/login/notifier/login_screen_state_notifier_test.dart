@@ -1,7 +1,7 @@
 import 'package:flap_app/domain/entity/login_error.dart';
 import 'package:flap_app/domain/entity/user_info.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
-import 'package:flap_app/presentation/screens/login/notifier/login_page_state.dart';
+import 'package:flap_app/presentation/screens/login/notifier/login_screen_state.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
@@ -13,9 +13,9 @@ import '../../../../util/provider_container.dart';
 void main() {
   final loginUseCase = LoginUseCaseFake();
 
-  group("Unit Tests surrounding LoginStateNotifier", () {
+  group("LoginStateNotifier Unit Tests", () {
     test(
-      "given loginScreenStateNotifier, with no actions taken, then initial state should be returned",
+      "Given initial loginScreenStateNotifier, with no actions taken, then LoginScreenState should be initial.",
       () async {
         // DO NOT share ProviderContainers between tests.
         final container = createContainer(
@@ -29,7 +29,7 @@ void main() {
     );
 
     test(
-      "given loginScreenStateNotifier, with login called and LoginError.emptyEmail returned, then correct states should be returned",
+      "Given inital loginScreenStateNotifier, with login called and LoginError.emptyEmail returned, then loading and emptyEmail error states should be returned",
       () async {
         // DO NOT share ProviderContainers between tests.
         final container = createContainer(
@@ -37,7 +37,8 @@ void main() {
             logInUseCaseProvider.overrideWith((ref) => loginUseCase),
           ],
         );
-        const response = Error<UserInfo, LoginError>(LoginError.emptyEmail);
+        const response =
+            ErrorRequestResponse<UserInfo, LoginError>(LoginError.emptyEmail);
         loginUseCase.changeResponse(Future.value(response));
         final stateListener = Listener<LoginScreenState>();
         container.listen(
@@ -57,7 +58,7 @@ void main() {
     );
 
     test(
-      "given loginScreenStateNotifier, with login called and LoginError.emptyPassword returned, then correct states should be returned",
+      "Given initial loginScreenStateNotifier, with login called and LoginError.emptyPassword returned, then loading and emptyPassword error states should be returned",
       () async {
         // DO NOT share ProviderContainers between tests.
         final container = createContainer(
@@ -65,7 +66,8 @@ void main() {
             logInUseCaseProvider.overrideWith((ref) => loginUseCase),
           ],
         );
-        const response = Error<UserInfo, LoginError>(LoginError.emptyPassword);
+        const response = ErrorRequestResponse<UserInfo, LoginError>(
+            LoginError.emptyPassword);
         loginUseCase.changeResponse(Future.value(response));
         final stateListener = Listener<LoginScreenState>();
         container.listen(
@@ -85,7 +87,7 @@ void main() {
     );
 
     test(
-      "given loginScreenStateNotifier, with login called and LoginError.incorrectEmailOrPassword returned, then correct states should be returned",
+      "given loginScreenStateNotifier, with login called and LoginError.incorrectEmailOrPassword returned, then loading and invalidEmailOrPassword error states should be returned",
       () async {
         // DO NOT share ProviderContainers between tests.
         final container = createContainer(
@@ -93,8 +95,8 @@ void main() {
             logInUseCaseProvider.overrideWith((ref) => loginUseCase),
           ],
         );
-        const response =
-            Error<UserInfo, LoginError>(LoginError.incorrectEmailOrPassword);
+        const response = ErrorRequestResponse<UserInfo, LoginError>(
+            LoginError.incorrectEmailOrPassword);
         loginUseCase.changeResponse(Future.value(response));
         final stateListener = Listener<LoginScreenState>();
         container.listen(
@@ -115,7 +117,7 @@ void main() {
     );
 
     test(
-      "given loginScreenStateNotifier, with login called and LoginError.incorrectEmailOrPassword returned, then correct states should be returned",
+      "given loginScreenStateNotifier, with login called and LoginError.incorrectEmailOrPassword returned, then loading and successful states should be returned",
       () async {
         // DO NOT share ProviderContainers between tests.
         final container = createContainer(
@@ -127,7 +129,7 @@ void main() {
           name: "test",
           email: "test@testing.com",
         );
-        const response = Success<UserInfo, LoginError>(userInfo);
+        const response = SuccessRequestResponse<UserInfo, LoginError>(userInfo);
         loginUseCase.changeResponse(Future.value(response));
         final stateListener = Listener<LoginScreenState>();
         container.listen(

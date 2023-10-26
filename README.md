@@ -24,15 +24,14 @@ Dependency injection (DI) is a fundamental concept in software development that 
 - Since we are using Riverpod for our state management, we have decided to enable dependency injection through it. While most classes will use constructor injection as seeing in the [providers.dart] class, the Notifiers are different. Notifiers can grab any dependency throug their `ref` reference, which is kept and maintained by the `ProviderScope`.
 - Riverpod allows the ability to swap out dependencies for tests. This allows us the ability to use Fakes in our tests, and as close to implementation as we want. More on that in the Testing section.
 
-### Testing
-
-
 ## Libraries and Frameworks Used
 
 - State Management & Dependency Injection: [Flutter Riverpod](https://riverpod.dev/)
 - Navigation: [go_router] (https://pub.dev/packages/go_router)
 - Fonts: [Google Fonts](https://pub.dev/packages/google_fonts)
 - Change App Package Name: [Name Change](https://pub.dev/packages/change_app_package_name) Allows you to change the project name through terminal instead of doing it manually. Feel free to remove it after forking!
+- Secret Management: [Envied](https://pub.dev/packages/envied)
+- Object Equitability: [Equatable](https://pub.dev/packages/equatable)
 
 ## Style Guide
 
@@ -47,6 +46,20 @@ Dependency injection (DI) is a fundamental concept in software development that 
 ## Navigation
 
 go_router is a declarative routing package helpful for advanced navigation requirements (such as a web app that uses direct links to each screen or an app with multiple "navigation graphs" or navigation widgets). This package was mentioned here in the flutter docs: https://docs.flutter.dev/ui/navigation
+
+
+## Secrets
+
+Secrets are managed using the [Envied](https://pub.dev/packages/envied) dart package. Developers are expected to provide a `.env` file at the root of the project to be used by Envied. Envied works by generating a class which can then be used to access the values of the keys within the env file. To generate or update the class, run the following commands:
+
+  `flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs`
+
+An example of how Envied is used can be found at `/lib/env/env.dart`
+
+**Note** 
+  1. The generated files for Envied do not get committed so that the secrets are not in source control
+  2. Any time you make a change you need to your env you need to rerun the build runner so its picked up ([this is an open issue](https://github.com/petercinibulk/envied/issues/6) right now for Envied)
+  3. The first time you run the build-runner with Envied you have to comment out the env.dart file, run the build runner, then uncomment the file and run again ([there is also an open issue](https://github.com/petercinibulk/envied/issues/59) on this )
 
 ## How and What Do We Test?
 Testing is being run primarily using VSCode. Extensions that help make testing possible include:
@@ -75,6 +88,9 @@ For more information, please see the official flutter docs related to [Widget Te
 These tests are described by the flutter documentation as verifying "the behavior of a method or class". These tests are the most lightweight of the three, and don't verify any visual elements. Instead, these tests are meant to assert on the logic of a single method or overall class, and ensure it returns the value we expect. These tests are also meant to be run as part of PR verification, as they help make sure that the app is still functioning as expected after changing a functionality.
 For more information, please see  the official flutter docs related to [Unit Testing](https://docs.flutter.dev/cookbook/testing/unit/introduction)
 
+### Riverpod In Testing
+To reduce the amount of setup needed for tests, we are leveraging our depenedency injection. While we are leveraging Riverpod's dependency injection for tests, we still have the flexibility of substituting a Fake/Mock implementation for a real one. This allows us to configure our app as close to the real thing, while still allowing the ability to build out test configurations. For more infor on how Riverpod is used in testing check out Riverpod's [Testing Documentation](https://riverpod.dev/docs/essentials/testing)
+
 ### Fakes versus Mocks
 For this generic implementation of a Flutter App, we have shown both ways of substituing dependencies. We want to focus on how to implement either so you may make the best decision for your project. Our suggestion however is to favor Fakes instead of Mocks. Even though there will be more upfront code, you will be better equiped at using these substitutions in other test areas. For instance you can reuse the AuthRepositoryFake in the LoginWidget tests in order to remove the dependency of the network (if AuthRepositoryImple actually made a network call). 
 
@@ -82,6 +98,16 @@ Please take a look at some of these resources for further reading:
 - [Test Doubles](https://martinfowler.com/bliki/TestDouble.html)
 - [Prefer Fakes Over Mocks](https://tyrrrz.me/blog/fakes-over-mocks)
 - [Interchangable Fakes and Mocks](https://medium.com/@june.pravin/mocking-is-not-practical-use-fakes-e30cc6eaaf4e)
+
+
+### Accessibilty Tests
+Android has an app called [Android Accessibility Scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor&hl=en_US&gl=US) that can be used to perform automated accessibility audits. This app is only able to be installed and used on a physical Android device, due to android emulators lack of access to the play store. This app highlights parts of the app that don't fit into standard accessibilty guidelines.
+![Accessiblity Scanner](accessibilityscanner.png)
+
+iOS has access to a UI Test class called performAccessibilityAudit that can be performed with an emulator via XCTest. The console output will dispaly any issues found while the audit was performed. The Accessiblity Audit is based on [Apple's Accessiblity best practices](https://developer.apple.com/documentation/xctest/xcuiapplication/4191487-performaccessibilityaudit).
+
+### Mockito:
+The Mockito flutter package (https://pub.dev/packages/mockito) in combination with the build-runner will create generated files with mocked class code. For example, in the home_page_state_notifier_test the repository class is annotated above the test as a class that requires a mock. The behavior needs to be defined for the mocked method (ex. getRandomRecipes is defined with a .thenAnswer). A provideDummy is also required in cases where the return type is a generic and your test is expecting an explicit return type. The build runner will auto-generate the corresponding mock with a class that ends with "mocks.dart".
 
 
 ### Folder Structure

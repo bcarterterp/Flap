@@ -1,4 +1,4 @@
-import 'package:flap_app/presentation/screens/login/notifier/login_page_state.dart';
+import 'package:flap_app/presentation/screens/login/notifier/login_screen_state.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_notifier.dart';
 
 /// Fake notifier to swap in for testing the LoginScreen widget. Feel free to

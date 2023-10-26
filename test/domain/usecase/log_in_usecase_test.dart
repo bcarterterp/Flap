@@ -10,9 +10,9 @@ import '../repository/auth/auth_repository_fake.dart';
 
 main() {
   final authRepository = AuthRepositoryFake();
-  group("Test the usage of LogInUseCase", () {
+  group("LogInUseCase Unit Tests", () {
     test(
-      "when successful response is sent back",
+      "Given initial LogInUseCase, when LoginInformation passes email and password requirements, then SuccessRequestResponse should be returned.",
       () async {
         final container = createContainer(
           overrides: [
@@ -20,7 +20,8 @@ main() {
           ],
         );
         const userInfo = UserInfo(name: "test", email: "test");
-        authRepository.changeResponse(Future.value(const Success(userInfo)));
+        authRepository.changeResponse(
+            Future.value(const SuccessRequestResponse(userInfo)));
         final useCase = container.read(logInUseCaseProvider);
         final response = await useCase.logIn(
           const LoginInformation(
@@ -29,12 +30,13 @@ main() {
           ),
         );
         //Note: Must reinforce generic typing here because dart checks typing.
-        expect(response, const Success<UserInfo, LoginError>(userInfo));
+        expect(response,
+            const SuccessRequestResponse<UserInfo, LoginError>(userInfo));
       },
     );
 
     test(
-      "when blank email is sent",
+      "Given initial LogInUseCase, when blank email is sent, then ErrorRequestResponse with LoginError.emptyEmail is returned",
       () async {
         final container = createContainer(
           overrides: [
@@ -48,13 +50,14 @@ main() {
             password: "password",
           ),
         );
-        const expected = Error<UserInfo, LoginError>(LoginError.emptyEmail);
+        const expected =
+            ErrorRequestResponse<UserInfo, LoginError>(LoginError.emptyEmail);
         expect(response, expected);
       },
     );
 
     test(
-      "when blank password is sent",
+      "Given initial LogInUseCase, when blank password is sent, then ErrorRequestResponse with LoginError.emptyPassword is returned",
       () async {
         final container = createContainer(
           overrides: [
@@ -68,7 +71,8 @@ main() {
             password: "",
           ),
         );
-        const expected = Error<UserInfo, LoginError>(LoginError.emptyPassword);
+        const expected = ErrorRequestResponse<UserInfo, LoginError>(
+            LoginError.emptyPassword);
         expect(response, expected);
       },
     );

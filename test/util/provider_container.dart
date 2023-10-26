@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// A testing utility which creates a [ProviderContainer] and automatically
-/// disposes it at the end of the test.
+/// disposes it at the end of the test. Check out https://riverpod.dev/docs/essentials/testing
+/// for more usage and information.
 ProviderContainer createContainer({
   ProviderContainer? parent,
   List<Override> overrides = const [],

@@ -4,7 +4,7 @@ import 'package:flap_app/domain/entity/login_info.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
 import 'package:flap_app/domain/entity/user_info.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
-import 'package:flap_app/presentation/screens/login/notifier/login_page_state.dart';
+import 'package:flap_app/presentation/screens/login/notifier/login_screen_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'login_screen_state_notifier.g.dart';
@@ -30,9 +30,9 @@ class LoginScreenNotifier extends _$LoginScreenNotifier {
         );
 
     switch (response) {
-      case Success<UserInfo, LoginError>():
+      case SuccessRequestResponse<UserInfo, LoginError>():
         state = LoginScreenState.success(response.data);
-      case Error<UserInfo, LoginError>():
+      case ErrorRequestResponse<UserInfo, LoginError>():
         state = LoginScreenState.error(response.error);
     }
   }

@@ -6,7 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flap_app/domain/entity/login_error.dart';
-import 'package:flap_app/presentation/screens/login/notifier/login_page_state.dart';
+import 'package:flap_app/presentation/screens/login/notifier/login_screen_state.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_notifier.dart';
 import 'package:flap_app/presentation/screens/login/view/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +20,10 @@ void main() {
   // Note: This group performs the same validation as the integration
   // test example, difference being that these tests do not require
   // launching the app on an emulator for validation
-  group('Home Widget Tests', () {
-    group("Using a fake notifier", () {
-      testWidgets('Initial screen has no errors validation',
+  group('LoginScreen Widget Tests', () {
+    group("Unit tests with a fake LoginScreenNotifier", () {
+      testWidgets(
+          'Given LoginScreen is ininitial state, when nothing is done, then there should be no errors present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final loginScreen = Logincreen();
@@ -36,7 +37,8 @@ void main() {
         expect(loginScreen.passwordCheckError, findsNothing);
       });
 
-      testWidgets('Email Empty error validation with fake notifier',
+      testWidgets(
+          'Given LoginScreen is ininitial state, when user enters no email, then empty email error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final loginScreen = Logincreen();
@@ -55,7 +57,8 @@ void main() {
         expect(loginScreen.passwordCheckError, findsNothing);
       });
 
-      testWidgets('Password empty error validation with fake notifier',
+      testWidgets(
+          'Given LoginScreen is ininitial state, when user enters no password, then empty password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final loginScreen = Logincreen();
@@ -74,7 +77,8 @@ void main() {
         expect(loginScreen.passwordCheckError, findsNothing);
       });
 
-      testWidgets('Check email/password error validation with fake notifier',
+      testWidgets(
+          'Given LoginScreen is ininitial state, when user enters incorrect email/password, then both email and password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final loginScreen = Logincreen();
@@ -96,8 +100,9 @@ void main() {
       });
     });
 
-    group("Full implementation", () {
-      testWidgets('Initial screen has no error validation',
+    group("Integration Tests", () {
+      testWidgets(
+          'Given LoginScreen is ininitial state, when nothing is done, then there should be no errors present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final loginScreen = Logincreen();
@@ -109,7 +114,9 @@ void main() {
         expect(loginScreen.passwordEmptyError, findsNothing);
         expect(loginScreen.passwordCheckError, findsNothing);
       });
-      testWidgets('Email Empty error validation', (WidgetTester tester) async {
+      testWidgets(
+          'Given LoginScreen is ininitial state, when user enters no email, then empty email error should be present.',
+          (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final loginScreen = Logincreen();
         await tester.pumpWidget(createContainerForLoginWidget(null));
@@ -124,7 +131,8 @@ void main() {
         expect(loginScreen.passwordEmptyError, findsNothing);
         expect(loginScreen.passwordCheckError, findsNothing);
       });
-      testWidgets('Password empty error validation',
+      testWidgets(
+          'Given LoginScreen is ininitial state, when user enters no password, then empty password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final loginScreen = Logincreen();
@@ -140,7 +148,8 @@ void main() {
         expect(loginScreen.passwordEmptyError, findsOneWidget);
         expect(loginScreen.passwordCheckError, findsNothing);
       });
-      testWidgets('Check email/password error validation',
+      testWidgets(
+          'Given LoginScreen is ininitial state, when user enters no password, then empty password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final loginScreen = Logincreen();

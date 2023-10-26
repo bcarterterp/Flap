@@ -20,7 +20,7 @@ class LoginScreenState extends Equatable {
       );
 
   factory LoginScreenState.success(UserInfo userInfo) => LoginScreenState(
-        loginEvent: EventSuccess(userInfo),
+        loginEvent: SuccessEvent(userInfo),
       );
 
   factory LoginScreenState.error(LoginError error) => _onError(error);
@@ -67,7 +67,7 @@ class LoginScreenState extends Equatable {
   }
 
   bool isSuccess() {
-    return loginEvent is EventSuccess;
+    return loginEvent is SuccessEvent;
   }
 
   @override
