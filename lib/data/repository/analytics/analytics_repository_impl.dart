@@ -1,30 +1,9 @@
 import 'package:flap_app/domain/repository/analytics/analytics_repository.dart';
-import 'package:flap_app/domain/entity/request_response.dart';
-
-class AnalyticsDummyPlatform implements AnalyticsRepository {
-  @override
-  Future<RequestResponse<void, void>> logEvent(
-      String name, Map<String, dynamic> parameters) async {
-    print('AnalyticsDummyPlatform: logEvent: $name, $parameters');
-    return Future.value(SuccessRequestResponse(null));
-  }
-
-  @override
-  Future<RequestResponse<void, void>> setUserProperties(
-      String userId, Map<String, dynamic> properties) {
-    print('AnalyticsDummyPlatform: setUserProperties: $userId, $properties');
-    return Future.value(SuccessRequestResponse(null));
-  }
-
-  @override
-  Future<RequestResponse<void, void>> screenView(String screenName) {
-    print('AnalyticsDummyPlatform: screenView: $screenName');
-    return Future.value(SuccessRequestResponse(null));
-  }
-}
-
 class AnalyticsRepositoryImpl {
-  final List<AnalyticsRepository> _analyticsPlatforms = [AnalyticsDummyPlatform()];
+  /**
+   * List of analytics platforms to send events to.
+   */
+  final List<AnalyticsRepository> _analyticsPlatforms = [];
 
   void logEvent(String name, Map<String, dynamic> parameters) {
     for (var analyticsPlatform in _analyticsPlatforms) {
