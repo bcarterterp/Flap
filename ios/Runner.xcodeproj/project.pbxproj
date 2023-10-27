@@ -14,11 +14,11 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		C7DB5B91202F9E95F6779564 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0404AD2AE175220062C542 /* Pods_RunnerTests.framework */; };
 		E8D0C2994E932E3920221DAE /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52710C14C1C135AC68AE88A8 /* Pods_RunnerTests.framework */; };
 		FC0404932AE16CE10062C542 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035F94402AE06FF100E12119 /* RunnerTests.swift */; };
 		FC04049D2AE173B10062C542 /* RunnerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC04049C2AE173B10062C542 /* RunnerUITestsLaunchTests.swift */; };
 		FC0404A42AE174180062C542 /* RunnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC04049A2AE173B10062C542 /* RunnerUITests.swift */; };
-		FC0404AE2AE175220062C542 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0404AD2AE175220062C542 /* Pods_RunnerTests.framework */; };
 		FC0404AF2AE175220062C542 /* Pods_RunnerTests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC0404AD2AE175220062C542 /* Pods_RunnerTests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -99,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8D0C2994E932E3920221DAE /* Pods_RunnerTests.framework in Frameworks */,
+				C7DB5B91202F9E95F6779564 /* Pods_RunnerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC0404AE2AE175220062C542 /* Pods_RunnerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

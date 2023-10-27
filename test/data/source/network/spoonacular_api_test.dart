@@ -22,7 +22,7 @@ void main() {
         'returns recipe list and a success request response object upon 200 code',
         () async {
       dioAdapter.onGet(
-        "",
+        spoonacularApi.spoonacularUri.toString(),
         (server) => server.reply(
           200,
           {
@@ -34,7 +34,8 @@ void main() {
         ),
       );
       final response = await spoonacularApi.getRandomRecipes();
-      expect(response, isA<SuccessRequestResponse<List<Recipe>, DioException>>());
+      expect(
+          response, isA<SuccessRequestResponse<List<Recipe>, DioException>>());
     });
 
     test('returns error request response object upon server error code 500',

@@ -1,10 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/domain/entity/login_error.dart';
 import 'package:flap_app/domain/entity/user_info.dart';
 
 /// Class to hold the state of the login page.
-class LoginScreenState {
-  LoginScreenState({
+class LoginScreenState extends Equatable {
+  const LoginScreenState({
     required this.loginEvent,
     this.emailError,
     this.passwordError,
@@ -60,4 +61,15 @@ class LoginScreenState {
         );
     }
   }
+
+  bool isLoading() {
+    return loginEvent is LoadingEvent;
+  }
+
+  bool isSuccess() {
+    return loginEvent is SuccessEvent;
+  }
+
+  @override
+  List<Object?> get props => [loginEvent];
 }
