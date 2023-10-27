@@ -4,10 +4,10 @@
  */
 abstract class AnalyticsRepository {
   void logEvent(
-      String name, Map<String, dynamic> parameters);
+      String name, Map<String, Object> parameters);
 
   void setUserProperties(
-      String userId, Map<String, dynamic> properties);
+      String userId, Map<String, Object> properties);
 
   void screenView(String screenName);
 }

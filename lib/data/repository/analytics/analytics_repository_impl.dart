@@ -5,13 +5,13 @@ class AnalyticsRepositoryImpl {
    */
   final List<AnalyticsRepository> _analyticsPlatforms = [];
 
-  void logEvent(String name, Map<String, dynamic> parameters) {
+  void logEvent(String name, Map<String, Object> parameters) {
     for (var analyticsPlatform in _analyticsPlatforms) {
       analyticsPlatform.logEvent(name, parameters);
     }
   }
 
-  void setUserProperties(String userId, Map<String, dynamic> properties) {
+  void setUserProperties(String userId, Map<String, Object> properties) {
     for (var analyticsPlatform in _analyticsPlatforms) {
       analyticsPlatform.setUserProperties(userId, properties);
     }
