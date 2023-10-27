@@ -86,22 +86,22 @@ flavorizr:
   flavors:
     dev:
       app:
-        name: "dev"
+        name: "Flap"
 
       android:
-        applicationId: "com.flap.dev"
+        applicationId: "com.flap.flapapp"
 
       ios:
-        bundleId: "com.flap.dev"
+        bundleId: "com.flap.flapapp"
 
     prod:
       app:
-        name: "prod"
+        name: "Flap"
 
       android:
-        applicationId: "com.flap.prod"
+        applicationId: "com.flap.flapapp"
       ios:
-        bundleId: "com.flap.prod"
+        bundleId: "com.flap.flapapp"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

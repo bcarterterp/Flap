@@ -12,10 +12,7 @@ class SpoonacularApiImpl implements SpoonacularApi {
   late final String baseUrlHost;
   late final Uri spoonacularUri;
 
-  SpoonacularApiImpl({
-    required this.dio,
-    required this.flavorRepo,
-  }) {
+  SpoonacularApiImpl({required this.dio, required this.flavorRepo}) {
     baseUrlHost = flavorRepo.getBaseUrlHost();
     spoonacularUri = Uri(
       scheme: "https",

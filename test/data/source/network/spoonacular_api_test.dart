@@ -14,24 +14,24 @@ import 'spoonacular_api_test.mocks.dart';
 void main() {
   late Dio dio;
   late DioAdapter dioAdapter;
-  late MockFlavorRepository mockflavorRepo;
   late SpoonacularApiImpl spoonacularApi;
+  late MockFlavorRepository flavorRepo;
 
   group('getRandomRecipes', () {
     setUp(() {
       dio = Dio(BaseOptions());
       dioAdapter = DioAdapter(dio: dio);
       dio.httpClientAdapter = dioAdapter;
-      mockflavorRepo = MockFlavorRepository();
-      spoonacularApi = SpoonacularApiImpl(dio: dio, flavorRepo: mockflavorRepo);
+      flavorRepo = MockFlavorRepository();
+      when(flavorRepo.getBaseUrlHost()).thenAnswer((realInvocation) => "");
+      spoonacularApi = SpoonacularApiImpl(dio: dio, flavorRepo: flavorRepo);
     });
 
     test(
         'returns recipe list and a success request response object upon 200 code',
         () async {
-      when(mockflavorRepo.getBaseUrlHost()).thenAnswer("" as Answering<String>);
       dioAdapter.onGet(
-        "",
+        spoonacularApi.spoonacularUri.toString(),
         (server) => server.reply(
           200,
           {
@@ -49,7 +49,6 @@ void main() {
 
     test('returns error request response object upon server error code 500',
         () async {
-      when(mockflavorRepo.getBaseUrlHost()).thenAnswer("" as Answering<String>);
       dioAdapter.onGet(
         "",
         (server) => server.reply(

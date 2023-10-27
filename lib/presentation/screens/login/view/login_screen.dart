@@ -71,6 +71,7 @@ class _LoginInformationWigetState
   @override
   Widget build(BuildContext context) {
     final loginState = ref.watch(loginPageStateProvider);
+    
 
     // When state changes and the login event is successful, navigation code will execute below
     // WidgetsBinding.instance.addPostFrameCallback executes when widgets are finished rendering
