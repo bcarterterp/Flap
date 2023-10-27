@@ -1,7 +1,5 @@
-/**
- * Analytics Repository
- * Abstract Class used for implementing analytics platforms
- */
+/// Analytics Repository
+/// Abstract Class used for implementing analytics platforms
 abstract class AnalyticsRepository {
   void logEvent(
       String name, Map<String, Object> parameters);

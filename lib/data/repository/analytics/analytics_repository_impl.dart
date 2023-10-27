@@ -1,8 +1,6 @@
 import 'package:flap_app/domain/repository/analytics/analytics_repository.dart';
 class AnalyticsRepositoryImpl {
-  /**
-   * List of analytics platforms to send events to.
-   */
+  /// List of analytics platforms to send events to.
   final List<AnalyticsRepository> _analyticsPlatforms = [];
 
   void logEvent(String name, Map<String, Object> parameters) {
