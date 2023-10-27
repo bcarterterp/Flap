@@ -10,6 +10,8 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final appTitle = ref.read(flavorRepositoryProvider).getAppTitle();
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -20,7 +22,7 @@ class LoginScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Please Enter Credentials',
+                'Please Enter Credentials for $appTitle',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.primary,
@@ -71,7 +73,6 @@ class _LoginInformationWigetState
   @override
   Widget build(BuildContext context) {
     final loginState = ref.watch(loginPageStateProvider);
-    
 
     // When state changes and the login event is successful, navigation code will execute below
     // WidgetsBinding.instance.addPostFrameCallback executes when widgets are finished rendering

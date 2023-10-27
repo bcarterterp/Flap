@@ -11,9 +11,9 @@ class F {
   static String get appTitle {
     switch (appFlavor) {
       case Flavor.dev:
-        return 'Flap Boilerplate -  Dev';
+        return 'Flap Boilerplate (Dev Flavor)';
       case Flavor.prod:
-        return 'Flap Boilerplate -  Prod';
+        return 'Flap Boilerplate (Prod Flavor)';
       default:
         return 'Flap Boilerplate';
     }
