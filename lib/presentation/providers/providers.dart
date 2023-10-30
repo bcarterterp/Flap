@@ -11,11 +11,13 @@ import 'package:flap_app/domain/repository/flavor/flavor_repository.dart';
 import 'package:flap_app/domain/repository/flavor/flavor_repository_impl.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
+import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state_notifier.dart';
-import 'package:flap_app/presentation/screens/login/notifier/login_screen_state.dart';
-import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'providers.g.dart';
 
 F flavor = F();
 
@@ -23,31 +25,25 @@ final flavorRepositoryProvider = Provider<FlavorRepository>(
   (ref) => FlavorRepositoryImpl(flavor: flavor),
 );
 
-//TODO: Investigate dependency injection solutions for passing in Dio to api class
+@riverpod
+AuthRepository authRepository(AuthRepositoryRef ref) {
+  return AuthRepositoryImpl();
+}
+
+@riverpod
+LogInUseCase logInUseCase(LogInUseCaseRef ref) {
+  return LogInUseCaseImpl(
+    authRepository: ref.watch(authRepositoryProvider),
+  );
+}
+
 Dio dio = Dio();
 
 final apiProvider =
     Provider<SpoonacularApi>((ref) => SpoonacularApiImpl(dio: dio, flavorRepo: ref.watch(flavorRepositoryProvider)));
 
-final authRepositoryProvider = Provider<AuthRepository>(
-  (ref) => AuthRepositoryImpl(),
-);
-
-final logInUseCaseProvider = Provider<LogInUseCase>(
-  (ref) => LogInUseCase(
-    authRepository: ref.watch(authRepositoryProvider),
-  ),
-);
-
 final recipeRepositoryProvider = Provider<RecipeRepository>(
   (ref) => RecipeRepositoryImpl(api: ref.read(apiProvider)),
-);
-
-final loginPageStateProvider =
-    StateNotifierProvider<LoginPageStateNotifier, LoginScreenState>(
-  (ref) => LoginPageStateNotifier(
-    logInUseCase: ref.watch(logInUseCaseProvider),
-  ),
 );
 
 final homePageStateProvider =

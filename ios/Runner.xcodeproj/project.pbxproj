@@ -19,6 +19,7 @@
 		CD4714347AA53966C9369387 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DD6CCD347F7A7CA6D160CC /* Pods_RunnerTests.framework */; };
 		D799C4207A2C90FBE0AB410F /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DA7D6359F06C9B70DB13D4 /* Pods_Runner.framework */; };
 		E3EA099734517441BBBBD979 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0404AD2AE175220062C542 /* Pods_RunnerTests.framework */; };
+		C7DB5B91202F9E95F6779564 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0404AD2AE175220062C542 /* Pods_RunnerTests.framework */; };
 		E8D0C2994E932E3920221DAE /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52710C14C1C135AC68AE88A8 /* Pods_RunnerTests.framework */; };
 		FC0404932AE16CE10062C542 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035F94402AE06FF100E12119 /* RunnerTests.swift */; };
 		FC04049D2AE173B10062C542 /* RunnerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC04049C2AE173B10062C542 /* RunnerUITestsLaunchTests.swift */; };
@@ -124,6 +125,7 @@
 				E8D0C2994E932E3920221DAE /* Pods_RunnerTests.framework in Frameworks */,
 				E3EA099734517441BBBBD979 /* Pods_RunnerTests.framework in Frameworks */,
 				CD4714347AA53966C9369387 /* Pods_RunnerTests.framework in Frameworks */,
+				C7DB5B91202F9E95F6779564 /* Pods_RunnerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

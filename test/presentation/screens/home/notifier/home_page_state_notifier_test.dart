@@ -25,7 +25,7 @@ void main() {
     test('returns success and updates HomePageState with recipeList', () async {
       const recipes = [Recipe(id: 1), Recipe(id: 2)];
       SuccessRequestResponse<List<Recipe>, DioException> successResponse =
-          SuccessRequestResponse<List<Recipe>, DioException>(recipes);
+          const SuccessRequestResponse<List<Recipe>, DioException>(recipes);
       //Without the below provideDummy, an error will be thrown because the generated mock class requires a dummy value(line 45 in the mocks.dart equivalent of this class)
       provideDummy<RequestResponse<List<Recipe>, DioException>>(
           successResponse);
@@ -40,7 +40,7 @@ void main() {
 
       // Verify that HomePageState is updated with a recipe list
       expect(
-          (notifier.state as SuccessEvent).data,
+          (notifier.state.loadRecipesEvent as SuccessEvent).data,
           (HomePageState.success(recipes).loadRecipesEvent as SuccessEvent)
               .data);
     });
@@ -63,7 +63,7 @@ void main() {
       await notifier.getRandomRecipes();
 
       // Verify that HomePageState has a loadRecipesEvent that is an ErrorEvent
-      expect(notifier.state is EventError, true);
+      expect(notifier.state.loadRecipesEvent is EventError, true);
     });
   });
 }

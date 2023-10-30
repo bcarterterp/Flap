@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+
 /// Generic class for handling a request in the domain layer. Should
 /// only be used in the domain layer. There are 2 states:
 /// 1. Success - The request has successfully completed, with the data set.
@@ -5,17 +7,23 @@
 /// be any type, and is not limited to a string.
 sealed class RequestResponse<Data, ErrorInfo> {}
 
-class SuccessRequestResponse<Data, ErrorInfo>
-    extends RequestResponse<Data, ErrorInfo> {
+class SuccessRequestResponse<Data, ErrorInfo> extends Equatable
+    implements RequestResponse<Data, ErrorInfo> {
   final Data data;
-  SuccessRequestResponse(this.data);
+  const SuccessRequestResponse(this.data);
 
   Data get() => data;
+
+  @override
+  List<Object?> get props => [data];
 }
 
-class ErrorRequestResponse<Data, ErrorInfo>
-    extends RequestResponse<Data, ErrorInfo> {
+class ErrorRequestResponse<Data, ErrorInfo> extends Equatable
+    implements RequestResponse<Data, ErrorInfo> {
   final ErrorInfo error;
-  ErrorRequestResponse(this.error);
+  const ErrorRequestResponse(this.error);
   ErrorInfo get() => error;
+
+  @override
+  List<Object?> get props => [error];
 }

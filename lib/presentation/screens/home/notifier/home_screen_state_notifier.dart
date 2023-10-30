@@ -29,4 +29,3 @@ class HomePageStateNotifier extends StateNotifier<HomePageState> {
     }
   }
 }
-

@@ -40,6 +40,8 @@ dependencies:
   flutter_riverpod: ^2.4.0
   # GoRouter is for navigation
   go_router: ^11.1.2
+  riverpod_annotation: ^2.2.1
+  equatable: ^2.0.5
   # Dio is for networking
   dio: ^5.1.2
   # Json annotations library is to help for deserializing
@@ -65,6 +67,9 @@ dev_dependencies:
   # add additional test dependancies for use with ui and integration tests
   integration_test:
     sdk: flutter
+  riverpod_generator: ^2.3.3
+  riverpod_lint: ^2.1.1
+  custom_lint: ^0.5.3
   # build runner is used here for us to use the json_serializable package
   build_runner: ^2.4.6
   # this package enables auto-generated json mappers as seen in the dto.g.dart classes

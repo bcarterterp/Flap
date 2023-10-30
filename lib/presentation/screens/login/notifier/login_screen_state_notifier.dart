@@ -3,17 +3,16 @@ import 'package:flap_app/domain/entity/login_error.dart';
 import 'package:flap_app/domain/entity/login_info.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
 import 'package:flap_app/domain/entity/user_info.dart';
-import 'package:flap_app/domain/usecase/log_in_usecase.dart';
+import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class LoginPageStateNotifier extends StateNotifier<LoginScreenState> {
-  LoginPageStateNotifier({
-    required LogInUseCase logInUseCase,
-  })  : _logInUseCase = logInUseCase,
-        super(LoginScreenState.initial());
+part 'login_screen_state_notifier.g.dart';
 
-  final LogInUseCase _logInUseCase;
+@riverpod
+class LoginScreenNotifier extends _$LoginScreenNotifier {
+  @override
+  LoginScreenState build() => LoginScreenState.initial();
 
   /// Login with the given [email] and [password].
   Future<void> login(String email, String password) async {
@@ -23,12 +22,12 @@ class LoginPageStateNotifier extends StateNotifier<LoginScreenState> {
 
     state = LoginScreenState.loading();
 
-    final response = await _logInUseCase.logIn(
-      LoginInformation(
-        email: email,
-        password: password,
-      ),
-    );
+    final response = await ref.read(logInUseCaseProvider).logIn(
+          LoginInformation(
+            email: email,
+            password: password,
+          ),
+        );
 
     switch (response) {
       case SuccessRequestResponse<UserInfo, LoginError>():
