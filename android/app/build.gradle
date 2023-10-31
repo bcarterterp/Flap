@@ -63,15 +63,11 @@ android {
     productFlavors {
         dev {
             dimension "flavor_app"
-            // this will be added at the end of applicationId.
-            // like: com.razvantmz.flavors.flutter_flavors.dev
             applicationIdSuffix ".dev"
             versionNameSuffix ".dev"
         }
         prod {
             dimension "flavor_app"
-            // this will be added at the end of applicationId.
-            // like: com.razvantmz.flavors.flutter_flavors.dev
             applicationIdSuffix ".prod"
             versionNameSuffix ".prod"
         }
