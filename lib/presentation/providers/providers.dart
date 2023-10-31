@@ -7,6 +7,8 @@ import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
 import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/repository/auth/auth_repository.dart';
+import 'package:flap_app/domain/repository/flavor/flavor_repository.dart';
+import 'package:flap_app/domain/repository/flavor/flavor_repository_impl.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
@@ -16,6 +18,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
+
+final flavorRepositoryProvider = Provider<FlavorRepository>(
+  (ref) => FlavorRepositoryImpl(),
+);
 
 @riverpod
 AuthRepository authRepository(AuthRepositoryRef ref) {

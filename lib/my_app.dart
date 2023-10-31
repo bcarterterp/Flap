@@ -1,20 +1,21 @@
 import 'package:flap_app/presentation/navigation.dart';
+import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const theme = AppTheme();
     // ProviderScope is what makes Riverpod work.
     // MaterialApp.router is what sets our routerConfig to our GoRouter object
     return ProviderScope(
       child: MaterialApp(
-        title: 'Flutter Boilerplate',
+        title: (ref.read(flavorRepositoryProvider)).getAppTitle(),
         theme: theme.toThemeData(),
         darkTheme: theme.toThemeDataDark(),
         home: MaterialApp.router(routerConfig: navigationRouter),
