@@ -4,6 +4,6 @@ import 'package:flap_app/util/flavor/flavor.dart';
 import 'main.dart' as runner;
 
 Future<void> main() async {
-  FlavorConfig.flavor = Flavor.prod;
+  FlavorConfig.flavor = Flavor.dev;
   await runner.main();
 }

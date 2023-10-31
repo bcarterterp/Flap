@@ -27,11 +27,12 @@
             "type": "dart",
             "flutterMode": "debug"
         },
-        // {
-        //     "name": "flap - dev flavor",
-        //     "request": "launch",
-        //     "type": "dart",
-        //     "flutterMode": "debug"
-        // }
+        {
+            "name": "flap - dev flavor",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_dev.dart",
+            "args": ["--flavor", "dev"]
+        }
     ]
 }

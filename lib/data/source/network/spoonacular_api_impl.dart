@@ -3,7 +3,7 @@ import 'package:flap_app/data/dto/recipe_dto.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
-import 'package:flap_app/env/env.dart';
+import 'package:flap_app/util/env/env.dart';
 
 class SpoonacularApiImpl implements SpoonacularApi {
   final Dio dio;
