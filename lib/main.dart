@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     // MaterialApp.router is what sets our routerConfig to our GoRouter object
     return ProviderScope(
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Boilerplate',
         theme: theme.toThemeData(),
         darkTheme: theme.toThemeDataDark(),
