@@ -38,7 +38,7 @@ LogInUseCase logInUseCase(LogInUseCaseRef ref) {
 Dio dio = Dio();
 
 final apiProvider =
-    Provider<SpoonacularApi>((ref) => SpoonacularApiImpl(dio: dio));
+    Provider<SpoonacularApi>((ref) => SpoonacularApiImpl(dio: dio, flavorRepo: ref.watch(flavorRepositoryProvider)));
 
 final recipeRepositoryProvider = Provider<RecipeRepository>(
   (ref) => RecipeRepositoryImpl(api: ref.read(apiProvider)),
