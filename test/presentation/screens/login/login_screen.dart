@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Elements are defined. This increases readability of test files.
 // This should also house any screen specific functions.
 
-class Logincreen {
+class LoginScreenElements {
   // You can define common Finders/variables and use them to locate widgets from the test suite
   // We can hook into the elements in various ways, which can be
   // found by going to the widget inspector and clicking on

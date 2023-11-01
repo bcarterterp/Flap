@@ -9,10 +9,10 @@ import 'package:flap_app/domain/entity/login_error.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_notifier.dart';
 import 'package:flap_app/presentation/screens/login/view/login_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import '../login_screen.dart';
 import '../notifier/login_screen_state_notifier_fake.dart';
 
@@ -26,7 +26,7 @@ void main() {
           'Given LoginScreen is ininitial state, when nothing is done, then there should be no errors present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
-        final loginScreen = Logincreen();
+        final loginScreen = LoginScreenElements();
         final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
         await tester.pumpWidget(createContainerForLoginWidget(fakeNotifier));
 
@@ -41,7 +41,7 @@ void main() {
           'Given LoginScreen is ininitial state, when user enters no email, then empty email error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
-        final loginScreen = Logincreen();
+        final loginScreen = LoginScreenElements();
         final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
         await tester.pumpWidget(createContainerForLoginWidget(fakeNotifier));
         fakeNotifier
@@ -61,7 +61,7 @@ void main() {
           'Given LoginScreen is ininitial state, when user enters no password, then empty password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
-        final loginScreen = Logincreen();
+        final loginScreen = LoginScreenElements();
         final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
         await tester.pumpWidget(createContainerForLoginWidget(fakeNotifier));
         fakeNotifier
@@ -81,7 +81,7 @@ void main() {
           'Given LoginScreen is ininitial state, when user enters incorrect email/password, then both email and password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
-        final loginScreen = Logincreen();
+        final loginScreen = LoginScreenElements();
         final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
         await tester.pumpWidget(createContainerForLoginWidget(fakeNotifier));
         fakeNotifier.changeResponse(
@@ -105,7 +105,7 @@ void main() {
           'Given LoginScreen is ininitial state, when nothing is done, then there should be no errors present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
-        final loginScreen = Logincreen();
+        final loginScreen = LoginScreenElements();
         await tester.pumpWidget(createContainerForLoginWidget(null));
 
         // Verify no errors present at first
@@ -118,7 +118,7 @@ void main() {
           'Given LoginScreen is ininitial state, when user enters no email, then empty email error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
-        final loginScreen = Logincreen();
+        final loginScreen = LoginScreenElements();
         await tester.pumpWidget(createContainerForLoginWidget(null));
 
         // Trigger empty error state for email
@@ -135,7 +135,7 @@ void main() {
           'Given LoginScreen is ininitial state, when user enters no password, then empty password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
-        final loginScreen = Logincreen();
+        final loginScreen = LoginScreenElements();
         await tester.pumpWidget(createContainerForLoginWidget(null));
 
         // Enter email text
@@ -152,7 +152,7 @@ void main() {
           'Given LoginScreen is ininitial state, when user enters no password, then empty password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
-        final loginScreen = Logincreen();
+        final loginScreen = LoginScreenElements();
         await tester.pumpWidget(createContainerForLoginWidget(null));
         // Enter email text
         await tester.enterText(loginScreen.emailField, "test@test.com");
