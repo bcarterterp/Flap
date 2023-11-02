@@ -5,32 +5,32 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flap - Run all Unit Tests",
-            "type": "dart",
-            "request": "launch",
-            "program": "./test/"
-        },
-        {
-            "name": "flap - dev flavor",
+            "name": "Dev Flavor",
             "request": "launch",
             "type": "dart",
             "program": "lib/main_dev.dart",
             "args": ["--flavor", "dev"]
         },
         {
-            "name": "flap - prod flavor",
+            "name": "Prod flavor",
             "request": "launch",
             "type": "dart",
             "program": "lib/main_prod.dart",
             "args": ["--flavor", "prod"],
-            "flutterMode": "release"
         },
         {
-            "name": "Integration Test - Dev Flavor",
+            "name": "Run all Unit Tests (Dev Flavor)",
+            "type": "dart",
+            "request": "launch",
+            "program": "./test/",
+            "args": ["--flavor", "dev"],
+        },
+        {
+            "name": "Integration Test (Dev Flavor)",
             "program": "integration_test/",
             "type": "dart",
             "request": "launch",
-            "args": ["--dart-define=FLAVOR=dev ", "--flavor=dev"],
+            "args": ["--flavor", "dev"],
         }
     ]
 }
