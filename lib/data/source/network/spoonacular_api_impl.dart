@@ -9,21 +9,18 @@ import 'package:flap_app/util/env/env.dart';
 class SpoonacularApiImpl implements SpoonacularApi {
   final Dio dio;
   final FlavorRepository flavorRepo;
-  late final String baseUrlHost;
   late final Uri spoonacularUri;
 
-  SpoonacularApiImpl({required this.dio, required this.flavorRepo}){
-    baseUrlHost = flavorRepo.getBaseUrlHost();
+  SpoonacularApiImpl({required this.dio, required this.flavorRepo}):
     spoonacularUri = Uri(
       scheme: "https",
-      host: baseUrlHost,
+      host: flavorRepo.getBaseUrlHost(),
       path: "recipes/random",
       queryParameters: {
         "number": "20",
         "apiKey": Env.spoonacularApiKey,
       },
     );
-  }
 
   @override
   Future<RequestResponse<List<Recipe>, DioException>> getRandomRecipes() async {
