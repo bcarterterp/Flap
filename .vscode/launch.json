@@ -36,6 +36,13 @@
             "program": "lib/main_prod.dart",
             "args": ["--flavor", "prod"],
             "flutterMode": "release"
+        },
+        {
+            "name": "Integration Test - Dev Flavor",
+            "program": "integration_test/",
+            "type": "dart",
+            "request": "launch",
+            "args": ["--dart-define=FLAVOR=dev ", "--flavor=dev"],
         }
     ]
 }
