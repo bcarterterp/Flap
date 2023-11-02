@@ -9,6 +9,7 @@ class LoginScreenState extends Equatable {
     required this.loginEvent,
     this.emailError,
     this.passwordError,
+    this.jwtError,
   });
 
   factory LoginScreenState.initial() => LoginScreenState(
@@ -28,16 +29,19 @@ class LoginScreenState extends Equatable {
   final Event<UserInfo, LoginError> loginEvent;
   final String? emailError;
   final String? passwordError;
+  final String? jwtError;
 
   LoginScreenState copyWith({
     Event<UserInfo, LoginError>? loginEvent,
     String? emailError,
     String? passwordError,
+    String? jwtError,
   }) {
     return LoginScreenState(
       loginEvent: loginEvent ?? this.loginEvent,
       emailError: emailError ?? this.emailError,
       passwordError: passwordError ?? this.passwordError,
+      jwtError: jwtError ?? this.jwtError,
     );
   }
 
@@ -58,6 +62,11 @@ class LoginScreenState extends Equatable {
           loginEvent: EventError(error),
           emailError: 'Check your email',
           passwordError: 'Check your password',
+        );
+      case LoginError.jwtSaveUnsuccessful:
+        return LoginScreenState(
+          loginEvent: EventError(error),
+          jwtError: 'An error occured. Please try logging in again.',
         );
     }
   }

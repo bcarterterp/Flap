@@ -128,6 +128,7 @@ void main() {
         const userInfo = UserInfo(
           name: "test",
           email: "test@testing.com",
+          jwtToken: "example_token",
         );
         const response = SuccessRequestResponse<UserInfo, LoginError>(userInfo);
         loginUseCase.changeResponse(Future.value(response));

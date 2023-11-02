@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flap_app/data/repository/analytics/analytics_platform_manager.dart';
 import 'package:flap_app/data/repository/auth/auth_repository_impl.dart';
 import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
+import 'package:flap_app/data/repository/secure_storage/secure_storage_impl.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
 import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
 import 'package:flap_app/domain/entity/event.dart';
@@ -54,3 +55,5 @@ final recipeListProvider = Provider<List<Recipe>>((ref) {
 final analyticsProvider = Provider<AnalyticsPlatformManager>(
   (ref) => AnalyticsPlatformManager(),
 );
+
+final secureStorageServiceProvider = Provider((ref) => SecureStorageImpl());
