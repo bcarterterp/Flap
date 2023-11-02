@@ -11,18 +11,6 @@
             "program": "./test/"
         },
         {
-            "name": "flap - Run Integration test (dev)",
-            "request": "launch",
-            "type": "dart",
-            "program": "integration_test/login_test.dart",
-            "args": [
-                // "test",
-                // "integration_test",
-                // "--flavor",
-                // "dev"
-            ]
-        },
-        {
             "name": "flap - dev flavor",
             "request": "launch",
             "type": "dart",

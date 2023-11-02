@@ -1,8 +1,5 @@
-import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import '../../../domain/repository/auth/flavor/flavor_repository_fake.dart';
 
 // Each screen should have it's own screen file where screen
 // Elements are defined. This increases readability of test files.

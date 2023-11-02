@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flap_app/data/dto/recipe_dto.dart';
 import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
@@ -31,7 +30,6 @@ void main() {
     test(
         'Given the spoonacular api instance, when the api returns a 200 success code, a recipe list wrapped in a success request response will be returned',
         () async {
-      final recipeList = [const Recipe(id: 1)];
       dioAdapter.onGet(
         spoonacularApi.spoonacularUri.toString(),
         (server) => server.reply(
@@ -45,15 +43,14 @@ void main() {
         ),
       );
       final response = await spoonacularApi.getRandomRecipes();
-      final recipeListResponse = ((response as SuccessRequestResponse<List<Recipe>,DioException>).data)
-          .map((response) => response)
-          .toList();
-
+      final recipeListResponse =
+          ((response as SuccessRequestResponse<List<Recipe>, DioException>)
+                  .data)
+              .map((response) => response)
+              .toList();
       expect(
           response, isA<SuccessRequestResponse<List<Recipe>, DioException>>());
-      expect(
-          (response).data,
-          recipeListResponse);
+      expect((response).data, recipeListResponse);
     });
 
     test(
