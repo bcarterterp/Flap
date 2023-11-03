@@ -31,6 +31,7 @@ Dependency injection (DI) is a fundamental concept in software development that 
 - Fonts: [Google Fonts](https://pub.dev/packages/google_fonts)
 - Change App Package Name: [Name Change](https://pub.dev/packages/change_app_package_name) Allows you to change the project name through terminal instead of doing it manually. Feel free to remove it after forking!
 - Secret Management: [Envied](https://pub.dev/packages/envied)
+- Secure Storage: [Flutter Secure Storage](https://pub.dev/packages/flutter_secure_storage)
 - Object Equitability: [Equatable](https://pub.dev/packages/equatable)
 
 ## Style Guide
