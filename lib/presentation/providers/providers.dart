@@ -9,6 +9,7 @@ import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/repository/auth/auth_repository.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
+import 'package:flap_app/domain/repository/storage/storage_service.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
@@ -56,4 +57,7 @@ final analyticsProvider = Provider<AnalyticsPlatformManager>(
   (ref) => AnalyticsPlatformManager(),
 );
 
-final secureStorageServiceProvider = Provider((ref) => SecureStorageImpl());
+@riverpod
+StorageService secureStorage(SecureStorageRef ref) {
+  return SecureStorageImpl();
+}

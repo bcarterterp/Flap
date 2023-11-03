@@ -135,7 +135,14 @@ class _LoginInformationWigetState
         const SizedBox(
           height: 8,
         ),
-        button
+        Text(
+          key: const ValueKey('jwtErrorText'),
+          loginState.jwtError ?? '',
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        button,
       ],
     );
   }

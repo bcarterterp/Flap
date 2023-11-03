@@ -7,7 +7,7 @@ void main() {
   // This line is required for testing on web browsers
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   // Define screen for more readable code
-  final loginScreen = Logincreen();
+  final loginScreen = Loginscreen();
   group('Home Integration Tests', () {
     testWidgets('test page elements', (tester) async {
       // Causes test to wait for app to finish launch before testing

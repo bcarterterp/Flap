@@ -45,8 +45,7 @@ class LoginScreenNotifier extends _$LoginScreenNotifier {
   }
 
   Future<bool> _saveJwt(String token) async {
-    final saveToken =
-        await ref.read(secureStorageServiceProvider).writeJwt(token);
+    final saveToken = await ref.read(secureStorageProvider).writeJwt(token);
 
     return saveToken is SuccessRequestResponse<String, StorageError>;
   }
