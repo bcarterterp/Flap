@@ -1,8 +1,12 @@
 import 'package:flap_app/domain/repository/analytics/analytics_platform.dart';
 
-class AnalyticsPlatformManager  extends AnalyticsPlatform{
+class AnalyticsPlatformManager extends AnalyticsPlatform {
+  AnalyticsPlatformManager({
+    required List<AnalyticsPlatform> analyticsPlatforms,
+  }) : _analyticsPlatforms = analyticsPlatforms;
+
   /// List of analytics platforms to send events to.
-  final List<AnalyticsPlatform> _analyticsPlatforms = [];
+  final List<AnalyticsPlatform> _analyticsPlatforms;
 
   @override
   void logEvent(String name, Map<String, Object> parameters) {
