@@ -7,7 +7,11 @@ class RecipeDto extends Recipe {
   int _id;
   String? _title;
   String? _image;
-  RecipeDto(this._id, this._title, this._image) : super(id: _id);
+  RecipeDto(int id, String title, String image)
+      : _id = id,
+        _title = title,
+        _image = image,
+        super(id: id);
   @override
   int get id => _id;
   @override
