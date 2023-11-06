@@ -3,6 +3,7 @@ import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Generic log in screen with email and password fields.
 class LoginScreen extends ConsumerWidget {
@@ -22,7 +23,7 @@ class LoginScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Please Enter Credentials',
+                AppLocalizations.of(context)!.loginPrompt,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.primary,
@@ -86,7 +87,7 @@ class _LoginInformationWigetState
     ElevatedButton button = ElevatedButton(
       key: const ValueKey('loginButton'),
       onPressed: login,
-      child: const Text('Login'),
+      child: Text(AppLocalizations.of(context)?.login ?? 'Login'),
     );
     if (loginState.loginEvent is LoadingEvent) {
       button = const ElevatedButton(
