@@ -1,4 +1,5 @@
 import 'package:flap_app/domain/entity/login_error.dart';
+import 'package:flap_app/domain/entity/storage_error.dart';
 import 'package:flap_app/domain/entity/user_info.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state.dart';
@@ -125,6 +126,7 @@ void main() {
         final container = createContainer(
           overrides: [
             logInUseCaseProvider.overrideWith((ref) => loginUseCase),
+            secureStorageProvider.overrideWith((ref) => secureStorageFake)
           ],
         );
         const userInfo = UserInfo(
@@ -134,6 +136,11 @@ void main() {
         );
         const response = SuccessRequestResponse<UserInfo, LoginError>(userInfo);
         loginUseCase.changeResponse(Future.value(response));
+
+        const storageResponse =
+            SuccessRequestResponse<String, StorageError>('Success');
+        secureStorageFake.changeWriteResponse(Future.value(storageResponse));
+
         final stateListener = Listener<LoginScreenState>();
         container.listen(
           loginScreenNotifierProvider,
@@ -162,9 +169,13 @@ void main() {
           ],
         );
 
-        const response = ErrorRequestResponse<UserInfo, LoginError>(
-            LoginError.jwtSaveUnsuccessful);
+        const response = SuccessRequestResponse<UserInfo, LoginError>(
+            UserInfo(name: "name", email: "email", jwtToken: "jwtToken"));
         loginUseCase.changeResponse(Future.value(response));
+
+        const storageResponse =
+            ErrorRequestResponse<String, StorageError>(StorageError.writeError);
+        secureStorageFake.changeWriteResponse(Future.value(storageResponse));
 
         final stateListener = Listener<LoginScreenState>();
         container.listen(

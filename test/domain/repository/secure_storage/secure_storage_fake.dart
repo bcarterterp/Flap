@@ -27,6 +27,6 @@ class SecureStorageFake extends SecureStorageImpl {
 
   @override
   Future<RequestResponse<String, StorageError>> writeJwt(String token) async {
-    return const SuccessRequestResponse('Successfully saved jwt');
+    return writeResponse;
   }
 }
