@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flap_app/data/dto/recipe_dto.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
@@ -36,7 +37,7 @@ class SpoonacularApiImpl implements SpoonacularApi {
       // that falls out of the range of 2xx and is also not 304.
       if (error.response != null) {
         //Uses DioException types to print error message
-        print(error);
+        log('$error');
         return Future.value(ErrorRequestResponse(error));
       } else {
         // Something happened in setting up or sending the request that triggered an Error
