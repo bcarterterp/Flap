@@ -36,7 +36,7 @@
             "name": "Prod - Profile Mode",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main_dev.dart",
+            "program": "lib/main_prod.dart",
             "args": ["--flavor", "prod"],
             "flutterMode": "profile"
         },
@@ -44,7 +44,7 @@
             "name": "Prod - Release Mode",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main_dev.dart",
+            "program": "lib/main_prod.dart",
             "args": ["--flavor", "prod"],
             "flutterMode": "release"
         },
