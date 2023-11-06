@@ -8,7 +8,7 @@ class RecipeDto extends Recipe {
   int _id;
   String? _title;
   String? _image;
-  RecipeDto(int id, String title, String image)
+  RecipeDto(int id, String? title, String? image)
       : _id = id,
         _title = title,
         _image = image,
