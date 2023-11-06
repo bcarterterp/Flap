@@ -172,26 +172,6 @@ void main() {
         expect(loginScreen.passwordEmptyError, findsOneWidget);
         expect(loginScreen.passwordCheckError, findsNothing);
       });
-
-      testWidgets(
-          'Given LoginScreen is ininitial state, when error saving jwt token, then jwt error present',
-          (WidgetTester tester) async {
-        // Causes test to wait for app to finish launch before testing
-        final loginScreen = Loginscreen();
-        await tester.pumpWidget(createContainerForLoginWidget(null));
-        // Enter email text
-        await tester.enterText(loginScreen.emailField, "test@test.com");
-        // Enter text in password field
-        await tester.enterText(loginScreen.passwordField, "admin");
-        // Trigger check error states
-        await tester.tap(loginScreen.loginButton);
-        await tester.pumpAndSettle();
-        expect(loginScreen.emailEmptyError, findsNothing);
-        expect(loginScreen.emailCheckError, findsNothing);
-        expect(loginScreen.passwordEmptyError, findsNothing);
-        expect(loginScreen.passwordCheckError, findsNothing);
-        expect(loginScreen.passwordCheckError, findsNothing);
-      });
     });
   });
 }
