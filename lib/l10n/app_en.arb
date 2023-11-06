@@ -1,0 +1,8 @@
+{
+  "loginPrompt": "Please Enter Credentials",
+  "@loginPrompt": {
+    "description": "Title on the login screen to notify user to login"
+  },
+
+  "login": "Login"
+}
