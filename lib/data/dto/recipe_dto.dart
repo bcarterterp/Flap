@@ -5,12 +5,20 @@ part 'recipe_dto.g.dart';
 
 @JsonSerializable()
 class RecipeDto extends Recipe {
-  RecipeDto(this.id, this.title, this.image) : super(id: id);
-
-  final int id;
-  final String? title;
-  final String? image;
-
+  int _id;
+  String? _title;
+  String? _image;
+  RecipeDto(int id, String title, String image)
+      : _id = id,
+        _title = title,
+        _image = image,
+        super(id: id);
+  @override
+  int get id => _id;
+  @override
+  String? get title => _title;
+  @override
+  String? get image => _image;
   factory RecipeDto.fromJson(Map<String, dynamic> json) =>
       _$RecipeDtoFromJson(json);
   Map<String, dynamic> toJson() => _$RecipeDtoToJson(this);
