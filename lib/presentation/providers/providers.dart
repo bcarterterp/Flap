@@ -14,6 +14,7 @@ import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.da
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'providers.g.dart';
 
@@ -27,6 +28,11 @@ LogInUseCase logInUseCase(LogInUseCaseRef ref) {
   return LogInUseCaseImpl(
     authRepository: ref.watch(authRepositoryProvider),
   );
+}
+
+@riverpod
+Future<SharedPreferences> sharedPreferences(SharedPreferencesRef ref) async {
+  return await SharedPreferences.getInstance();
 }
 
 Dio dio = Dio();
