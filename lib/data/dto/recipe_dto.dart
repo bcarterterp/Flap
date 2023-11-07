@@ -1,4 +1,3 @@
-// ignore_for_file: must_be_immutable
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'recipe_dto.g.dart';
@@ -7,7 +6,7 @@ class RecipeDto extends Recipe {
   int _id;
   String? _title;
   String? _image;
-  RecipeDto(int id, String title, String image)
+  RecipeDto(int id, String? title, String? image)
       : _id = id,
         _title = title,
         _image = image,
