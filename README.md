@@ -32,6 +32,7 @@ Dependency injection (DI) is a fundamental concept in software development that 
 - Change App Package Name: [Name Change](https://pub.dev/packages/change_app_package_name) Allows you to change the project name through terminal instead of doing it manually. Feel free to remove it after forking!
 - Secret Management: [Envied](https://pub.dev/packages/envied)
 - Object Equitability: [Equatable](https://pub.dev/packages/equatable)
+- Localization: [Localization](https://pub.dev/packages/localization)
 
 ## Style Guide
 
