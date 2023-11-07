@@ -100,7 +100,7 @@ void main() {
       });
 
       testWidgets(
-          'Given LoginScreen is ininitial state, when user enters correct email/password but jwt fails to save, then general error should be present',
+          'Given LoginScreen is initial state, when user enters correct email/password but jwt fails to save, then general error should be present',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final loginScreen = Loginscreen();
