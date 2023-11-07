@@ -2,6 +2,7 @@ import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/domain/entity/login_error.dart';
 import 'package:flap_app/domain/entity/login_info.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
+import 'package:flap_app/domain/entity/storage_error.dart';
 import 'package:flap_app/domain/entity/user_info.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state.dart';
@@ -31,9 +32,21 @@ class LoginScreenNotifier extends _$LoginScreenNotifier {
 
     switch (response) {
       case SuccessRequestResponse<UserInfo, LoginError>():
-        state = LoginScreenState.success(response.data);
+        final jwtSaveSuccessful = await _saveJwt(response.data.jwtToken);
+
+        if (jwtSaveSuccessful) {
+          state = LoginScreenState.success(response.data);
+        } else {
+          state = LoginScreenState.error(LoginError.jwtSaveUnsuccessful);
+        }
       case ErrorRequestResponse<UserInfo, LoginError>():
         state = LoginScreenState.error(response.error);
     }
+  }
+
+  Future<bool> _saveJwt(String token) async {
+    final saveToken = await ref.read(secureStorageProvider).writeJwt(token);
+
+    return saveToken is SuccessRequestResponse<String, StorageError>;
   }
 }

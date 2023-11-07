@@ -19,6 +19,7 @@ class AuthRepositoryImpl extends AuthRepository {
       return Future.value(SuccessRequestResponse(UserInfo(
         name: 'Admin',
         email: email,
+        jwtToken: 'example_token',
       )));
     } else {
       return Future.value(

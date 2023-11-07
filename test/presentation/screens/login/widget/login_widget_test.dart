@@ -104,6 +104,29 @@ void main() {
         expect(loginScreen.passwordEmptyError, findsNothing);
         expect(loginScreen.passwordCheckError, findsOneWidget);
       });
+
+      testWidgets(
+          'Given LoginScreen is ininitial state, when user enters correct email/password but jwt fails to save, then general error should be present',
+          (WidgetTester tester) async {
+        // Causes test to wait for app to finish launch before testing
+        final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
+        await tester.pumpWidget(createContainerForLoginWidget(fakeNotifier));
+        fakeNotifier.changeResponse(
+            LoginScreenState.error(LoginError.jwtSaveUnsuccessful));
+
+        // Enter email text
+        await tester.enterText(loginScreen.emailField, "test@test.com");
+        // Enter text in password field
+        await tester.enterText(loginScreen.passwordField, "testPass!");
+        // Trigger check error states
+        await tester.tap(loginScreen.loginButton);
+        await tester.pumpAndSettle();
+        expect(loginScreen.emailEmptyError, findsNothing);
+        expect(loginScreen.emailCheckError, findsNothing);
+        expect(loginScreen.passwordEmptyError, findsNothing);
+        expect(loginScreen.passwordCheckError, findsNothing);
+        expect(loginScreen.generalError, findsOneWidget);
+      });
     });
 
     group("Integration Tests", () {

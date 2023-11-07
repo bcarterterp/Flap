@@ -26,4 +26,7 @@ class LoginScreenElements {
   Finder passwordEmptyError = find.text('Password is empty');
   Finder emailCheckError = find.text('Check your email');
   Finder passwordCheckError = find.text('Check your password');
+  Finder generalError = find.text(
+    'An error occured. Please try logging in again.',
+  );
 }
