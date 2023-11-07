@@ -8,8 +8,9 @@ import 'package:flap_app/domain/repository/auth/auth_repository.dart';
 /// having to worry about the network (if one were to be used). Feel free to make any changes to
 /// fit your needs.
 class AuthRepositoryFake extends AuthRepository {
-  Future<RequestResponse<UserInfo, LoginError>> response =
-      Future.value(const SuccessRequestResponse(UserInfo(name: "", email: "")));
+  Future<RequestResponse<UserInfo, LoginError>> response = Future.value(
+      const SuccessRequestResponse(
+          UserInfo(name: "", email: "", jwtToken: "")));
 
   void changeResponse(Future<RequestResponse<UserInfo, LoginError>> response) {
     this.response = response;

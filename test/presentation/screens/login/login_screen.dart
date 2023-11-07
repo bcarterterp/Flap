@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Elements are defined. This increases readability of test files.
 // This should also house any screen specific functions.
 
-class Logincreen {
+class Loginscreen {
   // You can define common Finders/variables and use them to locate widgets from the test suite
   // We can hook into the elements in various ways, which can be
   // found by going to the widget inspector and clicking on
@@ -23,4 +23,7 @@ class Logincreen {
   Finder passwordEmptyError = find.text('Password is empty');
   Finder emailCheckError = find.text('Check your email');
   Finder passwordCheckError = find.text('Check your password');
+  Finder generalError = find.text(
+    'An error occured. Please try logging in again.',
+  );
 }
