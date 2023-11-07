@@ -9,7 +9,7 @@ void main() {
   // Define screen for more readable code
   final loginScreen = Logincreen();
   group('Home Integration Tests', () {
-    testWidgets('test page elements', (tester) async {
+    testWidgets('Given user navigates to sign-in screen, when page loads, then all screen widgets are present in the hierarchy', (tester) async {
       // Causes test to wait for app to finish launch before testing
       await tester.pumpWidget(const MyApp());
 
@@ -20,7 +20,7 @@ void main() {
       expect(loginScreen.passwordField, findsOneWidget);
     });
 
-    testWidgets('test login error display', (tester) async {
+    testWidgets('Given user is trying to sign-in, when information provided is not accurate or required information is missing, then appropriate error state is presented to user', (tester) async {
       // Note: performs the same validation as the widget test
       // example difference being that these tests involve
       // launching the app on an emulator for validation
