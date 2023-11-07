@@ -3,7 +3,7 @@ import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flap_app/l10n/app_localizations_context.dart';
 
 /// Generic log in screen with email and password fields.
 class LoginScreen extends ConsumerWidget {
@@ -23,7 +23,7 @@ class LoginScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                AppLocalizations.of(context)!.loginPrompt,
+                context.localization.loginPrompt,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.primary,
@@ -87,7 +87,7 @@ class _LoginInformationWigetState
     ElevatedButton button = ElevatedButton(
       key: const ValueKey('loginButton'),
       onPressed: login,
-      child: Text(AppLocalizations.of(context)?.login ?? 'Login'),
+      child: Text(context.localization.login),
     );
     if (loginState.loginEvent is LoadingEvent) {
       button = const ElevatedButton(
@@ -108,7 +108,7 @@ class _LoginInformationWigetState
           key: const ValueKey('emailTextField'),
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            labelText: 'Email',
+            labelText: context.localization.email,
             errorText: loginState.emailError,
           ),
           keyboardType: TextInputType.emailAddress,
@@ -121,7 +121,7 @@ class _LoginInformationWigetState
           key: const ValueKey('passwordTextField'),
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            labelText: 'Password',
+            labelText: context.localization.password,
             errorText: loginState.passwordError,
           ),
           obscureText: true,

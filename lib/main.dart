@@ -18,16 +18,13 @@ class MyApp extends StatelessWidget {
     // ProviderScope is what makes Riverpod work.
     // MaterialApp.router is what sets our routerConfig to our GoRouter object
     return ProviderScope(
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Flutter Boilerplate',
         localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: const [
-          Locale('en'), // English
-          Locale('es'), // Spanish
-        ],
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: theme.toThemeData(),
         darkTheme: theme.toThemeDataDark(),
-        home: MaterialApp.router(routerConfig: navigationRouter),
+        routerConfig: navigationRouter,
       ),
     );
   }

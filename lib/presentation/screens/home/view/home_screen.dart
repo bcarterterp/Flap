@@ -1,4 +1,5 @@
 import 'package:flap_app/domain/entity/event.dart';
+import 'package:flap_app/l10n/app_localizations_context.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
 import 'package:flap_app/presentation/screens/home/widgets/recipe_grid_item.dart';
@@ -31,7 +32,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final state = ref.watch(homePageStateProvider);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Home Page Screen'),
+          title: Text(context.localization.home),
         ),
         body: switch (state.loadRecipesEvent) {
           InitialEvent() => const LoadingScreenWidget(),
