@@ -23,7 +23,7 @@ void main() {
 
   group('HomeScreenNotifier Unit Test', () {
     test(
-      'Given initial homeScreenNotifier, with getRandomRecipes called and error is returned, returns HomePageState with error',
+      'Given initial homeScreenNotifier, with getRandomRecipes called and success is returned, returns successful HomePageState',
       () async {
         const recipes = [Recipe(id: 1), Recipe(id: 2)];
         SuccessRequestResponse<List<Recipe>, DioException> successResponse =
@@ -58,13 +58,13 @@ void main() {
 
         // Verify that HomePageState is updated with a recipe list
         final states = stateListener.data;
-        expect(states[0].$2, HomeScreenState.loading());
-        expect(states[1].$2, HomeScreenState.success(recipes));
+        expect(states[0].value, HomeScreenState.loading());
+        expect(states[1].value, HomeScreenState.success(recipes));
       },
     );
 
     test(
-        'Given initial homeScreenNotifier, with getRandomRecipes called and success is returned, returns successful HomePageState',
+        'Given initial homeScreenNotifier, with getRandomRecipes called and error is returned, returns HomePageState with error',
         () async {
       final errorType = DioException.connectionError(
           requestOptions: RequestOptions(), reason: "Mock Error");
@@ -97,8 +97,8 @@ void main() {
 
       // Verify that HomePageState has a loadRecipesEvent that is an ErrorEvent
       final states = stateListener.data;
-      expect(states[0].$2, HomeScreenState.loading());
-      expect(states[1].$2, HomeScreenState.error(errorType));
+      expect(states[0].value, HomeScreenState.loading());
+      expect(states[1].value, HomeScreenState.error(errorType));
     });
   });
 }
