@@ -35,8 +35,7 @@ final logInUseCaseProvider = AutoDisposeProvider<LogInUseCase>.internal(
 );
 
 typedef LogInUseCaseRef = AutoDisposeProviderRef<LogInUseCase>;
-<<<<<<< HEAD
-String _$sharedPreferencesHash() => r'7cd30c9640ca952d1bcf1772c709fc45dc47c8b3';
+String _$sharedPreferencesHash() => r'fcef55b74cc26bec1077866c0e4fc98e1d434122';
 
 /// See also [sharedPreferences].
 @ProviderFor(sharedPreferences)
@@ -52,8 +51,6 @@ final sharedPreferencesProvider =
 );
 
 typedef SharedPreferencesRef = AutoDisposeFutureProviderRef<SharedPreferences>;
-||||||| e65703d
-=======
 String _$secureStorageHash() => r'6dba70129dbb0dcdeb377aac78279a52351d50e8';
 
 /// See also [secureStorage].
@@ -69,6 +66,5 @@ final secureStorageProvider = AutoDisposeProvider<StorageService>.internal(
 );
 
 typedef SecureStorageRef = AutoDisposeProviderRef<StorageService>;
->>>>>>> app_flavor_no_package
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

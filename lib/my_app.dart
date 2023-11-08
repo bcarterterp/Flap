@@ -1,4 +1,4 @@
-import 'package:flap_app/presentation/navigation.dart';
+import 'package:flap_app/presentation/providers/navigation_provider.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class MyApp extends ConsumerWidget {
         title: (ref.read(flavorRepositoryProvider)).getAppTitle(),
         theme: theme.toThemeData(),
         darkTheme: theme.toThemeDataDark(),
-        home: MaterialApp.router(routerConfig: navigationRouter),
+        home: MaterialApp.router(routerConfig: ref.watch(goRouterProvider as ProviderListenable<RouterConfig<Object>?>)),
       ),
     );
   }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 //Navigation routes are defined in the below GoRouter configuration
-
 final GoRouter navigationRouter = GoRouter(
   initialLocation: '/',
   routes: [

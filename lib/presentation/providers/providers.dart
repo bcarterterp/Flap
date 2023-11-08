@@ -39,8 +39,8 @@ LogInUseCase logInUseCase(LogInUseCaseRef ref) {
 }
 
 @riverpod
-Future<SharedPreferences> sharedPreferences(SharedPreferencesRef ref) async {
-  return await SharedPreferences.getInstance();
+Future<SharedPreferences> sharedPreferences(SharedPreferencesRef ref){
+  return SharedPreferences.getInstance();
 }
 
 Dio dio = Dio();
