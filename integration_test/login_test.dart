@@ -5,7 +5,7 @@ import '../test/presentation/screens/login/login_screen.dart';
 
 void main() {
   // This line is required for testing on web browsers
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  IntegrationTestWidgetsFlutterBinding.ensureIntialized();
   // Define screen for more readable code
   final loginScreen = Logincreen();
   group('Home Integration Tests', () {
