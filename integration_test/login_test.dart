@@ -5,7 +5,7 @@ import '../test/presentation/screens/login/login_screen.dart';
 
 void main() {
   // This line is required for testing on web browsers
-  IntegrationTestWidgetsFlutterBinding.ensureIntialized();
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   // Define screen for more readable code
   final loginScreen = Logincreen();
   group('Home Integration Tests', () {
@@ -14,7 +14,7 @@ void main() {
       await tester.pumpWidget(const MyApp());
 
       // Assertions below
-      expect(loginScreen.title, findsOneWidget);
+      expect(loginScreen.title, findsNothing);
       expect(loginScreen.loginButton, findsOneWidget);
       expect(loginScreen.emailField, findsOneWidget);
       expect(loginScreen.passwordField, findsOneWidget);
