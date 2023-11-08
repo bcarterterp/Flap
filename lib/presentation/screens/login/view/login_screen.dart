@@ -79,6 +79,12 @@ class _LoginInformationWigetState
     // Without the addPostFrameCallback, there will be an error that says you can't update state when widgets are being built
     if (loginState.loginEvent is SuccessEvent) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('JWT token saved.'),
+          ),
+        );
+
         context.go('/home');
       });
     }
@@ -129,7 +135,14 @@ class _LoginInformationWigetState
         const SizedBox(
           height: 8,
         ),
-        button
+        Text(
+          key: const ValueKey('jwtErrorText'),
+          loginState.jwtError ?? '',
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        button,
       ],
     );
   }

@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flap_app/data/repository/analytics/analytics_platform_manager.dart';
 import 'package:flap_app/data/repository/auth/auth_repository_impl.dart';
 import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
+import 'package:flap_app/data/repository/secure_storage/secure_storage_impl.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
 import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
 import 'package:flap_app/domain/repository/analytics/analytics_platform.dart';
 import 'package:flap_app/domain/repository/auth/auth_repository.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
+import 'package:flap_app/domain/repository/storage/storage_service.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -54,4 +56,9 @@ AnalyticsPlatformManager analyticsPlatformManager(
       analyticsPlatformsProvider,
     ),
   );
+}
+
+@riverpod
+StorageService secureStorage(SecureStorageRef ref) {
+  return SecureStorageImpl();
 }
