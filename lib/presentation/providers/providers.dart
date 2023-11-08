@@ -2,12 +2,16 @@ import 'package:dio/dio.dart';
 import 'package:flap_app/data/repository/analytics/analytics_platform_manager.dart';
 import 'package:flap_app/data/repository/auth/auth_repository_impl.dart';
 import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
+import 'package:flap_app/data/repository/secure_storage/secure_storage_impl.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
 import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
 import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/repository/auth/auth_repository.dart';
+import 'package:flap_app/domain/repository/flavor/flavor_repository.dart';
+import 'package:flap_app/domain/repository/flavor/flavor_repository_impl.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
+import 'package:flap_app/domain/repository/storage/storage_service.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
@@ -17,6 +21,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'providers.g.dart';
+
+final flavorRepositoryProvider = Provider<FlavorRepository>(
+  (ref) => FlavorRepositoryImpl(),
+);
 
 @riverpod
 AuthRepository authRepository(AuthRepositoryRef ref) {
@@ -38,7 +46,7 @@ Future<SharedPreferences> sharedPreferences(SharedPreferencesRef ref) async {
 Dio dio = Dio();
 
 final apiProvider =
-    Provider<SpoonacularApi>((ref) => SpoonacularApiImpl(dio: dio));
+    Provider<SpoonacularApi>((ref) => SpoonacularApiImpl(dio: dio, flavorRepo: ref.watch(flavorRepositoryProvider)));
 
 final recipeRepositoryProvider = Provider<RecipeRepository>(
   (ref) => RecipeRepositoryImpl(api: ref.read(apiProvider)),
@@ -60,3 +68,8 @@ final recipeListProvider = Provider<List<Recipe>>((ref) {
 final analyticsProvider = Provider<AnalyticsPlatformManager>(
   (ref) => AnalyticsPlatformManager(),
 );
+
+@riverpod
+StorageService secureStorage(SecureStorageRef ref) {
+  return SecureStorageImpl();
+}

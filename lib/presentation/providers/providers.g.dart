@@ -35,6 +35,7 @@ final logInUseCaseProvider = AutoDisposeProvider<LogInUseCase>.internal(
 );
 
 typedef LogInUseCaseRef = AutoDisposeProviderRef<LogInUseCase>;
+<<<<<<< HEAD
 String _$sharedPreferencesHash() => r'7cd30c9640ca952d1bcf1772c709fc45dc47c8b3';
 
 /// See also [sharedPreferences].
@@ -51,5 +52,23 @@ final sharedPreferencesProvider =
 );
 
 typedef SharedPreferencesRef = AutoDisposeFutureProviderRef<SharedPreferences>;
+||||||| e65703d
+=======
+String _$secureStorageHash() => r'6dba70129dbb0dcdeb377aac78279a52351d50e8';
+
+/// See also [secureStorage].
+@ProviderFor(secureStorage)
+final secureStorageProvider = AutoDisposeProvider<StorageService>.internal(
+  secureStorage,
+  name: r'secureStorageProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$secureStorageHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SecureStorageRef = AutoDisposeProviderRef<StorageService>;
+>>>>>>> app_flavor_no_package
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

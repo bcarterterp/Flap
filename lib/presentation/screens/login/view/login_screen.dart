@@ -1,4 +1,5 @@
 import 'package:flap_app/domain/entity/event.dart';
+import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +11,7 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final appTitle = (ref.read(flavorRepositoryProvider)).getAppTitle();
     return Scaffold(
       body: Center(
         heightFactor: 1,
@@ -22,7 +24,7 @@ class LoginScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Please Enter Credentials',
+                'Please Enter Credentials for $appTitle',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.primary,
@@ -79,6 +81,12 @@ class _LoginInformationWigetState
     // Without the addPostFrameCallback, there will be an error that says you can't update state when widgets are being built
     if (loginState.loginEvent is SuccessEvent) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('JWT token saved.'),
+          ),
+        );
+
         context.go('/home');
       });
     }
@@ -129,7 +137,14 @@ class _LoginInformationWigetState
         const SizedBox(
           height: 8,
         ),
-        button
+        Text(
+          key: const ValueKey('jwtErrorText'),
+          loginState.jwtError ?? '',
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        button,
       ],
     );
   }
