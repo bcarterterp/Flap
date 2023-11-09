@@ -8,8 +8,8 @@ part of 'recipe_dto.dart';
 
 RecipeDto _$RecipeDtoFromJson(Map<String, dynamic> json) => RecipeDto(
       json['id'] as int,
-      json['title'] as String,
-      json['image'] as String,
+      json['title'] as String?,
+      json['image'] as String?,
     );
 
 Map<String, dynamic> _$RecipeDtoToJson(RecipeDto instance) => <String, dynamic>{
