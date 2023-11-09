@@ -45,19 +45,37 @@ android {
         applicationId "com.flap.flapapp"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
     }
+    flavorDimensions "flavor_app"
+
+    productFlavors {
+        dev {
+            dimension "flavor_app"
+            applicationIdSuffix ".dev"
+            versionNameSuffix ".dev"
+        }
+        prod {
+            dimension "flavor_app"
+            applicationIdSuffix ".prod"
+            versionNameSuffix ".prod"
+        }
+    }
+
 }
 
 flutter {
