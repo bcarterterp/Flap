@@ -14,7 +14,7 @@ void main() {
       await tester.pumpWidget(const MyApp());
 
       // Assertions below
-      expect(loginScreen.title, findsNothing);
+      expect(loginScreen.title, findsOneWidget);
       expect(loginScreen.loginButton, findsOneWidget);
       expect(loginScreen.emailField, findsOneWidget);
       expect(loginScreen.passwordField, findsOneWidget);
