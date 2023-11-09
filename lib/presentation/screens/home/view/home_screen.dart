@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/l10n/app_localizations_context.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
+import 'package:flap_app/domain/entity/recipe.dart';
+import 'package:flap_app/presentation/screens/home/notifier/home_screen_state_notifier.dart';
 import 'package:flap_app/presentation/screens/home/widgets/recipe_grid_item.dart';
 import 'package:flap_app/presentation/screens/home/widgets/screen_states/error_screen.dart';
 import 'package:flap_app/presentation/screens/home/widgets/screen_states/loading_screen.dart';
@@ -23,34 +26,42 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(homePageStateProvider.notifier).getRandomRecipes();
+      ref.read(homeScreenStateNotifierProvider.notifier).getRandomRecipes();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(homePageStateProvider);
+    final state = ref.watch(homeScreenStateNotifierProvider);
     return Scaffold(
-        appBar: AppBar(
-          title: Text(context.localization.home),
-        ),
-        body: switch (state.loadRecipesEvent) {
-          InitialEvent() => const LoadingScreenWidget(),
-          LoadingEvent() => const LoadingScreenWidget(),
-          SuccessEvent() => RecipeGrid(state: state),
-          EventError() => const ErrorScreenWidget(),
-        });
+      appBar: AppBar(
+        title: const Text(context.localization.home),
+      ),
+      body: _getWidget(state.loadRecipesEvent),
+    );
+  }
+
+  Widget _getWidget(Event<List<Recipe>, DioException> event) {
+    switch (event) {
+      case InitialEvent():
+        return const LoadingScreenWidget();
+      case LoadingEvent():
+        return const LoadingScreenWidget();
+      case SuccessEvent():
+        return RecipeGrid(recipeList: event.data);
+      case EventError():
+        return const ErrorScreenWidget();
+    }
   }
 }
 
-class RecipeGrid extends ConsumerWidget {
-  final HomePageState state;
+class RecipeGrid extends StatelessWidget {
+  final List<Recipe> recipeList;
 
-  const RecipeGrid({Key? key, required this.state}) : super(key: key);
+  const RecipeGrid({Key? key, required this.recipeList}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final recipeList = ref.watch(recipeListProvider);
+  Widget build(BuildContext context) {
     return GridView(
       padding: const EdgeInsets.all(10),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -60,8 +71,7 @@ class RecipeGrid extends ConsumerWidget {
         mainAxisSpacing: 20,
       ),
       children: [
-        if (state.loadRecipesEvent is SuccessEvent)
-          for (final recipe in recipeList) RecipeGridItem(recipe: recipe)
+        for (final recipe in recipeList) RecipeGridItem(recipe: recipe)
       ],
     );
   }
