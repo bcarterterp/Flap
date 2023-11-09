@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flap_app/data/repository/analytics/analytics_platform_manager.dart';
 import 'package:flap_app/data/repository/auth/auth_repository_impl.dart';
 import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
@@ -60,4 +61,9 @@ final analyticsProvider = Provider<AnalyticsPlatformManager>(
 @riverpod
 StorageService secureStorage(SecureStorageRef ref) {
   return SecureStorageImpl();
+}
+
+@riverpod
+FirebaseMessaging firebaseMessaging(FirebaseMessagingRef ref) {
+  return FirebaseMessaging.instance;
 }
