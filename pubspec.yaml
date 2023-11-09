@@ -52,6 +52,8 @@ dependencies:
   http: ^1.1.0
   envied: ^0.3.0+3
   flutter_secure_storage: ^9.0.0
+  firebase_messaging: ^14.7.3
+  firebase_core: ^2.21.0
 
 dev_dependencies:
   flutter_test:
