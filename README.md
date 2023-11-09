@@ -1,3 +1,11 @@
+## Feature - Push Notifications
+In this feature branch, we introduce push notification capabilities through Firebase Cloud Messaging. The push notifications are fully functional on android, but we are missing a required APN on iOS to receive notifications (however, the code and project settings are setup to support iOS push notifications as well). To test out the functionality,
+you simply: 
+- Run the app on an android emulator
+- Background the app
+- Head over to [our firebase project](https://console.firebase.google.com/u/1/project/flutter-boilerplate-92b67/messaging) and create and send a new notification
+- Check the emulator's notification center, you should see a new notification!
+
 ## Philosophy
 
 - Code is organic, and changes frequently, so as a team we should be aligned on how it grows, and is maintained. The base architecture should be built keeping [SOLID](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design) in mind. Allowing for flexibility when needed, but also dependable. It should be easy for newer people to ramp up, because no one likes to spend a month just to start contributing. Everyone has ownership of the codebase. Take a look [here](https://www.tatvasoft.com/outsourcing/2022/05/software-development-principles.html) for more direction!
