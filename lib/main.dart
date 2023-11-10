@@ -30,17 +30,11 @@ class MyApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final firebaseMessaging = ref.watch(firebaseMessagingProvider);
+    final firebaseMessaging = ref.watch(firebaseMessagingRepositoryProvider);
 
-    firebaseMessaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
+    firebaseMessaging.init();
+
+    firebaseMessaging.hasAcceptedPermissions();
 
     firebaseMessaging.getToken().then((token) {
       if (token != null) {

@@ -9,6 +9,10 @@ import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
 import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/repository/auth/auth_repository.dart';
+import 'package:flap_app/domain/repository/firebase/firebase_messaging_repository.dart';
+import 'package:flap_app/domain/repository/firebase/firebase_messaging_repository_impl.dart';
+import 'package:flap_app/domain/repository/firebase/firebase_wrapper.dart';
+import 'package:flap_app/domain/repository/firebase/firebase_wrapper_impl.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
 import 'package:flap_app/domain/repository/storage/storage_service.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
@@ -66,4 +70,17 @@ StorageService secureStorage(SecureStorageRef ref) {
 @riverpod
 FirebaseMessaging firebaseMessaging(FirebaseMessagingRef ref) {
   return FirebaseMessaging.instance;
+}
+
+@riverpod
+FirebaseWrapper firebaseWrapper(FirebaseWrapperRef ref) {
+  return FirebaseWrapperImpl();
+}
+
+@riverpod
+FirebaseMessagingRepository firebaseMessagingRepository(
+    FirebaseMessagingRepositoryRef ref) {
+  return FirebaseMessagingRepositoryImpl(
+    wrapper: ref.watch(firebaseWrapperProvider),
+  );
 }

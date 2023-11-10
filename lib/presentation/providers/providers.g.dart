@@ -66,5 +66,38 @@ final firebaseMessagingProvider =
 );
 
 typedef FirebaseMessagingRef = AutoDisposeProviderRef<FirebaseMessaging>;
+String _$firebaseWrapperHash() => r'698b774f4932a34581648036142406367dcf8d36';
+
+/// See also [firebaseWrapper].
+@ProviderFor(firebaseWrapper)
+final firebaseWrapperProvider = AutoDisposeProvider<FirebaseWrapper>.internal(
+  firebaseWrapper,
+  name: r'firebaseWrapperProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$firebaseWrapperHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FirebaseWrapperRef = AutoDisposeProviderRef<FirebaseWrapper>;
+String _$firebaseMessagingRepositoryHash() =>
+    r'b94c5903d6f5942153048d902a7f430c5173e621';
+
+/// See also [firebaseMessagingRepository].
+@ProviderFor(firebaseMessagingRepository)
+final firebaseMessagingRepositoryProvider =
+    AutoDisposeProvider<FirebaseMessagingRepository>.internal(
+  firebaseMessagingRepository,
+  name: r'firebaseMessagingRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$firebaseMessagingRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FirebaseMessagingRepositoryRef
+    = AutoDisposeProviderRef<FirebaseMessagingRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
