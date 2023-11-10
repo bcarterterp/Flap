@@ -40,7 +40,9 @@ Dio dio(DioRef ref) {
 
 @riverpod
 SpoonacularApi spoonacularApi(SpoonacularApiRef ref) {
-  return SpoonacularApiImpl(dio: ref.watch(dioProvider));
+  return SpoonacularApiImpl(
+      dio: ref.watch(dioProvider),
+      flavorRepo: ref.watch(flavorRepositoryProvider));
 }
 
 @riverpod
