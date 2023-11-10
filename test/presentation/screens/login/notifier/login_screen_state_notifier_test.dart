@@ -189,8 +189,8 @@ void main() {
             .login("email", "password");
 
         final states = stateListener.data;
-        expect(states[0].$2, LoginScreenState.loading());
-        expect(states[1].$2,
+        expect(states[0].value, LoginScreenState.loading());
+        expect(states[1].value,
             LoginScreenState.error(LoginError.jwtSaveUnsuccessful));
       },
     );
