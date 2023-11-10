@@ -14,6 +14,7 @@ import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../domain/repository/auth/flavor/flavor_repository_fake.dart';
 import '../login_screen.dart';
 import '../notifier/login_screen_state_notifier_fake.dart';
@@ -202,6 +203,8 @@ ProviderScope createContainerForLoginWidget(LoginScreenNotifier? notifier) {
         loginScreenNotifierProvider.overrideWith(() => notifier),
     ],
     child: const MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: LoginScreen(),
     ),
   );

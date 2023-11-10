@@ -85,7 +85,8 @@ void main() {
 
         final states = stateListener.data;
         expect(states[0].value, LoginScreenState.loading());
-        expect(states[1].value, LoginScreenState.error(LoginError.emptyPassword));
+        expect(
+            states[1].value, LoginScreenState.error(LoginError.emptyPassword));
       },
     );
 
