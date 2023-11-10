@@ -33,7 +33,7 @@ void main() {
     });
     group("Unit tests with a fake LoginScreenNotifier", () {
       testWidgets(
-          'Given LoginScreen is ininitial state, when nothing is done, then there should be no errors present.',
+          'Given LoginScreen is initial state, when nothing is done, then there should be no errors present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
@@ -47,7 +47,7 @@ void main() {
       });
 
       testWidgets(
-          'Given LoginScreen is ininitial state, when user enters no email, then empty email error should be present.',
+          'Given LoginScreen is initial state, when user enters no email, then empty email error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
@@ -66,7 +66,7 @@ void main() {
       });
 
       testWidgets(
-          'Given LoginScreen is ininitial state, when user enters no password, then empty password error should be present.',
+          'Given LoginScreen is initial state, when user enters no password, then empty password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
@@ -85,7 +85,7 @@ void main() {
       });
 
       testWidgets(
-          'Given LoginScreen is ininitial state, when user enters incorrect email/password, then both email and password error should be present.',
+          'Given LoginScreen is initial state, when user enters incorrect email/password, then both email and password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
@@ -106,7 +106,7 @@ void main() {
       });
 
       testWidgets(
-          'Given LoginScreen is ininitial state, when user enters correct email/password but jwt fails to save, then general error should be present',
+          'Given LoginScreen is initial state, when user enters correct email/password but jwt fails to save, then general error should be present',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         final LoginScreenNotifierFake fakeNotifier = LoginScreenNotifierFake();
@@ -131,7 +131,7 @@ void main() {
 
     group("Integration Tests", () {
       testWidgets(
-          'Given LoginScreen is ininitial state, when nothing is done, then there should be no errors present.',
+          'Given LoginScreen is initial state, when nothing is done, then there should be no errors present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         await tester.pumpWidget(createContainerForLoginWidget(null));
@@ -143,7 +143,7 @@ void main() {
         expect(loginScreen.passwordCheckError, findsNothing);
       });
       testWidgets(
-          'Given LoginScreen is ininitial state, when user enters no email, then empty email error should be present.',
+          'Given LoginScreen is initial state, when user enters no email, then empty email error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         await tester.pumpWidget(createContainerForLoginWidget(null));
@@ -159,7 +159,7 @@ void main() {
         expect(loginScreen.passwordCheckError, findsNothing);
       });
       testWidgets(
-          'Given LoginScreen is ininitial state, when user enters no password, then empty password error should be present.',
+          'Given LoginScreen is initial state, when user enters no password, then empty password error should be present.',
           (WidgetTester tester) async {
         // Causes test to wait for app to finish launch before testing
         await tester.pumpWidget(createContainerForLoginWidget(null));
