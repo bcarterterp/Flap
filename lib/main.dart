@@ -1,11 +1,12 @@
-import 'package:flap_app/presentation/navigation.dart';
-import 'package:flap_app/presentation/theme/app_theme.dart';
+import 'dart:async';
+
+import 'package:flap_app/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main() {
-  runApp(const MyApp());
+FutureOr<void> main() async {
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

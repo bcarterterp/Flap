@@ -5,27 +5,48 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flap",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "flap (profile mode)",
+            "name": "Dev Flavor",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main_dev.dart",
+            "args": ["--flavor", "dev"]
+        },
+        {
+            "name": "Prod flavor",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_prod.dart",
+            "args": ["--flavor", "prod"],
+        },
+        {
+            "name": "Run all Unit Tests (Dev Flavor)",
+            "type": "dart",
+            "request": "launch",
+            "program": "./test/",
+            "args": ["--flavor", "dev"],
+        },
+        {
+            "name": "Integration Test (Dev Flavor)",
+            "program": "integration_test/",
+            "type": "dart",
+            "request": "launch",
+            "args": ["--flavor", "dev"],
+        },
+        {
+            "name": "Prod - Profile Mode",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_prod.dart",
+            "args": ["--flavor", "prod"],
             "flutterMode": "profile"
         },
         {
-            "name": "flap (release mode)",
+            "name": "Prod - Release Mode",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main_prod.dart",
+            "args": ["--flavor", "prod"],
             "flutterMode": "release"
         },
-        {
-            "name": "flap (integration test)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "debug"
-        }
     ]
 }
