@@ -6,7 +6,7 @@ you simply:
 - Head over to [our firebase project](https://console.firebase.google.com/u/1/project/flutter-boilerplate-92b67/messaging) and create and send a new notification
 - Check the emulator's notification center, you should see a new notification! Note: In some cases it takes a few minutes to show up.
 
-Alternatively, you can also send a notification to a specific device using Firebase's 'test notification' feature. For this method, follow the same steps as above but click the 'send a test message' when creating a new notification, and enter the Firebase token printed in your IDE's debug log as the registration token. This method is quicker in some cases (notification is always instant).
+Alternatively, you can also send a notification to a specific device using Firebase's 'test notification' feature. For this method, follow steps 1 & 2 then go to settings and copy the firebase token id. Then, when creating the notification, click the 'send a test message' button, and enter the copied Firebase token as the registration token. This method is quicker in some cases (notification is always instant).
 
 ## Philosophy
 

@@ -24,6 +24,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(homePageStateProvider.notifier).getRandomRecipes();
+      ref.read(firebaseMessagingRepositoryProvider).requestPermissions();
     });
   }
 
@@ -32,18 +33,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final state = ref.watch(homePageStateProvider);
 
     return Scaffold(
-        floatingActionButton: Ink(
-          decoration: ShapeDecoration(
-            color: Theme.of(context).primaryColor,
-            shape: const CircleBorder(),
-          ),
-          child: IconButton(
-            icon: const Icon(Icons.settings),
-            color: Colors.white,
-            onPressed: () {
-              context.go('/settings');
-            },
-          ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.settings),
+          onPressed: () => context.go('/settings'),
         ),
         appBar: AppBar(
           title: const Text('Home Screen'),
