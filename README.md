@@ -44,6 +44,7 @@ Dependency injection (DI) is a fundamental concept in software development that 
 - Secret Management: [Envied](https://pub.dev/packages/envied)
 - Secure Storage: [Flutter Secure Storage](https://pub.dev/packages/flutter_secure_storage)
 - Object Equitability: [Equatable](https://pub.dev/packages/equatable)
+- Localization: [Localization](https://pub.dev/packages/localization) Allows you to provide tranlations for different locales. To provide a new locale, simply add an app_[locale].arb file to the /lib/I10n folder and add string translations.
 
 ## Style Guide
 

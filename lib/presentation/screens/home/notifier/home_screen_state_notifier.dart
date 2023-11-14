@@ -2,30 +2,31 @@ import 'package:dio/dio.dart';
 import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
-import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
+import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class HomePageStateNotifier extends StateNotifier<HomePageState> {
-  HomePageStateNotifier({required RecipeRepository recipeRepository})
-      : _recipeRepository = recipeRepository,
-        super(HomePageState.initial());
+part 'home_screen_state_notifier.g.dart';
 
-  final RecipeRepository _recipeRepository;
+@riverpod
+class HomeScreenStateNotifier extends _$HomeScreenStateNotifier {
+  @override
+  HomeScreenState build() => HomeScreenState.initial();
 
   Future<void> getRandomRecipes() async {
     if (state.loadRecipesEvent is LoadingEvent) {
       return;
     }
-    state = HomePageState.loading();
+    state = HomeScreenState.loading();
 
-    final response = await _recipeRepository.getRandomRecipes();
+    final response =
+        await ref.read(recipeRepositoryProvider).getRandomRecipes();
 
     switch (response) {
       case SuccessRequestResponse<List<Recipe>, DioException>():
-        state = HomePageState.success(response.data);
+        state = HomeScreenState.success(response.data);
       case ErrorRequestResponse<List<Recipe>, DioException>():
-        state = HomePageState.error(response.error);
+        state = HomeScreenState.error(response.error);
     }
   }
 }

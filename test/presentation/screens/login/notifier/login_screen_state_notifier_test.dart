@@ -55,8 +55,8 @@ void main() {
             .login("email", "password");
 
         final states = stateListener.data;
-        expect(states[0].$2, LoginScreenState.loading());
-        expect(states[1].$2, LoginScreenState.error(LoginError.emptyEmail));
+        expect(states[0].value, LoginScreenState.loading());
+        expect(states[1].value, LoginScreenState.error(LoginError.emptyEmail));
       },
     );
 
@@ -84,8 +84,9 @@ void main() {
             .login("email", "password");
 
         final states = stateListener.data;
-        expect(states[0].$2, LoginScreenState.loading());
-        expect(states[1].$2, LoginScreenState.error(LoginError.emptyPassword));
+        expect(states[0].value, LoginScreenState.loading());
+        expect(
+            states[1].value, LoginScreenState.error(LoginError.emptyPassword));
       },
     );
 
@@ -113,8 +114,8 @@ void main() {
             .login("email", "password");
 
         final states = stateListener.data;
-        expect(states[0].$2, LoginScreenState.loading());
-        expect(states[1].$2,
+        expect(states[0].value, LoginScreenState.loading());
+        expect(states[1].value,
             LoginScreenState.error(LoginError.incorrectEmailOrPassword));
       },
     );
@@ -153,8 +154,8 @@ void main() {
             .login("email", "password");
 
         final states = stateListener.data;
-        expect(states[0].$2, LoginScreenState.loading());
-        expect(states[1].$2, LoginScreenState.success(userInfo));
+        expect(states[0].value, LoginScreenState.loading());
+        expect(states[1].value, LoginScreenState.success(userInfo));
       },
     );
 
@@ -189,8 +190,8 @@ void main() {
             .login("email", "password");
 
         final states = stateListener.data;
-        expect(states[0].$2, LoginScreenState.loading());
-        expect(states[1].$2,
+        expect(states[0].value, LoginScreenState.loading());
+        expect(states[1].value,
             LoginScreenState.error(LoginError.jwtSaveUnsuccessful));
       },
     );
