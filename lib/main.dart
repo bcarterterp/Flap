@@ -1,7 +1,5 @@
 import 'dart:developer';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flap_app/firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flap_app/presentation/navigation.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
@@ -16,10 +14,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   runApp(const ProviderScope(child: MyApp()));
@@ -30,28 +24,20 @@ class MyApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final firebaseMessaging = ref.watch(firebaseMessagingRepositoryProvider);
+    final appStatNotifier = ref.watch(appStateProvider.notifier);
 
-    firebaseMessaging.init();
-
-    firebaseMessaging.hasAcceptedPermissions();
-
-    firebaseMessaging.getToken().then((token) {
-      if (token != null) {
-        log("Firebase device token: $token");
-      } else {
-        log("No firebase token");
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      appStatNotifier.initDependencies();
     });
 
     const theme = AppTheme();
     // ProviderScope is what makes Riverpod work.
     // MaterialApp.router is what sets our routerConfig to our GoRouter object
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Boilerplate',
       theme: theme.toThemeData(),
       darkTheme: theme.toThemeDataDark(),
-      home: MaterialApp.router(routerConfig: navigationRouter),
+      routerConfig: navigationRouter,
     );
   }
 }

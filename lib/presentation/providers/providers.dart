@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flap_app/data/repository/analytics/analytics_platform_manager.dart';
 import 'package:flap_app/data/repository/auth/auth_repository_impl.dart';
 import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
@@ -17,8 +16,12 @@ import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
 import 'package:flap_app/domain/repository/storage/storage_service.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
+import 'package:flap_app/presentation/screens/app/notifier/app_state.dart';
+import 'package:flap_app/presentation/screens/app/notifier/app_state_notifier.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state_notifier.dart';
+import 'package:flap_app/presentation/screens/settings/notifier/settings_screen_state.dart';
+import 'package:flap_app/presentation/screens/settings/notifier/settings_screen_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -52,7 +55,21 @@ final homePageStateProvider =
   ),
 );
 
-final recipeListProvider = Provider<List<Recipe>>((ref) {
+final settingsPageStateProvider = StateNotifierProvider.autoDispose<
+    SettingsScreenStateNotifier, SettingsScreenState>(
+  (ref) => SettingsScreenStateNotifier(
+    messageRepository: ref.watch(firebaseMessagingRepositoryProvider),
+  ),
+);
+
+final appStateProvider =
+    StateNotifierProvider.autoDispose<AppStateNotifier, AppState>(
+  (ref) => AppStateNotifier(
+    firebaseMessaging: ref.watch(firebaseMessagingRepositoryProvider),
+  ),
+);
+
+final recipeListProvider = Provider.autoDispose<List<Recipe>>((ref) {
   final state = ref.watch(homePageStateProvider);
   return (state.loadRecipesEvent as SuccessEvent<List<Recipe>, DioException>)
       .data; // Assuming the recipeList is stored in the data field of HomePageState class
@@ -68,11 +85,6 @@ StorageService secureStorage(SecureStorageRef ref) {
 }
 
 @riverpod
-FirebaseMessaging firebaseMessaging(FirebaseMessagingRef ref) {
-  return FirebaseMessaging.instance;
-}
-
-@riverpod
 FirebaseWrapper firebaseWrapper(FirebaseWrapperRef ref) {
   return FirebaseWrapperImpl();
 }
@@ -81,6 +93,6 @@ FirebaseWrapper firebaseWrapper(FirebaseWrapperRef ref) {
 FirebaseMessagingRepository firebaseMessagingRepository(
     FirebaseMessagingRepositoryRef ref) {
   return FirebaseMessagingRepositoryImpl(
-    wrapper: ref.watch(firebaseWrapperProvider),
+    wrapper: ref.read(firebaseWrapperProvider),
   );
 }

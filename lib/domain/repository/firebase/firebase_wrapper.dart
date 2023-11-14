@@ -1,3 +1,3 @@
 abstract class FirebaseWrapper {
-  Future<void> init();
+  Future<bool> init();
 }

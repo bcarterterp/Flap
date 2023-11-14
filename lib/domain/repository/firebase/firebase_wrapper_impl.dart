@@ -8,11 +8,14 @@ class FirebaseWrapperImpl extends FirebaseWrapper {
   bool _initialized = false;
 
   @override
-  Future<void> init() async {
+  Future<bool> init() async {
+    final freshInit = _initialized == false;
+
     if (!_initialized) {
       await Firebase.initializeApp(
           options: DefaultFirebaseOptions.currentPlatform);
       _initialized = true;
     }
+    return freshInit;
   }
 }

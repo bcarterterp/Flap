@@ -6,6 +6,7 @@ import 'package:flap_app/presentation/screens/home/widgets/screen_states/error_s
 import 'package:flap_app/presentation/screens/home/widgets/screen_states/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -29,9 +30,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(homePageStateProvider);
+
     return Scaffold(
+        floatingActionButton: Ink(
+          decoration: ShapeDecoration(
+            color: Theme.of(context).primaryColor,
+            shape: const CircleBorder(),
+          ),
+          child: IconButton(
+            icon: const Icon(Icons.settings),
+            color: Colors.white,
+            onPressed: () {
+              context.go('/settings');
+            },
+          ),
+        ),
         appBar: AppBar(
-          title: const Text('Home Page Screen'),
+          title: const Text('Home Screen'),
         ),
         body: switch (state.loadRecipesEvent) {
           InitialEvent() => const LoadingScreenWidget(),

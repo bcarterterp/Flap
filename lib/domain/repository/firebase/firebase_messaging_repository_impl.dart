@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flap_app/domain/entity/request_response.dart';
 import 'package:flap_app/domain/repository/firebase/firebase_messaging_repository.dart';
 import 'package:flap_app/domain/repository/firebase/firebase_wrapper.dart';
 
@@ -11,39 +12,49 @@ class FirebaseMessagingRepositoryImpl extends FirebaseMessagingRepository {
 
   @override
   Future<void> init() async {
-    await _firebaseWrapper.init();
-    firebaseMessaging = FirebaseMessaging.instance;
+    final initialized = await _firebaseWrapper.init();
+    if (initialized) firebaseMessaging = FirebaseMessaging.instance;
   }
 
   @override
   Future<bool> hasAcceptedPermissions() {
     return firebaseMessaging.getNotificationSettings().then((settings) {
-      if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-        return true;
+      return settings.authorizationStatus == AuthorizationStatus.authorized;
+    });
+  }
+
+  @override
+  Future<RequestResponse<bool, Exception>> requestPermissions() async {
+    try {
+      final settings = await firebaseMessaging.requestPermission(
+        alert: true,
+        announcement: false,
+        badge: true,
+        carPlay: false,
+        criticalAlert: false,
+        provisional: false,
+        sound: true,
+      );
+      final isAuthorized =
+          settings.authorizationStatus == AuthorizationStatus.authorized;
+      return SuccessRequestResponse(isAuthorized);
+    } on Exception catch (e) {
+      return ErrorRequestResponse(e);
+    }
+  }
+
+  @override
+  Future<RequestResponse<String, Exception>> getToken() async {
+    try {
+      final token = await firebaseMessaging.getToken();
+
+      if (token != null) {
+        return SuccessRequestResponse(token);
       } else {
-        return false;
+        return ErrorRequestResponse(Exception("Null token"));
       }
-    });
-  }
-
-  @override
-  Future<bool> requestPermissions() async {
-    final settings = await firebaseMessaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
-    return settings.authorizationStatus == AuthorizationStatus.authorized;
-  }
-
-  @override
-  Future<String?> getToken() {
-    return firebaseMessaging.getToken().then((token) {
-      return token;
-    });
+    } on Exception catch (e) {
+      return ErrorRequestResponse(e);
+    }
   }
 }

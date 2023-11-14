@@ -28,6 +28,4 @@ class HomePageStateNotifier extends StateNotifier<HomePageState> {
         state = HomePageState.error(response.error);
     }
   }
-
-  
 }
