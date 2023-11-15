@@ -9,6 +9,8 @@ you simply:
 
 Alternatively, you can also send a notification to a specific device using Firebase's 'test notification' feature. For this method, follow steps 1-3 then go to settings in the app and copy the firebase token id. Then, when creating the notification, click the 'send a test message' button, and enter the copied Firebase token as the registration token. This method is quicker in some cases (notification is always instant, whereas traditional can take up to 3 minutes).
 
+NOTE: When/if adding a new build variant, you must update the firebase project with the new build variant for Android. Instructions can be found [here](https://firebase.blog/posts/2016/08/organizing-your-firebase-enabled-android-app-builds)
+
 ## Philosophy
 
 - Code is organic, and changes frequently, so as a team we should be aligned on how it grows, and is maintained. The base architecture should be built keeping [SOLID](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design) in mind. Allowing for flexibility when needed, but also dependable. It should be easy for newer people to ramp up, because no one likes to spend a month just to start contributing. Everyone has ownership of the codebase. Take a look [here](https://www.tatvasoft.com/outsourcing/2022/05/software-development-principles.html) for more direction!
