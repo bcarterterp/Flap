@@ -49,7 +49,7 @@ final dioProvider = AutoDisposeProvider<Dio>.internal(
 );
 
 typedef DioRef = AutoDisposeProviderRef<Dio>;
-String _$spoonacularApiHash() => r'6dffef649327b55186934bd975b6a09b806f9e4f';
+String _$spoonacularApiHash() => r'836cf3d7466c6a4f07a730e5ee6a895e6b35b2f4';
 
 /// See also [spoonacularApi].
 @ProviderFor(spoonacularApi)

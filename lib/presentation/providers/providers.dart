@@ -19,8 +19,6 @@ import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
 import 'package:flap_app/presentation/screens/app/notifier/app_state.dart';
 import 'package:flap_app/presentation/screens/app/notifier/app_state_notifier.dart';
-import 'package:flap_app/presentation/screens/home/notifier/home_screen_state.dart';
-import 'package:flap_app/presentation/screens/home/notifier/home_screen_state_notifier.dart';
 import 'package:flap_app/presentation/screens/settings/notifier/settings_screen_state.dart';
 import 'package:flap_app/presentation/screens/settings/notifier/settings_screen_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,7 +60,7 @@ RecipeRepository recipeRepository(RecipeRepositoryRef ref) {
 }
 
 final analyticsProvider = Provider<AnalyticsPlatformManager>(
-  (ref) => AnalyticsPlatformManager(),
+  (ref) => AnalyticsPlatformManager(analyticsPlatforms: []),
 );
 
 final settingsPageStateProvider = StateNotifierProvider.autoDispose<
