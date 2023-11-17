@@ -1,10 +1,10 @@
 ## How to Run and Build for the First Time
 
-- First, create a .env file at the root of the project. This file will include the api key for spoonacular:  
+- First, create a .env file at the root of the project. This file will include the api key for spoonacular (reach out to a code-owner for the spoonacular password. You also can create your own account, this is a free API! ):  
 
     `SPOONACULAR_API_KEY=<insert api key here from 1password>`
   
-- Create generated files from the below command:  
+- We rely on generated code files in this project, so after .env is created - run the below command:  
 
     `flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs`
 
