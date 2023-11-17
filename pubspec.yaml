@@ -88,6 +88,11 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+
+assets:
+# json files for mock
+ - assets/json/user/
+
 # The following section is specific to Flutter packages.
 flutter:
   # The following line ensures that the Material Icons font is
