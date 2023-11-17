@@ -1,15 +1,18 @@
-## How to Run
+## How to Run and Build for the First Time
 
-- First, create a .env file at the root of the project. This file will include the api key for spoonacular: 
- `SPOONACULAR_API_KEY=<insert api key here from 1password>`
+- First, create a .env file at the root of the project. This file will include the api key for spoonacular:  
+
+    `SPOONACULAR_API_KEY=<insert api key here from 1password>`
   
-- Create generated files from the below command:
-  `flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs`
+- Create generated files from the below command:  
+
+    `flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs`
 
 - You can launch the app two ways:
-  - Terminal: Use the below command (substitute 'dev' with the flavor you need)
-  `flutter run --flavor dev --dart-define="FLAVOR=dev" `
-  - Launch from VS Code: In the Run and Debug menu, there will be a drop-down menu with flavors specified - as well as unit tests / integration test build configurations. 
+  - **Terminal**: Use the below command (substitute 'dev' with the flavor you need)  
+
+    `flutter run --flavor dev --dart-define="FLAVOR=dev" `
+  - **Launch from VS Code**: In the Run and Debug menu, there will be a drop-down menu with flavors specified - as well as unit tests / integration test build configurations. 
 
 ## Philosophy
 
