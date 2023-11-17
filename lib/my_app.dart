@@ -2,8 +2,8 @@ import 'package:flap_app/presentation/navigation.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
@@ -12,6 +12,11 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const theme = AppTheme();
+    final appStateNotifier = ref.watch(appStateProvider.notifier);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      appStateNotifier.initDependencies();
+    });
     // ProviderScope is what makes Riverpod work.
     // MaterialApp.router is what sets our routerConfig to our GoRouter object
     return MaterialApp.router(

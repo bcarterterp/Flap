@@ -10,9 +10,14 @@ import 'package:flap_app/domain/repository/auth/auth_repository.dart';
 import 'package:flap_app/domain/repository/flavor/flavor_repository.dart';
 import 'package:flap_app/domain/repository/flavor/flavor_repository_impl.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
+import 'package:flap_app/domain/repository/shared_pref/shared_pref_repository.dart';
+import 'package:flap_app/domain/repository/shared_pref/shared_pref_repository_impl.dart';
 import 'package:flap_app/domain/repository/storage/storage_service.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
+import 'package:flap_app/presentation/app_state.dart';
+import 'package:flap_app/presentation/app_state_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
@@ -56,6 +61,13 @@ List<AnalyticsPlatform> analyticsPlatforms(AnalyticsPlatformsRef ref) {
   return [];
 }
 
+final appStateProvider =
+    StateNotifierProvider.autoDispose<AppStateNotifier, AppState>(
+  (ref) => AppStateNotifier(
+    sharedPrefRepository: ref.watch(sharedPrefRepositoryProvider),
+  ),
+);
+
 @riverpod
 AnalyticsPlatformManager analyticsPlatformManager(
     AnalyticsPlatformManagerRef ref) {
@@ -69,4 +81,9 @@ AnalyticsPlatformManager analyticsPlatformManager(
 @riverpod
 StorageService secureStorage(SecureStorageRef ref) {
   return SecureStorageImpl();
+}
+
+@riverpod
+SharedPrefRepository sharedPrefRepository(SharedPrefRepositoryRef ref) {
+  return SharedPrefRepositoryImpl();
 }
