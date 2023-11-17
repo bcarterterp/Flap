@@ -5,10 +5,10 @@ part 'recipe_dto.g.dart';
 
 @JsonSerializable()
 class RecipeDto extends Recipe {
-  int _id;
-  String? _title;
-  String? _image;
-  RecipeDto(int id, String? title, String? image)
+  final int _id;
+  final String? _title;
+  final String? _image;
+  const RecipeDto(int id, String? title, String? image)
       : _id = id,
         _title = title,
         _image = image,

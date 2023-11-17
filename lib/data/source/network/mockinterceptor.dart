@@ -4,11 +4,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 
 class MockInterceptor extends Interceptor {
-  static const _jsonDir = 'assets/json/';
-  static const _jsonExtension = '.json';
+  
+  final String _jsonDir = 'assets/json/';
+  final String _jsonExtension = '.json';
 
   @override
-  Future onRequest(RequestOptions options) async {
+  Future onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     final resourcePath = _jsonDir + options.path + _jsonExtension;
     final data = await rootBundle.load(resourcePath);
     final map = json.decode(
@@ -18,6 +20,7 @@ class MockInterceptor extends Interceptor {
     );
 
     return Response(
+      requestOptions: RequestOptions(),
       data: map,
       statusCode: 200,
     );

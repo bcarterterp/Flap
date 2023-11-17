@@ -18,4 +18,9 @@ class FlavorRepositoryImpl extends FlavorRepository {
   String getBaseUrlHost() {
     return FlavorConfig.baseUrlHost;
   }
+
+  @override
+  bool shouldMockEndpoints() {
+    return FlavorConfig.shouldMockEndpoints;
+  }
 }
