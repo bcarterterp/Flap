@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "equifax---test",
+  "private_key_id": "c18957b2e5903acd397cd9668a9e9d9233b89f02",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDE9AzB+kDqTeMw\nQtk72YTEYG4v+ikCukipgsvj6abW000qH1GAjODatsHqr26CvQToLxEQiFuW94m4\nIcZP+b2pCVLvUe4jF9NdKD/R0kr480nL2DvZDpQmLPRxc7kwwoq062OMROtaRSet\nfVvAuFwluL8w2qXuDGqrbLqS3XGYn/UHVXSoZB4mfS2WIVcyicKf4Rp7TYSuhImG\ntH9k2PPIZ/ziSW50TvULomtDzGzTw/6A/XHbx+vRJgR20sm9LF+HGWzilRJ3/M1Z\nQVeCeiTbwG3M5iMIyv30kS9PSoLPJ54fqqld6ayV6+GTCgrjvtpHFQOBnRKe1wx9\nvKWstm4dAgMBAAECggEAEPV/cw/Z7shQeOjgrL3LqAnc+GZJiWcXTPqqv3rF4iH6\ntyxQMnSvA0DmYg9uFsrbinn3CwiQHmfn5MI1FyYxixshmDg3/FntBMyrm3pzTeF2\naBuRTQeWK9Kwz7i/va+auFO71Cm2ZvpPyClkW6wO9Ik7yU3302TKpe0sWZYWKyaV\nhpLvcCuPaLi5CzepIAAhafdsd3iCS7jI9g4j8mq5oUtYbPeTeDDm4JUrHea34FWg\n02Q9iG7FXPPzABBH2faQ7Rsd66WfYp3w0INp5KCKeVZGpVR0YwEvRu740IkgeC1/\n2xHS7RVN63OJ4ZWRmZ+9wRMIXs1eVCXpXGEXv43uXwKBgQDoITlF63tveTHuAO+Q\nEHJ1B6ZKF7hSwCzstIWEVApZDnsylxysp5wLCTQbRIDgggJcMjkk5H+vwHO/5g91\neT2asaaW5z0i6qhZXKqfAhxSlZFQAduKGbHFUGE/D0vdOOLZXGn4sy0ICzvz5NQd\nhDrY2ny79nLm0Lula0yW85XzHwKBgQDZNM/XSQpNLPWFGWSKWjfXSXQ0CYFCpRzP\nz36tvTUYlPgTdct3zD5Wz0PfVrKO/GUmqHMZ9+F8SpUhebKOQMDbfFAQDTkGn80a\ndEPtT8D2DLfr8qAA4ZlsiHkrGkbWOBnGzQ0FH/qSpiCLzQIHgm5PyteHHU2zZi5T\nqlu6d4OTQwKBgDKNCavwXDEqc3UhPwpgioxx3gTEpZ9fumjR50GqC5bZUHrz7Yqr\n9Y9xsac+g9JgfaMWTNt751Ke1pYzw6oRfRjzFxRFx0qTT5YmWAHIs+JIMBz8SpMI\nhW4y0vqomhzTBpPPTEScwHHAAI5chtTmtuoCqqdEREF/s12SwFsfMMiBAoGBAIon\nmk+QCLpf72aSaS3LBpur//qdVRdj2Dih/SxbHaueDVCraxiu07P5r20eQwLJrTjy\nigupbEXXVpXtR1JOA51Xq8EZ9/yrphS+gPov8UdPfajZMUZ+OE0dXRy6YPYext55\nTF/HIGUov6jMZA8MukeMeJxbWjHSu4LB6AhpvknrAoGAGaZUq4rHQY48Nf1GwjRf\n6WOa5m0lmSzNZuMzSiV54CNgbA8Kdco+nuum/te8TJS2EMWvjO2oIz9uAweKmqnh\n8cZcmtESDYn6dbwhSQAfyLSH3GTiOy5rfRFSx2ETykF4H4qvO6QHUdnS6qlVfvTn\nzGwaHZ2w+yR33gSO98+9WW4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bitriseserviceaccount@equifax---test.iam.gserviceaccount.com",
+  "client_id": "109092138547423844176",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bitriseserviceaccount%40equifax---test.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
