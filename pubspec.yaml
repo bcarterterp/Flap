@@ -88,11 +88,6 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
-
-assets:
-# json files for mock
- - assets/json/user/
-
 # The following section is specific to Flutter packages.
 flutter:
   # The following line ensures that the Material Icons font is
@@ -102,6 +97,10 @@ flutter:
 
   # Adds code generation (synthetic package) support
   generate: true
+
+  assets:
+    # json files for mocking the api
+    - assets/json/spoonacular/recipes/random/first_twenty.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:
