@@ -5,6 +5,7 @@ import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
 import 'package:flap_app/data/repository/secure_storage/secure_storage_impl.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
 import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
+import 'package:flap_app/domain/entity/user_credit_info.dart';
 import 'package:flap_app/domain/repository/analytics/analytics_platform.dart';
 import 'package:flap_app/domain/repository/auth/auth_repository.dart';
 import 'package:flap_app/domain/repository/flavor/flavor_repository.dart';
@@ -69,4 +70,9 @@ AnalyticsPlatformManager analyticsPlatformManager(
 @riverpod
 StorageService secureStorage(SecureStorageRef ref) {
   return SecureStorageImpl();
+}
+
+@riverpod
+UserCreditInfo userCreditInfo(UserCreditInfoRef ref) {
+  return UserCreditInfo(score: 801, scoreDifference: 28);
 }

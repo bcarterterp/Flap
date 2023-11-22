@@ -8,6 +8,7 @@ import 'package:flap_app/presentation/screens/home/widgets/screen_states/error_s
 import 'package:flap_app/presentation/screens/home/widgets/screen_states/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -32,8 +33,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(homeScreenStateNotifierProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.localization.home),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.go('/widgets');
+        },
+        child: const Icon(Icons.widgets),
+      ),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(50.0),
+        child: AppBar(
+          title: Text(context.localization.home),
+        ),
       ),
       body: _getWidget(state.loadRecipesEvent),
     );

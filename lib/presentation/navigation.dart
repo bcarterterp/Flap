@@ -1,5 +1,6 @@
 import 'package:flap_app/presentation/screens/home/view/home_screen.dart';
 import 'package:flap_app/presentation/screens/login/view/login_screen.dart';
+import 'package:flap_app/presentation/screens/widgets_demo/view/widgets_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,6 +21,13 @@ final GoRouter navigationRouter = GoRouter(
       path: '/home',
       builder: (BuildContext context, GoRouterState state) {
         return const HomeScreen();
+      },
+    ),
+    GoRoute(
+      name: 'widgets',
+      path: '/widgets',
+      builder: (BuildContext context, GoRouterState state) {
+        return const WidgetsScreen();
       },
     ),
   ],

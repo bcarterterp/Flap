@@ -49,7 +49,7 @@ final dioProvider = AutoDisposeProvider<Dio>.internal(
 );
 
 typedef DioRef = AutoDisposeProviderRef<Dio>;
-String _$spoonacularApiHash() => r'6dffef649327b55186934bd975b6a09b806f9e4f';
+String _$spoonacularApiHash() => r'836cf3d7466c6a4f07a730e5ee6a895e6b35b2f4';
 
 /// See also [spoonacularApi].
 @ProviderFor(spoonacularApi)
@@ -129,5 +129,20 @@ final secureStorageProvider = AutoDisposeProvider<StorageService>.internal(
 );
 
 typedef SecureStorageRef = AutoDisposeProviderRef<StorageService>;
+String _$userCreditInfoHash() => r'35a5bbb359f99dc1d06ef58c6a79734df6dab67b';
+
+/// See also [userCreditInfo].
+@ProviderFor(userCreditInfo)
+final userCreditInfoProvider = AutoDisposeProvider<UserCreditInfo>.internal(
+  userCreditInfo,
+  name: r'userCreditInfoProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$userCreditInfoHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UserCreditInfoRef = AutoDisposeProviderRef<UserCreditInfo>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
