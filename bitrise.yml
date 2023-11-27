@@ -1,0 +1,253 @@
+---
+format_version: '13'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: flutter
+workflows:
+  deploy:
+    description: |
+      Builds and deploys app using [Deploy to bitrise.io Step](https://devcenter.bitrise.io/en/getting-started/getting-started-with-flutter-apps.html#deploying-a-flutter-app).
+
+      If you build for iOS, make sure to set up code signing secrets on Bitrise for a successful build.
+
+      Next steps:
+      - Check out [Getting started with Flutter apps](https://devcenter.bitrise.io/en/getting-started/getting-started-with-flutter-apps.html) for signing and deployment options.
+      - Check out the [Code signing guide](https://devcenter.bitrise.io/en/code-signing.html) for iOS and Android
+    steps:
+    - git-clone@8: {}
+    - certificate-and-profile-installer@1: {}
+    - flutter-installer@0:
+        inputs:
+        - version: 3.13.9
+        - is_update: 'false'
+    - flutter-analyze@0:
+        inputs:
+        - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
+    - flutter-build@0:
+        inputs:
+        - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
+        - platform: both
+        - ios_output_type: archive
+    - deploy-to-bitrise-io@2: {}
+  deploy_iOS:
+    description: |
+      Builds project and runs tests.
+
+      Next steps:
+      - Check out [Getting started with Flutter apps](https://devcenter.bitrise.io/en/getting-started/getting-started-with-flutter-apps.html).
+    steps:
+    - git-clone@8: {}
+    - certificate-and-profile-installer@1: {}
+    - flutter-installer@0:
+        inputs:
+        - version: 3.13.9
+        - is_update: 'false'
+    - brew-install@0:
+        inputs:
+        - packages: osv-scanner
+    - script@1:
+        inputs:
+        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# make
+            pipelines' return status equal the last command to exit with a non-zero
+            status, or zero if all commands exit successfully\nset -o pipefail\n#
+            debug log\nset -x\n\n# write your script here\nosv-scanner -r .  \n\n#
+            or run a script from your repository, like:\n# bash ./path/to/script.sh\n#
+            not just bash, e.g.:\n# ruby ./path/to/script.rb"
+        title: Run OSV Scanner
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            # write your script here
+            flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs
+
+            # or run a script from your repository, like:
+            # bash ./path/to/script.sh
+            # not just bash, e.g.:
+            # ruby ./path/to/script.rb
+        title: Generate Environment File
+    - flutter-analyze@0:
+        inputs:
+        - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
+    - flutter-build@0:
+        is_always_run: true
+        inputs:
+        - additional_build_params: "--flavor=prod"
+    - flutter@0:
+        inputs:
+        - version: 3.13.9
+        - commands: test
+        title: Run Widget Tests
+    - flutter@0:
+        inputs:
+        - version: 3.13.9
+        - commands: test integration_test
+        title: Run Integration Tests
+        is_always_run: true
+    - xcode-archive@5:
+        inputs:
+        - scheme: prod
+        - distribution_method: app-store
+    - deploy-to-bitrise-io@2: {}
+    - deploy-to-itunesconnect-deliver@2: {}
+    envs:
+    - opts:
+        is_expand: false
+      DID_BUILD_FAIL: 'false'
+    - opts:
+        is_expand: false
+      DID_TEST_FAIL: 'false'
+    - opts:
+        is_expand: false
+      DID_INTEGRATION_TEST_FAIL: 'false'
+  primary:
+    description: |
+      Builds project and runs tests.
+
+      Next steps:
+      - Check out [Getting started with Flutter apps](https://devcenter.bitrise.io/en/getting-started/getting-started-with-flutter-apps.html).
+    steps:
+    - git-clone@8: {}
+    - flutter-installer@0:
+        inputs:
+        - version: 3.13.9
+        - is_update: 'false'
+    - brew-install@0:
+        inputs:
+        - packages: osv-scanner
+        title: Brew Install - OSV Scanner
+    - script@1:
+        inputs:
+        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# make
+            pipelines' return status equal the last command to exit with a non-zero
+            status, or zero if all commands exit successfully\nset -o pipefail\n#
+            debug log\nset -x\n\n# write your script here\nosv-scanner -r . \n\n#
+            or run a script from your repository, like:\n# bash ./path/to/script.sh\n#
+            not just bash, e.g.:\n# ruby ./path/to/script.rb "
+        title: Run OSV Scanner
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            # write your script here
+            flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs
+
+            # or run a script from your repository, like:
+            # bash ./path/to/script.sh
+            # not just bash, e.g.:
+            # ruby ./path/to/script.rb
+        title: Generate Project Environment File
+    - script@1:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            # write your script here
+            touch equifax---test-c18957b2e590.json
+            echo $GOOGLE_SERVICE_ACCOUNT_KEY > equifax---test-c18957b2e590.json
+
+            # or run a script from your repository, like:
+            # bash ./path/to/script.sh
+            # not just bash, e.g.:
+            # ruby ./path/to/script.rb
+        title: Generate Firebase Deployment Private Key File
+    - flutter-analyze@0:
+        inputs:
+        - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
+    - flutter-build@0:
+        is_always_run: true
+    - flutter@0:
+        inputs:
+        - version: 3.13.9
+        - commands: test
+        title: Run Widget Tests
+    - flutter@0:
+        inputs:
+        - version: 3.13.9
+        - commands: test integration_test
+        title: Run Integration Tests
+        is_always_run: true
+    - deploy-to-bitrise-io@2: {}
+    - firebase-app-distribution@0:
+        inputs:
+        - firebase_token: ''
+        - testers: anthony.dade@willowtreeapps.com
+        - release_notes: Test of deploying Android app binary from Bitrise to Firebase
+            (with private key generation!)
+        - service_credentials_file: "$FIREBASE_SERVICE_ACCOUNT_KEY_PATH"
+        - app: "$FIREBASE_ANDROID_APP_ID"
+        title: "[BETA] Android Firebase App Distribution"
+    - firebase-app-distribution@0:
+        inputs:
+        - app: "$FIREBASE_IOS_APP_ID"
+        - release_notes: Test of deploying iOS app binary from Bitrise to Firebase
+        - testers: anthony.dade@willowtreeapps.com, brandon.carter@willowtreeapps.com,
+            mia.brunal@willowtreeapps.com
+        - service_credentials_file: "$FIREBASE_SERVICE_ACCOUNT_KEY_PATH"
+        - firebase_token: ''
+        title: "[BETA] iOS Firebase App Distribution"
+    - slack@4:
+        inputs:
+        - from_username: BitRise Bot
+        - pretext: ''
+        - text: ":exclamation: :red_circle:  :exclamation:   Integration Test Failure!
+            \ :exclamation: :red_circle:  :exclamation:  "
+        - webhook_url: "$SLACK_WEBHOOK_URL"
+        - api_token: ''
+        - color: "#31f76a"
+        - text_on_error: ":alert: :alert:  TEST OF BUILD FAILURE DETECTED ON PIPELINE
+            :alert: :alert: "
+        - channel_on_error: "#equifax-dev"
+        - webhook_url_on_error: "$SLACK_WEBHOOK_URL"
+        - from_username_on_error: BitRise Bot
+        - color_on_error: "#c33b3b"
+        - emoji_on_error: ":alert:"
+        - channel: "#equifax-dev"
+        run_if: 'false'
+        is_always_run: false
+    envs:
+    - opts:
+        is_expand: false
+      DID_BUILD_FAIL: 'false'
+    - opts:
+        is_expand: false
+      DID_TEST_FAIL: 'false'
+    - opts:
+        is_expand: false
+      DID_INTEGRATION_TEST_FAIL: 'false'
+meta:
+  bitrise.io:
+    stack: osx-xcode-14.3.x-ventura
+    machine_type_id: g2-m1.4core
+app:
+  envs:
+  - opts:
+      is_expand: false
+    BITRISE_FLUTTER_PROJECT_LOCATION: "."
+  - opts:
+      is_expand: false
+    FIREBASE_SERVICE_ACCOUNT_KEY_PATH: "./equifax---test-c18957b2e590.json"
+trigger_map:
+- push_branch: main
+  workflow: primary
+- pull_request_source_branch: "*"
+  workflow: primary

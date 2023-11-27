@@ -46,3 +46,4 @@ app.*.map.json
 #enviroment files
 *.env
 *env.g.dart
+.bitrise.secrets.yml
