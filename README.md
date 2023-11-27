@@ -1,3 +1,7 @@
+## Advanced Widgets
+
+In this branch, there is a new screen in the app called 'Demo Widgets'. On that screen you will find an advanced credit score widget example. This widget demonstrates some more complicated customization like custom shapes, shadows, layering/stacking, and animations.
+
 ## Philosophy
 
 - Code is organic, and changes frequently, so as a team we should be aligned on how it grows, and is maintained. The base architecture should be built keeping [SOLID](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design) in mind. Allowing for flexibility when needed, but also dependable. It should be easy for newer people to ramp up, because no one likes to spend a month just to start contributing. Everyone has ownership of the codebase. Take a look [here](https://www.tatvasoft.com/outsourcing/2022/05/software-development-principles.html) for more direction!
