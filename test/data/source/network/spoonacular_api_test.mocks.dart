@@ -52,4 +52,13 @@ class MockFlavorRepository extends _i1.Mock implements _i2.FlavorRepository {
         ),
         returnValue: '',
       ) as String);
+
+  @override
+  bool shouldMockEndpoints() => (super.noSuchMethod(
+        Invocation.method(
+          #shouldMockEndpoints,
+          [],
+        ),
+        returnValue: false,
+      ) as bool);
 }

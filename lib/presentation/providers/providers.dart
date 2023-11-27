@@ -3,7 +3,9 @@ import 'package:flap_app/data/repository/analytics/analytics_platform_manager.da
 import 'package:flap_app/data/repository/auth/auth_repository_impl.dart';
 import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
 import 'package:flap_app/data/repository/secure_storage/secure_storage_impl.dart';
+import 'package:flap_app/data/source/network/mock/file_finder.dart';
 import 'package:flap_app/data/source/network/mock/mockinterceptor.dart';
+import 'package:flap_app/data/source/network/mock/spoonacular_file_finder.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
 import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
 import 'package:flap_app/domain/repository/analytics/analytics_platform.dart';
@@ -35,11 +37,24 @@ LogInUseCase logInUseCase(LogInUseCaseRef ref) {
 }
 
 @riverpod
+List<FileFinder> mockFileFinders(MockFileFindersRef ref) {
+  //Add your file finders here.
+  return [
+    SpoonacularFileFinder(),
+  ];
+}
+
+@riverpod
+MockInterceptor mockInterceptor(MockInterceptorRef ref) {
+  return MockInterceptor(fileFinders: ref.watch(mockFileFindersProvider));
+}
+
+@riverpod
 Dio dio(DioRef ref) {
   final dio = Dio();
   final flavorRepository = ref.watch(flavorRepositoryProvider);
   if (flavorRepository.shouldMockEndpoints()) {
-    dio.interceptors.add(MockInterceptor());
+    dio.interceptors.add(ref.watch(mockInterceptorProvider));
   }
   return dio;
 }
