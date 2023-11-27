@@ -21,13 +21,18 @@ class CreditScoreWidget extends StatelessWidget {
       userMessage = 'Oh no! Your score dropped!';
     }
 
+    const circleSize = 275.0;
+    const progressIndicatorSize = circleSize - 50;
+    const cardColor = Color.fromARGB(255, 250, 250, 250);
+
     Widget bigCircle = Container(
-      width: 275,
-      height: 275,
+      width: circleSize,
+      height: circleSize,
       decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 250, 250, 250),
-          shape: BoxShape.circle,
-          boxShadow: [_cardShadow]),
+        color: cardColor,
+        shape: BoxShape.circle,
+        boxShadow: [_cardShadow],
+      ),
     );
 
     return SizedBox(
@@ -42,9 +47,10 @@ class CreditScoreWidget extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.all(32),
               decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 250, 250, 250),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [_cardShadow]),
+                color: cardColor,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [_cardShadow],
+              ),
             ),
           ),
           Positioned(
@@ -53,8 +59,8 @@ class CreditScoreWidget extends StatelessWidget {
               alignment: AlignmentDirectional.center,
               children: [
                 SizedBox(
-                  width: 225,
-                  height: 225,
+                  width: progressIndicatorSize,
+                  height: progressIndicatorSize,
                   child: Transform.rotate(
                     angle: -pi / 1.24,
                     child: TweenAnimationBuilder<double>(
@@ -80,8 +86,8 @@ class CreditScoreWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 275,
-                  height: 275,
+                  width: circleSize,
+                  height: circleSize,
                   child: SvgPicture.asset(
                     'assets/progress_mask.svg',
                   ),
