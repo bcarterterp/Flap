@@ -176,16 +176,25 @@ class CreditButton extends StatelessWidget {
     return Container(
       height: 48,
       width: 132,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [_cardShadow],
         borderRadius: BorderRadius.circular(16),
       ),
-      child: InkWell(
-        onTap: onClick,
-        child: Center(
-          child: SvgPicture.asset(logo),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onClick,
+          splashColor: const Color.fromARGB(255, 242, 242, 242),
+          customBorder: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+            child: Center(
+              child: SvgPicture.asset(logo),
+            ),
+          ),
         ),
       ),
     );
