@@ -12,7 +12,6 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const theme = AppTheme();
-
     // ProviderScope is what makes Riverpod work.
     // MaterialApp.router is what sets our routerConfig to our GoRouter object
     return MaterialApp.router(
