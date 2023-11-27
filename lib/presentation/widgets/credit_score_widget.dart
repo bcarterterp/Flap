@@ -114,7 +114,7 @@ class CreditScoreWidget extends StatelessWidget {
                     Row(
                       children: [
                         scoreDifferenceArrow,
-                        Text(creditInfo.scoreDifference.toString(),
+                        Text(creditInfo.scoreDifference.abs().toString(),
                             style: const TextStyle(fontSize: 18)),
                       ],
                     )
