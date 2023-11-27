@@ -19,7 +19,7 @@ main() {
             authRepositoryProvider.overrideWith((ref) => authRepository),
           ],
         );
-        const userInfo = UserInfo(name: "test", email: "test");
+        const userInfo = UserInfo(name: "test", email: "test", jwtToken: "");
         authRepository.changeResponse(
             Future.value(const SuccessRequestResponse(userInfo)));
         final useCase = container.read(logInUseCaseProvider);

@@ -51,6 +51,10 @@ dependencies:
   # required package for the http mock adapter which is used to unit test dio
   http: ^1.1.0
   envied: ^0.3.0+3
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  flutter_secure_storage: ^9.0.0
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +94,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  # Adds code generation (synthetic package) support
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:

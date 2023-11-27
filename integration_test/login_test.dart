@@ -1,17 +1,26 @@
-import 'package:flap_app/main.dart';
+import 'package:flap_app/my_app.dart';
+import 'package:flap_app/util/flavor/flavor.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+
+import '../test/domain/repository/auth/flavor/flavor_repository_fake.dart';
 import '../test/presentation/screens/login/login_screen.dart';
 
 void main() {
   // This line is required for testing on web browsers
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   // Define screen for more readable code
-  final loginScreen = Logincreen();
+  const flavor = Flavor.dev;
+  FlavorRepositoryFake devFlavorConfig =
+      FlavorRepositoryFake.withFlavor(flavor);
+  final appTitle = devFlavorConfig.getAppTitle();
+  final loginScreen = LoginScreenElements(appTitle);
+
   group('Home Integration Tests', () {
-    testWidgets('test page elements', (tester) async {
+    testWidgets('Given user navigates to sign-in screen, when page loads, then all screen widgets are present in the hierarchy', (tester) async {
       // Causes test to wait for app to finish launch before testing
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
 
       // Assertions below
       expect(loginScreen.title, findsOneWidget);
@@ -20,7 +29,7 @@ void main() {
       expect(loginScreen.passwordField, findsOneWidget);
     });
 
-    testWidgets('test login error display', (tester) async {
+    testWidgets('Given user is trying to sign-in, when information provided is not accurate or required information is missing, then appropriate error state is presented to user', (tester) async {
       // Note: performs the same validation as the widget test
       // example difference being that these tests involve
       // launching the app on an emulator for validation
@@ -30,7 +39,7 @@ void main() {
       // navigate through multiple screens to test an entire flow.
 
       // Causes test to wait for app to finish launch before testing
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
 
       // Verify no errors present at first
       expect(loginScreen.emailEmptyError, findsNothing);

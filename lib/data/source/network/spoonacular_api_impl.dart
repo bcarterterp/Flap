@@ -4,23 +4,24 @@ import 'package:flap_app/data/dto/recipe_dto.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
-import 'package:flap_app/env/env.dart';
+import 'package:flap_app/domain/repository/flavor/flavor_repository.dart';
+import 'package:flap_app/util/env/env.dart';
 
 class SpoonacularApiImpl implements SpoonacularApi {
   final Dio dio;
-  
-  final Uri spoonacularUri = Uri(
-    scheme: "https",
-    host: "api.spoonacular.com",
-    path: "recipes/random",
-    queryParameters: {
-      "number": "20",
-      "apiKey": Env.spoonacularApiKey,
-    },
-  );
+  final FlavorRepository flavorRepo;
+  late final Uri spoonacularUri;
 
-
-  SpoonacularApiImpl({required this.dio});
+  SpoonacularApiImpl({required this.dio, required this.flavorRepo}):
+    spoonacularUri = Uri(
+      scheme: "https",
+      host: flavorRepo.getBaseUrlHost(),
+      path: "recipes/random",
+      queryParameters: {
+        "number": "20",
+        "apiKey": Env.spoonacularApiKey,
+      },
+    );
 
   @override
   Future<RequestResponse<List<Recipe>, DioException>> getRandomRecipes() async {
@@ -37,7 +38,7 @@ class SpoonacularApiImpl implements SpoonacularApi {
       // that falls out of the range of 2xx and is also not 304.
       if (error.response != null) {
         //Uses DioException types to print error message
-        log('$error');
+        log(error.toString());
         return Future.value(ErrorRequestResponse(error));
       } else {
         // Something happened in setting up or sending the request that triggered an Error
