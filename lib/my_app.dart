@@ -12,11 +12,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const theme = AppTheme();
-    final appStateNotifier = ref.watch(appStateProvider.notifier);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      appStateNotifier.initDependencies();
-    });
     // ProviderScope is what makes Riverpod work.
     // MaterialApp.router is what sets our routerConfig to our GoRouter object
     return MaterialApp.router(
