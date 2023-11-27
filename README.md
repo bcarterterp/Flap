@@ -1,3 +1,19 @@
+## How to Run and Build for the First Time
+
+- First, create a .env file at the root of the project. This file will include the api key for spoonacular (reach out to a code-owner for the spoonacular password. You also can create your own account, this is a free API! ):  
+
+    `SPOONACULAR_API_KEY=<insert api key here from 1password>`
+  
+- We rely on generated code files in this project, so after .env is created - run the below command:  
+
+    `flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs`
+
+- You can launch the app two ways:
+  - **Terminal**: Use the below command (substitute 'dev' with the flavor you need)  
+
+    `flutter run --flavor dev --dart-define="FLAVOR=dev" `
+  - **Launch from VS Code**: In the Run and Debug menu, there will be a drop-down menu with flavors specified - as well as unit tests / integration test build configurations. 
+
 ## Philosophy
 
 - Code is organic, and changes frequently, so as a team we should be aligned on how it grows, and is maintained. The base architecture should be built keeping [SOLID](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design) in mind. Allowing for flexibility when needed, but also dependable. It should be easy for newer people to ramp up, because no one likes to spend a month just to start contributing. Everyone has ownership of the codebase. Take a look [here](https://www.tatvasoft.com/outsourcing/2022/05/software-development-principles.html) for more direction!
