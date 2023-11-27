@@ -1,6 +1,6 @@
 ## Advanced Widgets
 
-In this branch, there is a new screen in the app called 'Demo Widgets'. On that screen you will find an advanced credit score widget example. This widget demonstrates some more complicated customization like custom shapes, shadows, layering/stacking, and animations.
+In this branch, there is a new screen in the app called 'Demo Widgets'. On that screen you will find an advanced credit score widget example. This widget demonstrates some more complicated customization like custom shapes, shadows, layering/stacking, animations, and use of local assets.
 
 ## Philosophy
 
