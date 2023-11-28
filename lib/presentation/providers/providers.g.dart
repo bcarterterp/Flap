@@ -49,7 +49,7 @@ final dioProvider = AutoDisposeProvider<Dio>.internal(
 );
 
 typedef DioRef = AutoDisposeProviderRef<Dio>;
-String _$spoonacularApiHash() => r'6dffef649327b55186934bd975b6a09b806f9e4f';
+String _$spoonacularApiHash() => r'836cf3d7466c6a4f07a730e5ee6a895e6b35b2f4';
 
 /// See also [spoonacularApi].
 @ProviderFor(spoonacularApi)
@@ -129,5 +129,22 @@ final secureStorageProvider = AutoDisposeProvider<StorageService>.internal(
 );
 
 typedef SecureStorageRef = AutoDisposeProviderRef<StorageService>;
+String _$sharedPrefRepositoryHash() =>
+    r'b93095058cddb4d11366d40ad68f4d99a5ca8ad9';
+
+/// See also [sharedPrefRepository].
+@ProviderFor(sharedPrefRepository)
+final sharedPrefRepositoryProvider =
+    AutoDisposeProvider<SharedPrefRepository>.internal(
+  sharedPrefRepository,
+  name: r'sharedPrefRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sharedPrefRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SharedPrefRepositoryRef = AutoDisposeProviderRef<SharedPrefRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
