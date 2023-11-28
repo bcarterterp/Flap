@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flap_app/domain/entity/event.dart';
-import 'package:flap_app/l10n/app_localizations_context.dart';
+import 'package:flap_app/util/l10n/app_localizations_context.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state_notifier.dart';
 import 'package:flap_app/presentation/screens/home/widgets/recipe_grid_item.dart';

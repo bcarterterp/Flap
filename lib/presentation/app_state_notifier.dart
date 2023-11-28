@@ -12,6 +12,8 @@ class AppStateNotifier extends StateNotifier<AppState> {
   Future<void> initDependencies() async {
     state = AppState.loading();
 
+    //This Future.delayed is to simulate a lengthy amount of time for the app to initialize
+    //For real development, free to remove this block of code except for lines 18-19
     Future.delayed(const Duration(milliseconds: 1200), () {
       _sharedPrefRepository.init();
       state = AppState.success();
