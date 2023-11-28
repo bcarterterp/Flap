@@ -12,7 +12,9 @@ class AppStateNotifier extends StateNotifier<AppState> {
   Future<void> initDependencies() async {
     state = AppState.loading();
 
-    await _sharedPrefRepository.init();
-    state = AppState.success();
+    Future.delayed(const Duration(milliseconds: 1200), () {
+      _sharedPrefRepository.init();
+      state = AppState.success();
+    });
   }
 }

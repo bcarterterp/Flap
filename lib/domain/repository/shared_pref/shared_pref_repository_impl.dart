@@ -4,8 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPrefRepositoryImpl extends SharedPrefRepository {
   late SharedPreferences _sharedPrefs;
   @override
-  init() async {
-    _sharedPrefs = await SharedPreferences.getInstance();
+  Future init() async {
+    await SharedPreferences.getInstance();
   }
 
   @override
