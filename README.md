@@ -145,7 +145,7 @@ To test Bitrise locally install Bitrise on your machine using Homebrew by runnin
 
 Notice the bitrise.yml file found in the root directory.
 
-The bitrise.yml file contains all workflows created for this project
+The bitrise.yml file contains all workflows created for this project.
 In order to run a pipeline, you must also have a .bitrise.secrets.yml file that contain our project secrets. This can be found on OnePassword.
 
 Once you added .bitrise.secrets.yml to the root, you can run
