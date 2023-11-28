@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+//the below is a custom splash screen that displays a lottie animation
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 

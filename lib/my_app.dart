@@ -26,10 +26,8 @@ class MyAppState extends ConsumerState<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    //final appStateNotifier = ref.watch(appStateProvider.notifier);
     final appState = ref.watch(appStateProvider);
     const theme = AppTheme();
-    // ProviderScope is what makes Riverpod work.
     // MaterialApp.router is what sets our routerConfig to our GoRouter object
     if (appState == AppState.success()) {
       return MaterialApp.router(
@@ -41,6 +39,7 @@ class MyAppState extends ConsumerState<MyApp> {
         routerConfig: navigationRouter,
       );
     } else {
+      //what app is not in success state yet, display custom splash screen
       return const MaterialApp(home: SplashScreen());
     }
   }

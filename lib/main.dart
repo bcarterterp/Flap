@@ -13,5 +13,6 @@ FutureOr<void> main(List<String> arguments) async {
   } else {
     FlavorConfig.flavor = Flavor.dev;
   }
+  // ProviderScope is what makes Riverpod work.
   runApp(const ProviderScope(child: MyApp()));
 }
