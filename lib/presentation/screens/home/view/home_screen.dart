@@ -35,7 +35,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.go('/widgets');
+          context.push('/widgets');
         },
         child: const Icon(Icons.widgets),
       ),
