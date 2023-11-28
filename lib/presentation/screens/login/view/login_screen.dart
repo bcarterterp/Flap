@@ -4,7 +4,7 @@ import 'package:flap_app/presentation/screens/login/notifier/login_screen_state_
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flap_app/l10n/app_localizations_context.dart';
+import 'package:flap_app/util/l10n/app_localizations_context.dart';
 
 /// Generic log in screen with email and password fields.
 class LoginScreen extends ConsumerWidget {
