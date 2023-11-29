@@ -23,6 +23,9 @@ class RecipeGridItem extends ConsumerWidget {
               FadeInImage(
                 placeholder: MemoryImage(kTransparentImage),
                 image: NetworkImage(recipe.image ?? ""),
+                imageErrorBuilder: (context, error, stackTrace) => const Center(
+                  child: Icon(Icons.broken_image, size: 150,),
+                ),
                 fit: BoxFit.cover,
                 height: 200,
                 width: double.infinity,
