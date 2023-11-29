@@ -1,11 +1,1 @@
-enum Flavor {
-  dev,
-  prod,
-  mock
-}
-
-enum ApiEnv {
-  dev,
-  prod,
-  mock
-}
+enum Flavor { dev, prod, mock }

@@ -8,9 +8,9 @@ class SpoonacularFileFinder extends FileFinder {
 
   @override
   String? getJsonPath(Uri uri) {
-    if (host != uri.host) return null;
-    if (path != uri.path) return null;
-
+    if (host != uri.host || path != uri.path) {
+      return null;
+    }
     return 'spoonacular/recipes/random/first_twenty.json';
   }
 }
