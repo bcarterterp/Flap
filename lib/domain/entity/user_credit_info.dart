@@ -9,63 +9,68 @@ class UserCreditInfo extends Equatable {
   final int score;
   final int scoreDifference;
 
-  ScoreRange get scoreInfo {
-    ScoreRange info = ScoreRange.poor;
+  ScoreGroup get scoreGroup {
+    ScoreGroup userScoreGroup = ScoreGroup.poor;
 
-    switch (score) {
-      case <= 579:
-        info = ScoreRange.poor;
-      case > 579 && <= 669:
-        info = ScoreRange.fair;
-      case > 669 && <= 739:
-        info = ScoreRange.good;
-      case > 739 && <= 799:
-        info = ScoreRange.veryGood;
-      case > 799:
-        info = ScoreRange.excellent;
+    for (var group in ScoreGroup.values) {
+      if (score >= group.range.min && score <= group.range.max) {
+        userScoreGroup = group;
+      }
     }
 
-    return info;
+    return userScoreGroup;
   }
 
   @override
   List<Object?> get props => [score, scoreDifference];
 }
 
-enum ScoreRange {
+enum ScoreGroup {
   poor(
-    range: '(300-579)',
-    rangeTitle: 'Poor',
-    scoreColor: 0xFFde1818,
+    range: Range(min: 300, max: 579),
+    title: 'Poor',
+    color: 0xFFde1818,
   ),
   fair(
-    range: '(580-669)',
-    rangeTitle: 'Fair',
-    scoreColor: 0xFFf57520,
+    range: Range(min: 580, max: 669),
+    title: 'Fair',
+    color: 0xFFf57520,
   ),
   good(
-    range: '(670-739)',
-    rangeTitle: 'Good',
-    scoreColor: 0xFFbcd613,
+    range: Range(min: 670, max: 739),
+    title: 'Good',
+    color: 0xFFbcd613,
   ),
   veryGood(
-    range: '(740-799)',
-    rangeTitle: 'Very good',
-    scoreColor: 0xFF7bde0b,
+    range: Range(min: 740, max: 799),
+    title: 'Very good',
+    color: 0xFF7bde0b,
   ),
   excellent(
-    range: '(800-850)',
-    rangeTitle: 'Excellent',
-    scoreColor: 0xFF20b509,
+    range: Range(min: 800, max: 850),
+    title: 'Excellent',
+    color: 0xFF20b509,
   );
 
-  const ScoreRange({
+  const ScoreGroup({
     required this.range,
-    required this.rangeTitle,
-    required this.scoreColor,
+    required this.title,
+    required this.color,
   });
 
-  final String range;
-  final String rangeTitle;
-  final int scoreColor;
+  final Range range;
+  final String title;
+  final int color;
+}
+
+class Range {
+  const Range({required this.min, required this.max});
+
+  final int min;
+  final int max;
+
+  @override
+  String toString() {
+    return '$min-$max';
+  }
 }

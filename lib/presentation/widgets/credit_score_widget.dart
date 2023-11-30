@@ -24,6 +24,7 @@ class CreditScoreWidget extends StatelessWidget {
     const circleSize = 275.0;
     const progressIndicatorSize = circleSize - 50;
     const cardColor = Color.fromARGB(255, 250, 250, 250);
+    int maxCreditScore = ScoreGroup.excellent.range.max;
 
     Widget bigCircle = Container(
       width: circleSize,
@@ -66,7 +67,8 @@ class CreditScoreWidget extends StatelessWidget {
                     child: TweenAnimationBuilder<double>(
                       tween: Tween<double>(
                         begin: 0.0,
-                        end: creditInfo.score / (850 + (850 / 3)),
+                        end: creditInfo.score /
+                            (maxCreditScore + (maxCreditScore / 3)),
                       ),
                       curve: Curves.easeInOut,
                       duration: const Duration(milliseconds: 900),
@@ -78,7 +80,7 @@ class CreditScoreWidget extends StatelessWidget {
                           backgroundColor:
                               const Color.fromRGBO(220, 220, 220, 1),
                           valueColor: AlwaysStoppedAnimation<Color>(
-                            Color(creditInfo.scoreInfo.scoreColor),
+                            Color(creditInfo.scoreGroup.color),
                           ),
                         );
                       },
@@ -97,13 +99,13 @@ class CreditScoreWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      creditInfo.scoreInfo.rangeTitle,
+                      creditInfo.scoreGroup.title,
                       style: const TextStyle(
                         fontWeight: FontWeight.w900,
                       ),
                     ),
                     Text(
-                      creditInfo.scoreInfo.range,
+                      '(${creditInfo.scoreGroup.range.toString()})',
                       style: const TextStyle(fontSize: 11),
                     ),
                     Text(
