@@ -1,4 +1,4 @@
-import 'package:flap_app/presentation/my_app.dart';
+import 'package:flap_app/presentation/flap_app.dart';
 import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flap_app/util/flavor/flavor_config.dart';
 import 'package:flutter/material.dart';
@@ -17,5 +17,5 @@ void main(List<String> arguments) {
       FlavorConfig.flavor = Flavor.dev;
       break;
   }
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: FlapApp()));
 }

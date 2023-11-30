@@ -1,4 +1,4 @@
-import 'package:flap_app/presentation/my_app.dart';
+import 'package:flap_app/presentation/flap_app.dart';
 import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
