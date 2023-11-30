@@ -1,4 +1,1 @@
-enum Flavor {
-  dev,
-  prod,
-}
+enum Flavor { dev, prod, mock }

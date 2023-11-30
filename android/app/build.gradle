@@ -64,6 +64,11 @@ android {
     flavorDimensions "flavor_app"
 
     productFlavors {
+        mock {
+            dimension "flavor_app"
+            applicationIdSuffix ".mock"
+            versionNameSuffix ".mock"
+        }
         dev {
             dimension "flavor_app"
             applicationIdSuffix ".dev"
