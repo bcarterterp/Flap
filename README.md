@@ -1,41 +1,48 @@
+# Flap App Flutter Sandbox
+
 ## Philosophy
-This repository is meant as a learning tool to get familiar with Flutter and the tools we have found useful in development. The app may not do much, but it aims at giving a foundation of how the architecture works, and how useful libraries work with each other. This repository is not perfect, there will always be ways to improve. Once you feel comfortable, think about contributing to make it better. All help is welcome!
+This repository is meant as a learning tool to get familiar with Flutter, and the tools we have found useful in development. The app may not do much, but it aims at giving a foundation of how the architecture works, and how useful libraries work with each other. This repository is not perfect, there will always be ways to improve. Once you feel comfortable, think about contributing to make it better. All help is welcome!
 
 ## Table of Contents
-1. Getting Started with Flutter
-2. Running and Building the App
-3. Libraries Used
-4. Architecture
-5. File Structure
-6. Dependency Injection
-7. Navigation
-8. Environment Variables
-9. Testing
-10. Mocking API Calls
-11. Analytics Implementation
+1. [Getting Started with Flutter](#getting-started-with-flutter)
+2. [Running and Building the App](#running-and-building-the-app)
+3. [Libraries Used](#libraries-used)
+4. [Architecture](#architecture)
+5. [Folder Structure](#folder-structure)
+6. [Dependency Injection](#dependency-injection)
+7. [Navigation](#navigation)
+8. [Environment Variables](#environment-variables)
+9. [Testing](#how-and-what-is-tested)
+10. [Mocking API Calls](#mocking-api-calls)
+11. [Analytics Implementation](#analytics-implementation)
 
-## How to Run and Build for the First Time
 
-  
+## Getting Started With Flutter
+
+If this is your first flutter project, don't worry, we will help you through it! Below are some great resources to get caught up to speed
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+
+
+## Running and Building the App
 
 - First, create a .env file at the root of the project. This file will include the api key for Spoonacular (reach out to a code-owner for the Spoonacular password. You also can create your own account, this is a free API! ):
 `SPOONACULAR_API_KEY=<insert api key here from 1password>`
-
 - We rely on generated code files in this project, so after .env is created - run the below command:
 `flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs`
-
-  
 
 You can launch the app two ways:
 
 - **Terminal**: Use the below command (substitute 'dev' with the flavor you need)
 `flutter run --flavor dev --dart-define="FLAVOR=dev" `
-
 - **Launch from VS Code**: In the Run and Debug menu, there will be a drop-down menu with flavors specified - as well as unit tests / integration test build configurations.
 
   
-
-## Libraries and Frameworks Used
+## Libraries Used
 
 - State Management & Dependency Injection: [Flutter Riverpod](https://riverpod.dev/)
 - Navigation: [go_router] (https://pub.dev/packages/go_router)
@@ -45,6 +52,7 @@ You can launch the app two ways:
 - Secure Storage: [Flutter Secure Storage](https://pub.dev/packages/flutter_secure_storage)
 - Object Equitability: [Equatable](https://pub.dev/packages/equatable)
 - Localization: [Localization](https://pub.dev/packages/localization) Allows you to provide translation for different locales. To provide a new locale, simply add an app_[locale].arb file to the /lib/I10n folder and add string translations.
+
 
 ## Architecture
 
@@ -56,13 +64,16 @@ This project uses a slightly different folder structure for tests than the offic
 
 The test folder structure suggested by the flutter documentation can be found [here]([https://docs.flutter.dev/testing/integration-tests](https://docs.flutter.dev/testing/integration-tests))
 
+
 ## Dependency Injection
 
 Dependency injection (DI) is a fundamental concept in software development that promotes loose coupling and enhances the maintainability, scalability, and testability of code. By allowing the injection of dependencies from external sources rather than hard-coding them within a class or module, DI facilitates modular and reusable code. This decoupling of components makes it easier to replace or upgrade individual modules without affecting the entire system, fostering a more flexible and agile development process. Moreover, DI simplifies unit testing, as dependencies can be easily substituted with mock objects or test doubles, enabling more robust and efficient testing of isolated components. Overall, dependency injection promotes the principles of separation of concerns and inversion of control, leading to cleaner, more modular, and maintainable code in software applications.
 
+
 ## Navigation
 
 go_router is a declarative routing package helpful for advanced navigation requirements (such as a web app that uses direct links to each screen or an app with multiple "navigation graphs" or navigation widgets). This package was mentioned here in the flutter docs: https://docs.flutter.dev/ui/navigation
+
 
 ## Environment Variables
 
@@ -76,7 +87,8 @@ An example of how Envied is used can be found at `/lib/env/env.dart`
 2. Any time you make a change you need to your env you need to rerun the build runner so its picked up ([this is an open issue](https://github.com/petercinibulk/envied/issues/6) right now for Envied)
 3. The first time you run the build-runner with Envied you have to comment out the env.dart file, run the build runner, then uncomment the file and run again ([there is also an open issue](https://github.com/petercinibulk/envied/issues/59) on this)
 
-## How and What Do We Test?
+
+## How and What Is Tested?
 
 Testing is being run primarily using VSCode. Extensions that help make testing possible include:
 - [Dart language extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
@@ -92,6 +104,18 @@ This project follows the Page Object Model structure, with each screen having a 
 
 For more information on the Page Object Model, please visit this [helpful page](https://www.geeksforgeeks.org/page-object-model-pom/).
 
+### Unit Tests:
+
+These tests are described by the flutter documentation as verifying "the behavior of a method or class". These tests are the most lightweight of the three, and don't verify any visual elements. Instead, these tests are meant to assert on the logic of a single method or overall class, and ensure it returns the value we expect. These tests are also meant to be run as part of PR verification, as they help make sure that the app is still functioning as expected after changing a functionality.
+
+For more information, please see the official flutter docs related to [Unit Testing](https://docs.flutter.dev/cookbook/testing/unit/introduction)
+
+### Widget Tests:
+
+These tests are designed to be lightweight and focus on asserting on the hierarchy of the application, and the widgets contained within it. The core difference between widget tests and integration tests, is that these tests are run without the need to build and emulate your application. This can save valuable time on a CI/CD pipeline. Due to their lightweight and quick-to-run nature, these are the ui related tests that are best suited to run as part of the PR verification process.
+
+For more information, please see the official flutter docs related to [Widget Testing](https://docs.flutter.dev/cookbook/testing/widget/introduction).
+
 ### Integration Testing:
 
 These tests are designed to be more exhaustive and robust, testing the logic of the application and ensuring the correct scenarios are occurring as expected. These tests are meant to assert on end2end user journeys laid out in Acceptance Criteria. Meaning, these tests will complete a certain scenario in the app from start to finish.
@@ -102,21 +126,13 @@ Flutter Integration tests build the full application on an emulated device or br
 
 For more information, please see the official flutter docs related to [Integration Testing](https://docs.flutter.dev/testing/integration-tests).
 
-### Widget Tests:
-
-These tests are designed to be lightweight and focus on asserting on the hierarchy of the application, and the widgets contained within it. The core difference between widget tests and integration tests, is that these tests are run without the need to build and emulate your application. This can save valuable time on a CI/CD pipeline. Due to their lightweight and quick-to-run nature, these are the ui related tests that are best suited to run as part of the PR verification process.
-
-For more information, please see the official flutter docs related to [Widget Testing](https://docs.flutter.dev/cookbook/testing/widget/introduction).
-
-### Unit Tests:
-
-These tests are described by the flutter documentation as verifying "the behavior of a method or class". These tests are the most lightweight of the three, and don't verify any visual elements. Instead, these tests are meant to assert on the logic of a single method or overall class, and ensure it returns the value we expect. These tests are also meant to be run as part of PR verification, as they help make sure that the app is still functioning as expected after changing a functionality.
-
-For more information, please see the official flutter docs related to [Unit Testing](https://docs.flutter.dev/cookbook/testing/unit/introduction)
-
 ### Riverpod In Testing
 
 To reduce the amount of setup needed for tests, we are leveraging dependency injection. While we are leveraging Riverpod's dependency injection for tests, we still have the flexibility of substituting a Fake/Mock implementation for a real one. This allows us to configure our app as close to the real thing, while still allowing the ability to build out test configurations. For more infor on how Riverpod is used in testing check out Riverpod's [Testing Documentation](https://riverpod.dev/docs/essentials/testing)
+
+### Mockito:
+
+The Mockito flutter package (https://pub.dev/packages/mockito) in combination with the build-runner will create generated files with mocked class code. For example, in the home_page_state_notifier_test the repository class is annotated above the test as a class that requires a mock. The behavior needs to be defined for the mocked method (ex. getRandomRecipes is defined with a .thenAnswer). A provideDummy is also required in cases where the return type is generic and your test is expecting an explicit return type. The build runner will auto-generate the corresponding mock with a class that ends with "mocks.dart".
 
 ### Fakes versus Mocks
 
@@ -136,9 +152,6 @@ Android has an app called [Android Accessibility Scanner](https://play.google.co
 
 iOS has access to a UI Test class called performAccessibilityAudit that can be performed with an emulator via XCTest. The console output will display any issues found while the audit was performed. The Accessibility Audit is based on [Apple's Accessibility best practices](https://developer.apple.com/documentation/xctest/xcuiapplication/4191487-performaccessibilityaudit).
 
-### Mockito:
-
-The Mockito flutter package (https://pub.dev/packages/mockito) in combination with the build-runner will create generated files with mocked class code. For example, in the home_page_state_notifier_test the repository class is annotated above the test as a class that requires a mock. The behavior needs to be defined for the mocked method (ex. getRandomRecipes is defined with a .thenAnswer). A provideDummy is also required in cases where the return type is generic and your test is expecting an explicit return type. The build runner will auto-generate the corresponding mock with a class that ends with "mocks.dart".
 
 ## Mocking API Calls
 
@@ -188,6 +201,6 @@ List<FileFinder> mockFileFinders(MockFileFindersRef ref) {
 
 Mocked API calls currently are turned on only for the Mock flavor. This makes it very intentional when you want to use it. It's just that easy!
 
-### Analytics Platforms
+### Analytics Implementation
 
 This project provides an abstract class to support multiple Analytics platforms, the class can be found at `lib/domain/repository/analytics_repository.dart`. Users are expected to provide implementations for `logEvent, setUserProperties, and screenView` and instantiate the class in `lib/data/repository/analytics/analytics_repository_impl.dart`. The presentation layer can access analytics via the `analyticsProvider` defined in the providers file.
