@@ -8,10 +8,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 FutureOr<void> main(List<String> arguments) async {
   const flavor = String.fromEnvironment('FLAVOR', defaultValue: 'dev');
-  if (flavor == "prod") {
-    FlavorConfig.flavor = Flavor.prod;
-  } else {
-    FlavorConfig.flavor = Flavor.dev;
+  switch (flavor) {
+    case 'prod':
+      FlavorConfig.flavor = Flavor.prod;
+      break;
+    case 'mock':
+      FlavorConfig.flavor = Flavor.mock;
+      break;
+    default:
+      FlavorConfig.flavor = Flavor.dev;
+      break;
   }
   runApp(const ProviderScope(child: MyApp()));
 }

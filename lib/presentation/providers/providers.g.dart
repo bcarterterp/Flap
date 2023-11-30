@@ -35,7 +35,37 @@ final logInUseCaseProvider = AutoDisposeProvider<LogInUseCase>.internal(
 );
 
 typedef LogInUseCaseRef = AutoDisposeProviderRef<LogInUseCase>;
-String _$dioHash() => r'58eeefbd0832498ca2574c1fe69ed783c58d1d8f';
+String _$mockFileFindersHash() => r'c5c891820112e722fecf7a27315fc3330cf9e798';
+
+/// See also [mockFileFinders].
+@ProviderFor(mockFileFinders)
+final mockFileFindersProvider = AutoDisposeProvider<List<FileFinder>>.internal(
+  mockFileFinders,
+  name: r'mockFileFindersProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$mockFileFindersHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef MockFileFindersRef = AutoDisposeProviderRef<List<FileFinder>>;
+String _$mockInterceptorHash() => r'620a8b603172087e8b1e0db86d930f34c1dd42df';
+
+/// See also [mockInterceptor].
+@ProviderFor(mockInterceptor)
+final mockInterceptorProvider = AutoDisposeProvider<MockInterceptor>.internal(
+  mockInterceptor,
+  name: r'mockInterceptorProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$mockInterceptorHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef MockInterceptorRef = AutoDisposeProviderRef<MockInterceptor>;
+String _$dioHash() => r'b77bfdc86abb10d786fa42c22180b07f00a6be8d';
 
 /// See also [dio].
 @ProviderFor(dio)

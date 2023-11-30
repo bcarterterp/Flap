@@ -117,7 +117,6 @@ Please take a look at some of these resources for further reading:
 - [Prefer Fakes Over Mocks](https://tyrrrz.me/blog/fakes-over-mocks)
 - [Interchangable Fakes and Mocks](https://medium.com/@june.pravin/mocking-is-not-practical-use-fakes-e30cc6eaaf4e)
 
-
 ### Accessibilty Tests
 Android has an app called [Android Accessibility Scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor&hl=en_US&gl=US) that can be used to perform automated accessibility audits. This app is only able to be installed and used on a physical Android device, due to android emulators lack of access to the play store. This app highlights parts of the app that don't fit into standard accessibilty guidelines.
 ![Accessiblity Scanner](accessibilityscanner.png)
@@ -127,6 +126,42 @@ iOS has access to a UI Test class called performAccessibilityAudit that can be p
 ### Mockito:
 The Mockito flutter package (https://pub.dev/packages/mockito) in combination with the build-runner will create generated files with mocked class code. For example, in the home_page_state_notifier_test the repository class is annotated above the test as a class that requires a mock. The behavior needs to be defined for the mocked method (ex. getRandomRecipes is defined with a .thenAnswer). A provideDummy is also required in cases where the return type is a generic and your test is expecting an explicit return type. The build runner will auto-generate the corresponding mock with a class that ends with "mocks.dart".
 
+## Mocking API Calls
+There are times where you want to mock an API call. Maybe the API is still in development, maybe they are down all together, but most importantly you can use this for reliable integration tests! Below are a couple things to know and keep in mind while you make changes.
+
+### How does it work?
+In order to mock API calls, we added an Interceptor to our Dio object. Interceptors are essentially a middleware between the call you want to make and the response you get back. We leverage this flow by making our own Interceptor. The MockInterceptor is in charge of checking out the URI, and checking to see if it matches responses we are looking for through FileFinders. FileFinders are in charge of checking to see if the URI matches some sort of usage. If you look at SpoontacularFileFinder, it is in charge of checking if the URi matches a call to fetch recipies. If the structure of the URI matches, then the FileFinder returns the file name of the mock response we want to return. We wanted to keep this example as simple as we could, but feel free configure it as you like!
+
+TLDR:
+1. API call is started
+2. MockInterceptor loops through FileFinders
+3. FileFinders check to see if the URI matches something it is looking for
+4. If any FileFinder returns a file name, then we return that files JSON. Otherwise, we continue with making the API call without any interference.
+
+### How do I make my own FileFinder?
+You may want to address a specific use case for mocking a response. This should be done by making your own FileFinder, which is relatively easy. Create your FileFinder class, and make sure to extend FileFinder.
+```
+class MyFileFinder extends FileFinder {
+  @override
+  String? getJsonPath(Uri uri) {
+    //Logic to determine if the URI is the one you are looking for
+  }
+}
+```
+
+After that make sure to add it to the list of current FileFinders used. The list of current FileFinders can be found in the providers.dart file.
+```
+@riverpod
+List<FileFinder> mockFileFinders(MockFileFindersRef ref) {
+  //Add your file finders here.
+  return [
+    SpoonacularFileFinder(),
+  ];
+}
+```
+
+### Testing with Mocked API Calls
+Mocked API calls currently are turned on only for the Mock flavor. This makes it very intentional when you want to use it. It's just that easy!
 
 ### Folder Structure
 This project uses a silightly different folder structure for tests than the official flutter docs. We have opted to mirror the folder structure of the greater application, to make it easier for both developers and test engineers to contribute, and find what they are looking for.
