@@ -21,21 +21,21 @@
             "type": "dart",
             "request": "launch",
             "program": "./test/",
-            "args": ["--flavor", "dev"],
+            "args": ["--flavor", "dev", "--dart-define", "FLAVOR=dev"],
         },
         {
             "name": "Integration Test (Dev Flavor)",
             "program": "integration_test/",
             "type": "dart",
             "request": "launch",
-            "args": ["--flavor", "dev"],
+            "args": ["--flavor", "dev", "--dart-define", "FLAVOR=dev"],
         },
         {
             "name": "Prod - Profile Mode",
             "request": "launch",
             "type": "dart",
             "program": "lib/main_prod.dart",
-            "args": ["--flavor", "prod"],
+            "args": ["--flavor", "prod", "--dart-define", "FLAVOR=prod"],
             "flutterMode": "profile"
         },
         {
@@ -43,7 +43,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main_prod.dart",
-            "args": ["--flavor", "prod"],
+            "args": ["--flavor", "prod", "--dart-define", "FLAVOR=prod"],
             "flutterMode": "release"
         },
     ]
