@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class UserCreditInfo extends Equatable {
-  UserCreditInfo({
+  const UserCreditInfo({
     required this.score,
     required this.scoreDifference,
   });
@@ -9,48 +9,20 @@ class UserCreditInfo extends Equatable {
   final int score;
   final int scoreDifference;
 
-  final _scoreInfo = [
-    const ScoreInfo(
-      range: '(300-579)',
-      rangeTitle: 'Poor',
-      scoreColor: 0xFFde1818,
-    ),
-    const ScoreInfo(
-      range: '(580-669)',
-      rangeTitle: 'Fair',
-      scoreColor: 0xFFf57520,
-    ),
-    const ScoreInfo(
-      range: '(670-739)',
-      rangeTitle: 'Good',
-      scoreColor: 0xFFbcd613,
-    ),
-    const ScoreInfo(
-      range: '(740-799)',
-      rangeTitle: 'Very good',
-      scoreColor: 0xFF7bde0b,
-    ),
-    const ScoreInfo(
-      range: '(800-850)',
-      rangeTitle: 'Excellent',
-      scoreColor: 0xFF20b509,
-    ),
-  ];
-
-  ScoreInfo get scoreInfo {
-    ScoreInfo info = _scoreInfo[0];
+  ScoreRange get scoreInfo {
+    ScoreRange info = ScoreRange.poor;
 
     switch (score) {
       case <= 579:
-        info = _scoreInfo[0];
+        info = ScoreRange.poor;
       case > 579 && <= 669:
-        info = _scoreInfo[1];
+        info = ScoreRange.fair;
       case > 669 && <= 739:
-        info = _scoreInfo[2];
+        info = ScoreRange.good;
       case > 739 && <= 799:
-        info = _scoreInfo[3];
+        info = ScoreRange.veryGood;
       case > 799:
-        info = _scoreInfo[4];
+        info = ScoreRange.excellent;
     }
 
     return info;
@@ -60,8 +32,34 @@ class UserCreditInfo extends Equatable {
   List<Object?> get props => [score, scoreDifference];
 }
 
-class ScoreInfo {
-  const ScoreInfo({
+enum ScoreRange {
+  poor(
+    range: '(300-579)',
+    rangeTitle: 'Poor',
+    scoreColor: 0xFFde1818,
+  ),
+  fair(
+    range: '(580-669)',
+    rangeTitle: 'Fair',
+    scoreColor: 0xFFf57520,
+  ),
+  good(
+    range: '(670-739)',
+    rangeTitle: 'Good',
+    scoreColor: 0xFFbcd613,
+  ),
+  veryGood(
+    range: '(740-799)',
+    rangeTitle: 'Very good',
+    scoreColor: 0xFF7bde0b,
+  ),
+  excellent(
+    range: '(800-850)',
+    rangeTitle: 'Excellent',
+    scoreColor: 0xFF20b509,
+  );
+
+  const ScoreRange({
     required this.range,
     required this.rangeTitle,
     required this.scoreColor,
