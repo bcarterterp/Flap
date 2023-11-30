@@ -1,4 +1,4 @@
-import 'package:flap_app/my_app.dart';
+import 'package:flap_app/presentation/my_app.dart';
 import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flap_app/util/flavor/flavor_config.dart';
 import 'package:flutter/material.dart';

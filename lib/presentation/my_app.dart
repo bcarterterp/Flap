@@ -1,4 +1,4 @@
-import 'package:flap_app/presentation/navigation.dart';
+import 'package:flap_app/presentation/navigation/navigation.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/theme/app_theme.dart';
 import 'package:flutter/material.dart';
