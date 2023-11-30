@@ -1,25 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 class UserCreditInfo extends Equatable {
-  const UserCreditInfo({
+  UserCreditInfo({
     required this.score,
     required this.scoreDifference,
-  });
+  }) : scoreGroup = ScoreGroup.getGroupForScore(score);
 
   final int score;
   final int scoreDifference;
-
-  ScoreGroup get scoreGroup {
-    ScoreGroup userScoreGroup = ScoreGroup.poor;
-
-    for (var group in ScoreGroup.values) {
-      if (score >= group.range.min && score <= group.range.max) {
-        userScoreGroup = group;
-      }
-    }
-
-    return userScoreGroup;
-  }
+  final ScoreGroup scoreGroup;
 
   @override
   List<Object?> get props => [score, scoreDifference];
@@ -61,6 +50,9 @@ enum ScoreGroup {
   final Range range;
   final String title;
   final int color;
+
+  static ScoreGroup getGroupForScore(int score) => ScoreGroup.values.firstWhere(
+      (group) => score >= group.range.min && score <= group.range.max);
 }
 
 class Range {
