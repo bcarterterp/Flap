@@ -18,7 +18,7 @@ popd
 brew install --cask google-cloud-sdk
 
 # Authenticate using service account and send the test apks to Firebase
-gcloud auth activate-service-account --key-file=$path_to_service_file
+gcloud auth activate-service-account --key-file=$path_to_service_account_key_file
 gcloud --quiet config set project $project
 gcloud firebase test android run --type instrumentation \
   --app build/app/outputs/apk/dev/debug/app-dev-debug.apk \
