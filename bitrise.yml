@@ -150,6 +150,7 @@ workflows:
             # not just bash, e.g.:
             # ruby ./path/to/script.rb
         title: Generate Project Environment File
+        run_if: 'false'
     - script@1:
         inputs:
         - content: |
@@ -170,23 +171,30 @@ workflows:
             # not just bash, e.g.:
             # ruby ./path/to/script.rb
         title: Generate Firebase Deployment Private Key File
+        run_if: 'false'
     - flutter-analyze@0:
         inputs:
         - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
     - flutter-build@0:
         is_always_run: true
+        inputs:
+        - ios_output_type: archive
+        - additional_build_params: --flavor dev --dart-define="FLAVOR=dev"
     - flutter@0:
         inputs:
         - version: 3.13.9
         - commands: test
         title: Run Widget Tests
+        run_if: 'false'
     - flutter@0:
         inputs:
         - version: 3.13.9
         - commands: test integration_test
         title: Run Integration Tests
         is_always_run: true
-    - deploy-to-bitrise-io@2: {}
+        run_if: 'false'
+    - deploy-to-bitrise-io@2:
+        run_if: 'false'
     - firebase-app-distribution@0:
         inputs:
         - firebase_token: ''
@@ -194,17 +202,20 @@ workflows:
         - release_notes: Test of deploying Android app binary from Bitrise to Firebase
             (with private key generation!)
         - service_credentials_file: "$FIREBASE_SERVICE_ACCOUNT_KEY_PATH"
-        - app: "$FIREBASE_ANDROID_APP_ID"
+        - app: "$FIREBASE_ANDROID_DEV_APP_ID"
         title: "[BETA] Android Firebase App Distribution"
+        run_if: 'true'
+        is_always_run: true
     - firebase-app-distribution@0:
         inputs:
-        - app: "$FIREBASE_IOS_APP_ID"
+        - app: "$FIREBASE_IOS_DEV_APP_ID"
         - release_notes: Test of deploying iOS app binary from Bitrise to Firebase
         - testers: anthony.dade@willowtreeapps.com, brandon.carter@willowtreeapps.com,
             mia.brunal@willowtreeapps.com
         - service_credentials_file: "$FIREBASE_SERVICE_ACCOUNT_KEY_PATH"
         - firebase_token: ''
         title: "[BETA] iOS Firebase App Distribution"
+        is_always_run: true
     - slack@4:
         inputs:
         - from_username: BitRise Bot
@@ -251,3 +262,4 @@ trigger_map:
   workflow: primary
 - pull_request_source_branch: "*"
   workflow: primary
+ 

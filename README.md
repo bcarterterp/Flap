@@ -139,7 +139,7 @@ This project provides an abstract class to support multiple Analytics platforms,
 ### Bitrise 
 Bitrise is a CI/CD platform that we use to run workflows on our project.
 
-To test Bitrise locally install Bitrise on your machine using Homebrew by running:
+To test Bitrise locally, install Bitrise on your machine using Homebrew by running:
 
 `brew update && brew install bitrise`
 
@@ -152,7 +152,7 @@ Once you added .bitrise.secrets.yml to the root, you can run
 
 `bitrise run primary`
 
-To run the primary workflow, you can replace primary with any workflow you'd like to run.
+To run the primary workflow. You can replace primary with any workflow you'd like to run.
 
 It is suggested to use Bitrise's Workflow Editor GUI on their website to get familiar. You can use the editor, which will update the bitrise.yml on the website, where you can copy and paste it into your editor to test on.
-There is a step to generate a firebase deployment private key file. It looks like this custom step that was created is only working on the CI server currently, so I have set this step a long with some others to be skipped by setting their "run-if" condition to false.
+There is a step to generate a firebase deployment private key file. It looks like this custom step that was created is only working on the CI server currently, so I have set this step along with some others to be skipped by setting their "run-if" condition to false.
