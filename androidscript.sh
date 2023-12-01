@@ -14,6 +14,9 @@ flutter build apk --flavor dev --dart-define="FLAVOR=dev"
 ./gradlew app:assembleDebug -Ptarget=integration_test/login_test.dart
 popd
 
+# Install Google Cloud CLI
+brew install --cask google-cloud-sdk
+
 # Authenticate using service account and send the test apks to Firebase
 gcloud auth activate-service-account --key-file=$path_to_service_file
 gcloud --quiet config set project $project

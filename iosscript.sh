@@ -1,3 +1,8 @@
+## This script automates the process of deploying our integration tests to Firebase Test Labs
+## To use this script, you must pull the service account private key file from OnePassword
+## and place it in the root directory
+
+## Variables
 output="../build/ios_integ"
 product="build/ios_integ/Build/Products"
 dev_target="17.0"
