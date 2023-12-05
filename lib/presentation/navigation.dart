@@ -1,5 +1,6 @@
 import 'package:flap_app/presentation/screens/home/view/home_screen.dart';
 import 'package:flap_app/presentation/screens/login/view/login_screen.dart';
+import 'package:flap_app/presentation/screens/onboard/view/onboarding_screen.dart';
 import 'package:flap_app/presentation/screens/splash/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +15,13 @@ final GoRouter navigationRouter = GoRouter(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
         return const SplashScreen();
+      },
+    ),
+    GoRoute(
+      name: 'onboard',
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return const OnboardingScreen();
       },
     ),
     GoRoute(

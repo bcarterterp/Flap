@@ -50,7 +50,7 @@ final mockFileFindersProvider = AutoDisposeProvider<List<FileFinder>>.internal(
 );
 
 typedef MockFileFindersRef = AutoDisposeProviderRef<List<FileFinder>>;
-String _$mockInterceptorHash() => r'620a8b603172087e8b1e0db86d930f34c1dd42df';
+String _$mockInterceptorHash() => r'3133bd79571f879b56dc677d322fd1ace9735138';
 
 /// See also [mockInterceptor].
 @ProviderFor(mockInterceptor)
@@ -65,7 +65,7 @@ final mockInterceptorProvider = AutoDisposeProvider<MockInterceptor>.internal(
 );
 
 typedef MockInterceptorRef = AutoDisposeProviderRef<MockInterceptor>;
-String _$dioHash() => r'b77bfdc86abb10d786fa42c22180b07f00a6be8d';
+String _$dioHash() => r'574c6d5fa837ee0131651f2799e4cce1783a4413';
 
 /// See also [dio].
 @ProviderFor(dio)

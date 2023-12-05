@@ -87,7 +87,7 @@ class _LoginInformationWigetState
             content: Text('JWT token saved.'),
           ),
         );
-
+        
         context.go('/home');
       });
     }
