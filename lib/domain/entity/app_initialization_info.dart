@@ -7,6 +7,6 @@ class AppInitializationInfo {
   final bool? isUserAuthenticated;
   final bool? isFirstTimeAppLaunch;
 
-  bool getIsUserAuthenticated() => false; //isUserAuthenticated ?? false;
-  bool getIsFirstTimeAppLaunch() => false; //isFirstTimeAppLaunch ?? true;
+  bool getIsUserAuthenticated() => isUserAuthenticated ?? false;
+  bool getIsFirstTimeAppLaunch() => isFirstTimeAppLaunch ?? true;
 }

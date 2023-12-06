@@ -19,7 +19,7 @@ final GoRouter navigationRouter = GoRouter(
     ),
     GoRoute(
       name: 'onboard',
-      path: '/',
+      path: '/onboard',
       builder: (BuildContext context, GoRouterState state) {
         return const OnboardingScreen();
       },

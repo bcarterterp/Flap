@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 /// 1. Success - The request has successfully completed, with the data set.
 /// 2. Error - The request has failed, with the error set. Note that the error can
 /// be any type, and is not limited to a string.
+
 sealed class RequestResponse<Data, ErrorInfo> {}
 
 class SuccessRequestResponse<Data, ErrorInfo> extends Equatable

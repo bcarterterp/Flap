@@ -14,7 +14,7 @@ import 'package:flap_app/domain/repository/flavor/flavor_repository.dart';
 import 'package:flap_app/domain/repository/flavor/flavor_repository_impl.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
 import 'package:flap_app/domain/repository/shared_pref/shared_pref_repository.dart';
-import 'package:flap_app/domain/repository/shared_pref/shared_pref_repository_impl.dart';
+import 'package:flap_app/data/repository/shared_pref/shared_pref_repository_impl.dart';
 import 'package:flap_app/domain/repository/storage/storage_service.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';

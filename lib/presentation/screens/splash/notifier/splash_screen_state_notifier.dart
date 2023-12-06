@@ -25,10 +25,17 @@ class SplashScreenStateNotifier extends _$SplashScreenStateNotifier {
     }
 
     //Check if user is first time app launch
-
-    ref.read(sharedPrefRepositoryProvider).init();
-
-    state = SplashScreenState.success(const AppInitializationInfo(
-        isUserAuthenticated: false, isFirstTimeAppLaunch: false));
+    //await ref.read(sharedPrefRepositoryProvider).init();
+    final isFirstAppLaunch =
+        await ref.read(sharedPrefRepositoryProvider).isFirstAppLaunch();
+    if (isFirstAppLaunch) {
+      state = SplashScreenState.success(
+        const AppInitializationInfo(isFirstTimeAppLaunch: true),
+      );
+      return;
+    } else {
+      state = SplashScreenState.success(const AppInitializationInfo(
+          isUserAuthenticated: false, isFirstTimeAppLaunch: false));
+    }
   }
 }

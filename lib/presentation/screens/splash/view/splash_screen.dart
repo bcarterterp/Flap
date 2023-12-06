@@ -38,15 +38,10 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         final appInitializationInfo =
             (state as SuccessEvent).data as AppInitializationInfo;
         if (appInitializationInfo.getIsUserAuthenticated()) {
-          print('user is authenticated');
-          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
             context.go('/home');
-          });
         } else if (appInitializationInfo.getIsFirstTimeAppLaunch()) {
-          print('first time app launch');
           context.go('/onboard');
         } else {
-          print('go to login');
           context.go('/login');
         }
       }
