@@ -1,12 +1,10 @@
-import 'dart:async';
-
-import 'package:flap_app/my_app.dart';
+import 'package:flap_app/presentation/flap_app.dart';
 import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flap_app/util/flavor/flavor_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-FutureOr<void> main(List<String> arguments) async {
+void main(List<String> arguments) {
   const flavor = String.fromEnvironment('FLAVOR', defaultValue: 'dev');
   switch (flavor) {
     case 'prod':
@@ -19,5 +17,5 @@ FutureOr<void> main(List<String> arguments) async {
       FlavorConfig.flavor = Flavor.dev;
       break;
   }
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: FlapApp()));
 }

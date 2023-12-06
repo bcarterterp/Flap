@@ -3,9 +3,9 @@ import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/util/l10n/app_localizations_context.dart';
 import 'package:flap_app/domain/entity/recipe.dart';
 import 'package:flap_app/presentation/screens/home/notifier/home_screen_state_notifier.dart';
-import 'package:flap_app/presentation/screens/home/widgets/recipe_grid_item.dart';
-import 'package:flap_app/presentation/screens/home/widgets/screen_states/error_screen.dart';
-import 'package:flap_app/presentation/screens/home/widgets/screen_states/loading_screen.dart';
+import 'package:flap_app/presentation/screens/home/view/widgets/recipe_grid_item.dart';
+import 'package:flap_app/presentation/screens/home/view/widgets/screen_state_widgets/error_screen.dart';
+import 'package:flap_app/presentation/screens/home/view/widgets/screen_state_widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

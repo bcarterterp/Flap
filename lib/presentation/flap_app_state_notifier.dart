@@ -1,5 +1,5 @@
 import 'package:flap_app/domain/repository/shared_pref/shared_pref_repository.dart';
-import 'package:flap_app/presentation/app_state.dart';
+import 'package:flap_app/presentation/flap_app_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AppStateNotifier extends StateNotifier<AppState> {

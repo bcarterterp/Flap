@@ -18,8 +18,8 @@ import 'package:flap_app/domain/repository/shared_pref/shared_pref_repository_im
 import 'package:flap_app/domain/repository/storage/storage_service.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
-import 'package:flap_app/presentation/app_state.dart';
-import 'package:flap_app/presentation/app_state_notifier.dart';
+import 'package:flap_app/presentation/flap_app_state.dart';
+import 'package:flap_app/presentation/flap_app_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
