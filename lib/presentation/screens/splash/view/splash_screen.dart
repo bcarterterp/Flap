@@ -30,23 +30,27 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     // final state = ref.watch(splashScreenNotifierProvider).splashScreenEvent;
-
     final state =
         ref.watch(splashScreenStateNotifierProvider).splashScreenEvent;
-    if (state is SuccessEvent) {
-      final appInitializationInfo =
-          (state as SuccessEvent).data as AppInitializationInfo;
-      if (appInitializationInfo.getIsUserAuthenticated()) {
-        print('user is authenticated');
-        context.go('/home');
-      } else if (appInitializationInfo.getIsFirstTimeAppLaunch()) {
-        print('first time app launch');
-        //context.go('/onboard');
-      } else {
-        print('go to login');
-        //context.go('/login');
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (state is SuccessEvent) {
+        final appInitializationInfo =
+            (state as SuccessEvent).data as AppInitializationInfo;
+        if (appInitializationInfo.getIsUserAuthenticated()) {
+          print('user is authenticated');
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            context.go('/home');
+          });
+        } else if (appInitializationInfo.getIsFirstTimeAppLaunch()) {
+          print('first time app launch');
+          context.go('/onboard');
+        } else {
+          print('go to login');
+          context.go('/login');
+        }
       }
-    }
+    });
 
     return const Scaffold(
       body: Center(
