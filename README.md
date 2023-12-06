@@ -137,22 +137,29 @@ The test folder structure suggested by the flutter documentation can be found [h
 This project provides an abstract class to support multiple Analytics platforms, the class can be found at `lib/domain/repository/analytics_repository.dart`. Users are expected to provide implementations for `logEvent, setUserProperties, and screenView` and instantiate the class in `lib/data/repository/analytics/analytics_repository_impl.dart`. The presentation layer can access analytics via the `analyticsProvider` defined in the providers file. 
 
 ### Bitrise 
-Bitrise is a CI/CD platform that we use to run workflows on our project.
+Bitrise is a Continious Integration & Delivery platform that we use to run workflows on our project.
 
-To test Bitrise locally, install Bitrise on your machine using Homebrew by running:
+To test Bitrise locally, install Bitrise on your machine:
+
+Install Homebrew Package Manager by running the following in the terminal:
+
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+Install Bitrise using Homebrew:
 
 `brew update && brew install bitrise`
 
 Notice the bitrise.yml file found in the root directory.
 
 The bitrise.yml file contains all workflows created for this project.
-In order to run a pipeline, you must also have a .bitrise.secrets.yml file that contain our project secrets. This can be found on OnePassword.
+In order to run a workflow, you must also have a .bitrise.secrets.yml file that contain our project secrets. This can be found on OnePassword or shared by a team member on the project.
 
-Once you added .bitrise.secrets.yml to the root, you can run
+Once you've added .bitrise.secrets.yml to the root directory of the project, you can run
 
 `bitrise run primary`
 
 To run the primary workflow. You can replace primary with any workflow you'd like to run.
 
 It is suggested to use Bitrise's Workflow Editor GUI on their website to get familiar. You can use the editor, which will update the bitrise.yml on the website, where you can copy and paste it into your editor to test on.
-There is a step to generate a firebase deployment private key file. It looks like this custom step that was created is only working on the CI server currently, so I have set this step along with some others to be skipped by setting their "run-if" condition to false.
+
+There is a step to generate a firebase deployment private key file. It looks like this custom step that was created is only working on the CI server currently, so I have set this step along with some other steps to be skipped by setting their "run-if" condition to be .isCI, which means it will be skipped when running locally.
