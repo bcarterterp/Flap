@@ -44,7 +44,7 @@ class CreditScoreWidget extends StatelessWidget {
         children: [
           Positioned(top: 0, child: bigCircle),
           Positioned.fill(
-            top: 80,
+            top: 50,
             child: Container(
               margin: const EdgeInsets.all(32),
               decoration: BoxDecoration(

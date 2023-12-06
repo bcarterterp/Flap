@@ -1,4 +1,5 @@
 import 'package:flap_app/presentation/providers/providers.dart';
+import 'package:flap_app/presentation/widgets/credit_score_chart_widget.dart';
 import 'package:flap_app/presentation/widgets/credit_score_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,12 +35,15 @@ class _WidgetsScreenState extends ConsumerState<WidgetsScreen> {
           title: const Text('Demo Widgets'),
         ),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 30),
-          CreditScoreWidget(creditInfo: creditInfoState),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 30),
+            CreditScoreWidget(creditInfo: creditInfoState),
+            CreditHistoryChartWidget(creditInfo: creditInfoState),
+          ],
+        ),
       ),
     );
   }
