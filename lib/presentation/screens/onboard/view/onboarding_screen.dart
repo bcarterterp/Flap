@@ -29,33 +29,3 @@ class OnboardingScreen extends ConsumerWidget {
     );
   }
 }
-
-//   final PageController _pageController = PageController(initialPage: 0);
-
-//   final List<Widget> onboardingScreens = [
-//   OnboardingPage(
-//     title: 'Welcome to App',
-//     description: 'This is an awesome app!',
-//     imagePath: 'images/onboarding_page_1.png',
-//   ),
-//   // Add more OnboardingPage widgets as per your requirement
-// ];
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     return Column(
-//       children: [
-//         PageView(
-//           controller: _pageController,
-//           children: onboardingScreens,
-//         ),
-//       ],
-//     );
-//   }
-// }
-
-// class OnboardingPage{
-//   final String title, description, imagePath;
-//   Onboard({
-//     required this.title,
-//   });
-// }

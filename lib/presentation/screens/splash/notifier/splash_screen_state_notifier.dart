@@ -15,7 +15,7 @@ class SplashScreenStateNotifier extends _$SplashScreenStateNotifier {
     state = SplashScreenState.initial();
     //Initialize any app services below
     await ref.read(sharedPrefRepositoryProvider).init();
-    //To-Do: Initialize Firebase instance here
+    //TODO: Initialize Firebase instance here, for example
     getAppStartNavInfo();
   }
 
