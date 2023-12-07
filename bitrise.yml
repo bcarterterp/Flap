@@ -150,7 +150,7 @@ workflows:
             # not just bash, e.g.:
             # ruby ./path/to/script.rb
         title: Generate Project Environment File
-        run_if: 'false'
+        run_if: ".IsCI"
     - script@1:
         inputs:
         - content: |
@@ -162,24 +162,32 @@ workflows:
             # debug log
             set -x
 
-            # write your script here
-            touch equifax---test-c18957b2e590.json
-            echo $GOOGLE_SERVICE_ACCOUNT_KEY > equifax---test-c18957b2e590.json
+            ## Generate file
+            touch $FIREBASE_SERVICE_ACCOUNT_FILE_NAME
+            ## Write key to file
+            echo $FIREBASE_SERVICE_ACCOUNT_KEY_FILE > $FIREBASE_SERVICE_ACCOUNT_FILE_NAME
 
             # or run a script from your repository, like:
             # bash ./path/to/script.sh
             # not just bash, e.g.:
             # ruby ./path/to/script.rb
         title: Generate Firebase Deployment Private Key File
-        run_if: 'false'
+        run_if: ".IsCI"
     - flutter-analyze@0:
         inputs:
         - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
     - flutter-build@0:
         is_always_run: true
         inputs:
-        - ios_output_type: archive
         - additional_build_params: --flavor dev --dart-define="FLAVOR=dev"
+    - xcode-archive@5:
+        inputs:
+        - distribution_method: ad-hoc
+        - project_path: "$XCWORKSPACE_PATH$BITRISE_PROJECT_PATH"
+        - configuration: ''
+        - xcodebuild_options: "-allowProvisioningUpdates"
+        - automatic_code_signing: api-key
+        - scheme: dev
     - flutter@0:
         inputs:
         - version: 3.13.9
@@ -194,28 +202,49 @@ workflows:
         is_always_run: true
         run_if: 'false'
     - deploy-to-bitrise-io@2:
-        run_if: 'false'
-    - firebase-app-distribution@0:
+        run_if: 'true'
+    - git::https://github.com/AnthonyDadeWT/bitrise-step-firebase-app-distribution.git@fix/race-condition:
         inputs:
         - firebase_token: ''
         - testers: anthony.dade@willowtreeapps.com
-        - release_notes: Test of deploying Android app binary from Bitrise to Firebase
-            (with private key generation!)
-        - service_credentials_file: "$FIREBASE_SERVICE_ACCOUNT_KEY_PATH"
+        - release_notes: 'Test of deploying Android app binary from Bitrise to Firebase '
+        - service_credentials_file: "$FIREBASE_SERVICE_ACCOUNT_PATH"
+        - app_path: "$BITRISE_APK_PATH"
         - app: "$FIREBASE_ANDROID_DEV_APP_ID"
         title: "[BETA] Android Firebase App Distribution"
         run_if: 'true'
-        is_always_run: true
-    - firebase-app-distribution@0:
+    - git::https://github.com/AnthonyDadeWT/bitrise-step-firebase-app-distribution.git@fix/race-condition:
         inputs:
-        - app: "$FIREBASE_IOS_DEV_APP_ID"
+        - app: "$FIREBASE_IOS_APP_ID_DEV"
         - release_notes: Test of deploying iOS app binary from Bitrise to Firebase
-        - testers: anthony.dade@willowtreeapps.com, brandon.carter@willowtreeapps.com,
-            mia.brunal@willowtreeapps.com
-        - service_credentials_file: "$FIREBASE_SERVICE_ACCOUNT_KEY_PATH"
+        - testers: anthony.dade@willowtreeapps.com, brandon.carter@willowtreeapps.com
+        - service_credentials_file: "$FIREBASE_SERVICE_ACCOUNT_PATH"
+        - app_path: "$BITRISE_IPA_PATH"
         - firebase_token: ''
         title: "[BETA] iOS Firebase App Distribution"
+        run_if: 'true'
         is_always_run: true
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            # write your script here
+            ./androidscript.sh
+
+            # or run a script from your repository, like:
+            # bash ./path/to/script.sh
+            # not just bash, e.g.:
+            # ruby ./path/to/script.rb
+        is_always_run: true
+        run_if: 'false'
+        title: Deploy Android Tests
     - slack@4:
         inputs:
         - from_username: BitRise Bot
@@ -248,7 +277,6 @@ workflows:
 meta:
   bitrise.io:
     stack: osx-xcode-14.3.x-ventura
-    machine_type_id: g2-m1.4core
 app:
   envs:
   - opts:
@@ -256,10 +284,9 @@ app:
     BITRISE_FLUTTER_PROJECT_LOCATION: "."
   - opts:
       is_expand: false
-    FIREBASE_SERVICE_ACCOUNT_KEY_PATH: "./equifax---test-c18957b2e590.json"
+    XCWORKSPACE_PATH: "./ios/Runner.xcworkspace"
 trigger_map:
 - push_branch: main
   workflow: primary
 - pull_request_source_branch: "*"
   workflow: primary
- 
