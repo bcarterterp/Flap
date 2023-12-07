@@ -14,4 +14,11 @@ class SharedPrefRepositoryImpl extends SharedPrefRepository {
     // If its the first app launch, isFirstAppLaunch field will not be created yet and return null
     return _sharedPrefs.getBool("isFirstAppLaunch") ?? true;
   }
+
+  @override
+  Future<bool> updateFirstAppLaunch(bool isFirstAppLaunch) async {
+    await init();
+    // If its the first app launch, isFirstAppLaunch field will not be created yet and return null
+    return _sharedPrefs.setBool("isFirstAppLaunch", isFirstAppLaunch);
+  }
 }

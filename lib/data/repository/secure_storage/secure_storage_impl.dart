@@ -12,10 +12,14 @@ class SecureStorageImpl extends StorageService {
       );
 
   @override
-  Future<RequestResponse<String?, StorageError>> readJwt() async {
+  Future<RequestResponse<String, StorageError>> readJwt() async {
     try {
       final data = await _secureStorage.read(
           key: _jwtTokenKey, aOptions: _getAndroidOptions());
+      // return (data != null)
+      //     ? SuccessRequestResponse(data)
+      //     : const ErrorRequestResponse(StorageError.readError)
+      //         as RequestResponse<String, StorageError>;
       if (data != null) {
         return SuccessRequestResponse(data);
       } else {

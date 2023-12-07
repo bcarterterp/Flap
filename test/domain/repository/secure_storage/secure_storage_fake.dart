@@ -12,7 +12,7 @@ class SecureStorageFake extends SecureStorageImpl {
   }
 
   @override
-  Future<RequestResponse<String?, StorageError>> readJwt() async {
+  Future<RequestResponse<String, StorageError>> readJwt() async {
     return const SuccessRequestResponse('test_jwt');
   }
 

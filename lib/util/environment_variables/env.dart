@@ -1,7 +1,7 @@
 // lib/env/env.dart
 import 'package:envied/envied.dart';
 
-part '../env/env.g.dart';
+part 'env.g.dart';
 
 /// This class is used to access the environment variables.
 /// environment variables are defined in the .env file at the root of the project.
