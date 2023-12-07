@@ -13,20 +13,37 @@ class SplashScreenStateNotifier extends _$SplashScreenStateNotifier {
 
   Future<void> initDependencies() async {
     state = SplashScreenState.initial();
+    //Initialize any app services below
+    await ref.read(sharedPrefRepositoryProvider).init();
+    //To-Do: Initialize Firebase instance here
+    getAppStartNavInfo();
+  }
 
-    //Step 1:
-    //Check if user has a JWT token and already signed in once.
+  Future<void> getAppStartNavInfo() async {
+    //To decide where to navigate the user on app start, we need the below information
+    final isUserAuthenticated = await isJwtTokenAvailable();
+    if (isUserAuthenticated) {
+      //Exit this method
+      return;
+    } else {
+      await isFirstTimeAppLaunch();
+    }
+  }
+
+  Future<bool> isJwtTokenAvailable() async {
+    //Check if user has a JWT token and already signed in.
     final jwtToken = await ref.read(secureStorageProvider).readJwt();
     if (jwtToken is SuccessRequestResponse) {
       // If JWt token is available, user is authenticated and update this in the app initialization user info data
       state = SplashScreenState.success(
         const AppInitializationInfo(isUserAuthenticated: true),
       );
-      //If user is already authenticated, exit from this method
-      return;
+      return true;
     }
+    return false;
+  }
 
-    //Step 2:
+  Future<void> isFirstTimeAppLaunch() async {
     //Check if user has already launched this app before.
     final isFirstAppLaunch =
         await ref.read(sharedPrefRepositoryProvider).isFirstAppLaunch();
@@ -35,10 +52,7 @@ class SplashScreenStateNotifier extends _$SplashScreenStateNotifier {
       state = SplashScreenState.success(
         const AppInitializationInfo(isFirstTimeAppLaunch: true),
       );
-      //Exit from this method if this is the first app launch
-      return;
     } else {
-      //Step 3:
       //If this is not the first app launch and user is not authenticated, store both values in the App InitializationInfo
       state = SplashScreenState.success(const AppInitializationInfo(
           isUserAuthenticated: false, isFirstTimeAppLaunch: false));

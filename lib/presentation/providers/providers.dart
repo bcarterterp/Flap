@@ -18,8 +18,6 @@ import 'package:flap_app/data/repository/shared_pref/shared_pref_repository_impl
 import 'package:flap_app/domain/repository/storage/storage_service.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase.dart';
 import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
-import 'package:flap_app/presentation/app_state.dart';
-import 'package:flap_app/presentation/app_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -81,13 +79,6 @@ List<AnalyticsPlatform> analyticsPlatforms(AnalyticsPlatformsRef ref) {
   //Add your analytics platforms here
   return [];
 }
-
-final appStateProvider =
-    StateNotifierProvider.autoDispose<AppStateNotifier, AppState>(
-  (ref) => AppStateNotifier(
-    sharedPrefRepository: ref.watch(sharedPrefRepositoryProvider),
-  ),
-);
 
 @riverpod
 AnalyticsPlatformManager analyticsPlatformManager(

@@ -8,8 +8,6 @@ import 'package:go_router/go_router.dart';
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
-  //Need to figure out if jwt token is available
-
   @override
   ConsumerState<SplashScreen> createState() {
     return _SplashScreenState();
@@ -17,7 +15,7 @@ class SplashScreen extends ConsumerStatefulWidget {
 }
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
-  //init to initialize dependencies
+
   @override
   void initState() {
     super.initState();
@@ -29,7 +27,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final state = ref.watch(splashScreenNotifierProvider).splashScreenEvent;
     final state =
         ref.watch(splashScreenStateNotifierProvider).splashScreenEvent;
 
