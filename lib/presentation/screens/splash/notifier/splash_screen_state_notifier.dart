@@ -14,26 +14,32 @@ class SplashScreenStateNotifier extends _$SplashScreenStateNotifier {
   Future<void> initDependencies() async {
     state = SplashScreenState.initial();
 
-    //Check if user has a JWT token (will this fail if provider is not ready?)
+    //Step 1:
+    //Check if user has a JWT token and already signed in once.
     final jwtToken = await ref.read(secureStorageProvider).readJwt();
     if (jwtToken is SuccessRequestResponse) {
       // If JWt token is available, user is authenticated and update this in the app initialization user info data
       state = SplashScreenState.success(
         const AppInitializationInfo(isUserAuthenticated: true),
       );
+      //If user is already authenticated, exit from this method
       return;
     }
 
-    //Check if user is first time app launch
-    //await ref.read(sharedPrefRepositoryProvider).init();
+    //Step 2:
+    //Check if user has already launched this app before.
     final isFirstAppLaunch =
         await ref.read(sharedPrefRepositoryProvider).isFirstAppLaunch();
     if (isFirstAppLaunch) {
+      //If this is the first time the app is launched, store this information in the AppInitializationInfo
       state = SplashScreenState.success(
         const AppInitializationInfo(isFirstTimeAppLaunch: true),
       );
+      //Exit from this method if this is the first app launch
       return;
     } else {
+      //Step 3:
+      //If this is not the first app launch and user is not authenticated, store both values in the App InitializationInfo
       state = SplashScreenState.success(const AppInitializationInfo(
           isUserAuthenticated: false, isFirstTimeAppLaunch: false));
     }
