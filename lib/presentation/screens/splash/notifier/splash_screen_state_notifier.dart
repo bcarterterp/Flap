@@ -1,22 +1,26 @@
+import 'package:flap_app/data/repository/shared_pref/shared_pref_repository_impl.dart';
 import 'package:flap_app/domain/entity/app_initialization_info.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flap_app/presentation/screens/splash/notifier/splash_screen_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'splash_screen_state_notifier.g.dart';
 
 @riverpod
 class SplashScreenStateNotifier extends _$SplashScreenStateNotifier {
+  late ProviderContainer _sharedPrefContainer;
   @override
   SplashScreenState build() => SplashScreenState.initial();
 
   Future<void> initDependencies() async {
     state = SplashScreenState.initial();
     //Initialize any app services below
-    await ref.read(sharedPrefRepositoryProvider).init();
+    _sharedPrefContainer = ProviderContainer();
+    await _sharedPrefContainer.read(sharedPrefRepositoryProvider).init();
     //TODO: Initialize Firebase instance here, for example
-    getAppStartNavInfo();
+    await getAppStartNavInfo();
   }
 
   Future<void> getAppStartNavInfo() async {
@@ -45,8 +49,7 @@ class SplashScreenStateNotifier extends _$SplashScreenStateNotifier {
 
   Future<void> isFirstTimeAppLaunch() async {
     //Check if user has already launched this app before.
-    final isFirstAppLaunch =
-        await ref.read(sharedPrefRepositoryProvider).isFirstAppLaunch();
+    final isFirstAppLaunch = _sharedPrefContainer.read(sharedPrefRepositoryProvider).isFirstAppLaunch();
     if (isFirstAppLaunch) {
       //If this is the first time the app is launched, store this information in the AppInitializationInfo
       state = SplashScreenState.success(

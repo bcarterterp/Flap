@@ -7,7 +7,7 @@ part of 'splash_screen_state_notifier.dart';
 // **************************************************************************
 
 String _$splashScreenStateNotifierHash() =>
-    r'fd2e6ab5896053db1cdfac1a20815be384043471';
+    r'79d4087907a809bc705dc08003f659bfafc083cc';
 
 /// See also [SplashScreenStateNotifier].
 @ProviderFor(SplashScreenStateNotifier)

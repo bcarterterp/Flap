@@ -95,7 +95,17 @@ StorageService secureStorage(SecureStorageRef ref) {
   return SecureStorageImpl();
 }
 
-@riverpod
-SharedPrefRepository sharedPrefRepository(SharedPrefRepositoryRef ref) {
-  return SharedPrefRepositoryImpl();
-}
+// @riverpod
+// SharedPrefRepository sharedPrefRepository(SharedPrefRepositoryRef ref) {
+//   return SharedPrefRepositoryImpl();
+// }
+
+final sharedPrefRepositoryProvider = Provider<SharedPrefRepository>((ref) {
+  final container = ProviderContainer();
+  return container.read(_sharedPrefRepositoryProvider);
+});
+
+final _sharedPrefRepositoryProvider = Provider<SharedPrefRepositoryImpl>((ref) {
+  final instance = SharedPrefRepositoryImpl();
+  return instance;
+});
