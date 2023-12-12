@@ -152,14 +152,14 @@ Install Bitrise using Homebrew:
 Notice the bitrise.yml file found in the root directory.
 
 The bitrise.yml file contains all workflows created for this project.
-In order to run a workflow, you must also have a .bitrise.secrets.yml file that contain our project secrets. This can be found on OnePassword or shared by a team member on the project.
+In order to run a workflow, you must have a .bitrise.secrets.yml file that contain our project secrets, and a Service Account Credentials file for Firebase authentication. You can find both of these files on OnePassword and place them in the root directory. The creation of these files are done automatically on the CI server, but running these steps locally does not function the same.
 
-Once you've added .bitrise.secrets.yml to the root directory of the project, you can run
+Once you've added both files to the root directory of the project, you can run
 
 `bitrise run primary`
 
 To run the primary workflow. You can replace primary with any workflow you'd like to run.
 
-It is suggested to use Bitrise's Workflow Editor GUI on their website to get familiar. You can use the editor, which will update the bitrise.yml on the website, where you can copy and paste it into your editor to test on.
+It is suggested to use Bitrise's Workflow Editor GUI on their website to get familiar with creating new workflows. You can use the editor, which will update the bitrise.yml on the website, where you can copy and paste it into your development environment to test on.
 
 There is a step to generate a firebase deployment private key file. It looks like this custom step that was created is only working on the CI server currently, so I have set this step along with some other steps to be skipped by setting their "run-if" condition to be .isCI, which means it will be skipped when running locally.
