@@ -129,20 +129,40 @@ final secureStorageProvider = AutoDisposeProvider<StorageService>.internal(
 );
 
 typedef SecureStorageRef = AutoDisposeProviderRef<StorageService>;
-String _$userCreditInfoHash() => r'35a5bbb359f99dc1d06ef58c6a79734df6dab67b';
+String _$creditScoreRepositoryHash() =>
+    r'66b571808af2c8c375ccaec8f5175500b0e7f292';
 
-/// See also [userCreditInfo].
-@ProviderFor(userCreditInfo)
-final userCreditInfoProvider = AutoDisposeProvider<UserCreditInfo>.internal(
-  userCreditInfo,
-  name: r'userCreditInfoProvider',
+/// See also [creditScoreRepository].
+@ProviderFor(creditScoreRepository)
+final creditScoreRepositoryProvider =
+    AutoDisposeProvider<CreditScoreRepository>.internal(
+  creditScoreRepository,
+  name: r'creditScoreRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$userCreditInfoHash,
+      : _$creditScoreRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef UserCreditInfoRef = AutoDisposeProviderRef<UserCreditInfo>;
+typedef CreditScoreRepositoryRef
+    = AutoDisposeProviderRef<CreditScoreRepository>;
+String _$creditScoreUseCaseHash() =>
+    r'd8fd941251967b887f296af6427698e0f345ff17';
+
+/// See also [creditScoreUseCase].
+@ProviderFor(creditScoreUseCase)
+final creditScoreUseCaseProvider =
+    AutoDisposeProvider<CreditScoreUseCase>.internal(
+  creditScoreUseCase,
+  name: r'creditScoreUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$creditScoreUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CreditScoreUseCaseRef = AutoDisposeProviderRef<CreditScoreUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

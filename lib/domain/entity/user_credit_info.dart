@@ -18,7 +18,7 @@ enum ScoreGroup {
   poor(
     range: Range(min: 300, max: 579),
     title: 'Poor',
-    color: 0xFFde1818,
+    color: 0xFFE70033,
   ),
   fair(
     range: Range(min: 580, max: 669),
@@ -52,7 +52,8 @@ enum ScoreGroup {
   final int color;
 
   static ScoreGroup getGroupForScore(int score) => ScoreGroup.values.firstWhere(
-      (group) => score >= group.range.min && score <= group.range.max);
+      (group) => score >= group.range.min && score <= group.range.max,
+      orElse: () => ScoreGroup.fair);
 }
 
 class Range {

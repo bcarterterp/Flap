@@ -1,19 +1,22 @@
 import 'package:dio/dio.dart';
 import 'package:flap_app/data/repository/analytics/analytics_platform_manager.dart';
 import 'package:flap_app/data/repository/auth/auth_repository_impl.dart';
+import 'package:flap_app/data/repository/credit/credit_repository_impl.dart';
 import 'package:flap_app/data/repository/recipe/recipe_repository_impl.dart';
 import 'package:flap_app/data/repository/secure_storage/secure_storage_impl.dart';
 import 'package:flap_app/data/source/network/spoonacular_api.dart';
 import 'package:flap_app/data/source/network/spoonacular_api_impl.dart';
-import 'package:flap_app/domain/entity/user_credit_info.dart';
 import 'package:flap_app/domain/repository/analytics/analytics_platform.dart';
 import 'package:flap_app/domain/repository/auth/auth_repository.dart';
+import 'package:flap_app/domain/repository/credit/credit_repository.dart';
 import 'package:flap_app/domain/repository/flavor/flavor_repository.dart';
 import 'package:flap_app/domain/repository/flavor/flavor_repository_impl.dart';
 import 'package:flap_app/domain/repository/recipe/recipe_repository.dart';
 import 'package:flap_app/domain/repository/storage/storage_service.dart';
-import 'package:flap_app/domain/usecase/log_in_usecase.dart';
-import 'package:flap_app/domain/usecase/log_in_usecase_impl.dart';
+import 'package:flap_app/domain/usecase/credit/credit_score_use_case.dart';
+import 'package:flap_app/domain/usecase/credit/credit_score_use_case_impl.dart';
+import 'package:flap_app/domain/usecase/login/log_in_usecase.dart';
+import 'package:flap_app/domain/usecase/login/log_in_usecase_impl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
@@ -73,6 +76,13 @@ StorageService secureStorage(SecureStorageRef ref) {
 }
 
 @riverpod
-UserCreditInfo userCreditInfo(UserCreditInfoRef ref) {
-  return UserCreditInfo(score: 801, scoreDifference: 28);
+CreditScoreRepository creditScoreRepository(CreditScoreRepositoryRef ref) {
+  return CreditScoreRepositoryImpl();
+}
+
+@riverpod
+CreditScoreUseCase creditScoreUseCase(CreditScoreUseCaseRef ref) {
+  return CreditScoreUseCaseImpl(
+    creditScoreRepository: ref.watch(creditScoreRepositoryProvider),
+  );
 }

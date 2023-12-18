@@ -1,24 +1,59 @@
 import 'dart:math';
+import 'package:flap_app/domain/entity/credit_error.dart';
+import 'package:flap_app/domain/entity/event.dart';
 import 'package:flap_app/domain/entity/user_credit_info.dart';
+import 'package:flap_app/presentation/widgets/credit_score/notifier/credit_score_state_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CreditScoreWidget extends StatelessWidget {
+class CreditScoreWidget extends ConsumerStatefulWidget {
   const CreditScoreWidget({
     super.key,
-    required this.creditInfo,
   });
 
-  final UserCreditInfo creditInfo;
+  @override
+  ConsumerState<CreditScoreWidget> createState() {
+    return _CreditScoreWidgetState();
+  }
+}
+
+class _CreditScoreWidgetState extends ConsumerState<CreditScoreWidget> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchData();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(creditScoreStateNotifierProvider);
+
+    var creditInfo = UserCreditInfo(score: 0, scoreDifference: 0);
+
+    final isLoading = state.viewData is LoadingEvent;
+    final isError = state.viewData is EventError;
+
+    if (state.viewData is SuccessEvent) {
+      creditInfo =
+          (state.viewData as SuccessEvent<UserCreditInfo, CreditError>).data;
+    }
+
     SvgPicture scoreDifferenceArrow = SvgPicture.asset('assets/up_arrow.svg');
     String userMessage = 'You\'re on the right track!';
 
     if (creditInfo.scoreDifference < 0) {
       scoreDifferenceArrow = SvgPicture.asset('assets/down_arrow.svg');
       userMessage = 'Oh no! Your score dropped!';
+    }
+    if (isError) {
+      userMessage = 'Error fetching score.';
+    }
+    if (isLoading) {
+      userMessage = 'Fetching...';
     }
 
     const circleSize = 275.0;
@@ -38,11 +73,11 @@ class CreditScoreWidget extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      height: 450,
+      height: 455,
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          Positioned(top: 0, child: bigCircle),
+          Positioned(top: 15, child: bigCircle),
           Positioned.fill(
             top: 50,
             child: Container(
@@ -55,7 +90,7 @@ class CreditScoreWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 0,
+            top: 15,
             child: Stack(
               alignment: AlignmentDirectional.center,
               children: [
@@ -97,30 +132,32 @@ class CreditScoreWidget extends StatelessWidget {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      creditInfo.scoreGroup.title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    Text(
-                      '(${creditInfo.scoreGroup.range.toString()})',
-                      style: const TextStyle(fontSize: 11),
-                    ),
-                    Text(
-                      creditInfo.score.toString(),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w900, fontSize: 54),
-                    ),
-                    Row(
-                      children: [
-                        scoreDifferenceArrow,
-                        Text(creditInfo.scoreDifference.abs().toString(),
-                            style: const TextStyle(fontSize: 18)),
-                      ],
-                    )
-                  ],
+                  children: isLoading
+                      ? [const CircularProgressIndicator()]
+                      : [
+                          Text(
+                            creditInfo.scoreGroup.title,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          Text(
+                            '(${creditInfo.scoreGroup.range.toString()})',
+                            style: const TextStyle(fontSize: 11),
+                          ),
+                          Text(
+                            creditInfo.score.toString(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w900, fontSize: 54),
+                          ),
+                          Row(
+                            children: [
+                              scoreDifferenceArrow,
+                              Text(creditInfo.scoreDifference.abs().toString(),
+                                  style: const TextStyle(fontSize: 18)),
+                            ],
+                          )
+                        ],
                 ),
               ],
             ),
@@ -164,6 +201,10 @@ class CreditScoreWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void fetchData() {
+    ref.read(creditScoreStateNotifierProvider.notifier).getCreditScore();
   }
 }
 

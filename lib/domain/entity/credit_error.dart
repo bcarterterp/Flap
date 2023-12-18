@@ -1,0 +1,4 @@
+enum CreditError {
+  creditHistoryError,
+  currentCreditError,
+}
