@@ -1,15 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flap_app/firebase_options.dart';
 import 'package:flap_app/presentation/flap_app.dart';
 import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flap_app/util/flavor/flavor_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
-void main(List<String> arguments) async {
-    await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+void main(List<String> arguments) {
   const flavor = String.fromEnvironment('FLAVOR', defaultValue: 'dev');
   switch (flavor) {
     case 'prod':
@@ -22,5 +19,12 @@ void main(List<String> arguments) async {
       FlavorConfig.flavor = Flavor.dev;
       break;
   }
+  initalizeFirebase();
   runApp(const ProviderScope(child: FlapApp()));
+}
+
+void initalizeFirebase() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
