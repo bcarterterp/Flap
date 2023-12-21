@@ -4,10 +4,11 @@ import 'package:flap_app/firebase_options.dart';
 import 'package:flap_app/presentation/flap_app.dart';
 import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flap_app/util/flavor/flavor_config.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main(List<String> arguments) async {
+Future<void> main(List<String> arguments) async {
   const flavor = String.fromEnvironment('FLAVOR', defaultValue: 'dev');
   switch (flavor) {
     case 'prod':
@@ -20,14 +21,9 @@ void main(List<String> arguments) async {
       FlavorConfig.flavor = Flavor.dev;
       break;
   }
-  initalizeFirebase();
-  runApp(const ProviderScope(child: FlapApp()));
-}
+  WidgetsFlutterBinding.ensureInitialized();
 
-Future<void> initalizeFirebase() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
+  await Firebase.initializeApp();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  runApp(const ProviderScope(child: FlapApp()));
 }

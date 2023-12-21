@@ -94,7 +94,9 @@ class _LoginInformationWigetState
 
     ElevatedButton button = ElevatedButton(
       key: const ValueKey('loginButton'),
-      onPressed: login,
+      onPressed: //login, 
+      // Added here to be able to test crashlyitcs
+      () => throw Exception(),
       child: Text(context.localization.login),
     );
     if (loginState.loginEvent is LoadingEvent) {
