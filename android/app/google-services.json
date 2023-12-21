@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "88542901266",
+    "project_id": "equifax---test",
+    "storage_bucket": "equifax---test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88542901266:android:a520e857b9f1c3e5aa54cb",
+        "android_client_info": {
+          "package_name": "com.example.test_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSASik2p1qH4ICBnrxQINi8zigIhP6Qbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88542901266:android:63735df0300fefbdaa54cb",
+        "android_client_info": {
+          "package_name": "com.flap.flapapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSASik2p1qH4ICBnrxQINi8zigIhP6Qbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88542901266:android:c55ac379cd824d72aa54cb",
+        "android_client_info": {
+          "package_name": "com.flap.flapapp.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSASik2p1qH4ICBnrxQINi8zigIhP6Qbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
