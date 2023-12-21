@@ -3,8 +3,13 @@ import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flap_app/util/flavor/flavor_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main(List<String> arguments) {
+void main(List<String> arguments) async {
+    await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   const flavor = String.fromEnvironment('FLAVOR', defaultValue: 'dev');
   switch (flavor) {
     case 'prod':
