@@ -137,7 +137,7 @@ The test folder structure suggested by the flutter documentation can be found [h
 This project provides an abstract class to support multiple Analytics platforms, the class can be found at `lib/domain/repository/analytics_repository.dart`. Users are expected to provide implementations for `logEvent, setUserProperties, and screenView` and instantiate the class in `lib/data/repository/analytics/analytics_repository_impl.dart`. The presentation layer can access analytics via the `analyticsProvider` defined in the providers file. 
 
 ### Bitrise 
-Bitrise is a Continious Integration & Delivery platform that we use to run workflows on our project.
+Bitrise is a Continuous Integration & Delivery platform that we use to run workflows on our project.
 
 To test Bitrise locally, install Bitrise on your machine:
 
