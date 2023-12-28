@@ -55,6 +55,7 @@ class CreditScoreUseCaseImpl extends CreditScoreUseCase {
 
     var monthsAdded = 0;
     // Grab data only from months within [monthsToShow] of [currentDate]
+
     for (CreditHistoryItem item in creditScoreHistory) {
       final differenceInMonths = (currentDate.month - item.date.month).abs();
 

@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flap_app/domain/entity/request_response.dart';
 
 import '../../../../domain/repository/secure_storage/secure_storage_fake.dart';
-import '../../../../domain/usecase/log_in_usecase_fake.dart';
+import '../../../../domain/usecase/login/log_in_usecase_fake.dart';
 import '../../../../util/listener.dart';
 import '../../../../util/provider_container.dart';
 

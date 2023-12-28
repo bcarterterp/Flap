@@ -27,18 +27,17 @@ class _WidgetsScreenState extends ConsumerState<WidgetsScreen> {
           title: const Text('Demo Widgets'),
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 45),
-            const CreditScoreWidget(),
+            SizedBox(height: 45),
+            CreditScoreWidget(),
             CreditHistoryChartWidget(
               chartType: ChartType.linear,
               goal: 790,
-              onRefreshButtonClicked: (period, date) {},
             ),
-            const SizedBox(height: 45),
+            SizedBox(height: 45),
           ],
         ),
       ),

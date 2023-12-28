@@ -5,8 +5,8 @@ import 'package:flap_app/domain/entity/user_info.dart';
 import 'package:flap_app/presentation/providers/providers.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../util/provider_container.dart';
-import '../repository/auth/auth_repository_fake.dart';
+import '../../../util/provider_container.dart';
+import '../../repository/auth/auth_repository_fake.dart';
 
 main() {
   final authRepository = AuthRepositoryFake();

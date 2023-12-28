@@ -12,12 +12,10 @@ class CreditHistoryChartWidget extends ConsumerStatefulWidget {
     super.key,
     required this.chartType,
     required this.goal,
-    this.onRefreshButtonClicked,
   });
 
   final double goal;
   final ChartType chartType;
-  final Function(Period, DateTime)? onRefreshButtonClicked;
 
   @override
   ConsumerState<CreditHistoryChartWidget> createState() {
