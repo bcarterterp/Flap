@@ -13,7 +13,7 @@ class OnboardingScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Onboarding Screen'),
+            const Text('Onboarding Screen: Welcome First Time User!'),
             ElevatedButton(
               onPressed: () {
                 ref
