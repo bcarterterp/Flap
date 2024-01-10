@@ -17,8 +17,7 @@ class SplashScreenStateNotifier extends _$SplashScreenStateNotifier {
   Future<void> initDependencies() async {
     state = SplashScreenState.initial();
     //Initialize any app services below
-    _sharedPrefContainer = ProviderContainer();
-    await _sharedPrefContainer.read(sharedPrefRepositoryProvider).init();
+    await ref.read(sharedPrefRepositoryProvider).init();
     //TODO: Initialize Firebase instance here, for example
     await getAppStartNavInfo();
   }
@@ -49,7 +48,9 @@ class SplashScreenStateNotifier extends _$SplashScreenStateNotifier {
 
   Future<void> isFirstTimeAppLaunch() async {
     //Check if user has already launched this app before.
-    final isFirstAppLaunch = _sharedPrefContainer.read(sharedPrefRepositoryProvider).isFirstAppLaunch();
+    final isFirstAppLaunch =
+        ref.read(sharedPrefRepositoryProvider).isFirstAppLaunch();
+    print("is first app launch $isFirstAppLaunch");
     if (isFirstAppLaunch) {
       //If this is the first time the app is launched, store this information in the AppInitializationInfo
       state = SplashScreenState.success(

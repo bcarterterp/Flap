@@ -95,11 +95,9 @@ StorageService secureStorage(SecureStorageRef ref) {
   return SecureStorageImpl();
 }
 
-// @riverpod
-// SharedPrefRepository sharedPrefRepository(SharedPrefRepositoryRef ref) {
-//   return SharedPrefRepositoryImpl();
-// }
 
+//Multiple calls on ref.read or ref.watch will not return the same provider instance
+//This below is a workaround to ensure the provider instance is a singleton
 final sharedPrefRepositoryProvider = Provider<SharedPrefRepository>((ref) {
   final container = ProviderContainer();
   return container.read(_sharedPrefRepositoryProvider);
