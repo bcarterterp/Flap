@@ -1,4 +1,4 @@
-import 'package:flap_app/my_app.dart';
+import 'package:flap_app/presentation/flap_app.dart';
 import 'package:flap_app/util/flavor/flavor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,7 +20,7 @@ void main() {
   group('Home Integration Tests', () {
     testWidgets('Given user navigates to sign-in screen, when page loads, then all screen widgets are present in the hierarchy', (tester) async {
       // Causes test to wait for app to finish launch before testing
-      await tester.pumpWidget(const ProviderScope(child: MyApp()));
+      await tester.pumpWidget(const ProviderScope(child: FlapApp()));
 
       // Assertions below
       expect(loginScreen.title, findsOneWidget);
@@ -39,7 +39,7 @@ void main() {
       // navigate through multiple screens to test an entire flow.
 
       // Causes test to wait for app to finish launch before testing
-      await tester.pumpWidget(const ProviderScope(child: MyApp()));
+      await tester.pumpWidget(const ProviderScope(child: FlapApp()));
 
       // Verify no errors present at first
       expect(loginScreen.emailEmptyError, findsNothing);
